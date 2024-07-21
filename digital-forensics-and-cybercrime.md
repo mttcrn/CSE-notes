@@ -26,10 +26,10 @@ Risk are a statistical and economical evaluation of the exposure to damage becau
 
 ### Gartner quadrant of threats <a href="#orged7e7de" id="orged7e7de"></a>
 
-|          | Generic                      | Specific                                         |
-| -------- | ---------------------------- | ------------------------------------------------ |
-| Internal | disgruntled employees (no $) | socially-engineered or dishonest employee (\$$$) |
-| External | criminals (\$$$)             | a variety of attackers ($)                       |
+|          | Generic                      | Specific                                        |
+| -------- | ---------------------------- | ----------------------------------------------- |
+| Internal | disgruntled employees (no €) | socially-engineered or dishonest employee (€€€) |
+| External | criminals (€€€)              | a variety of attackers (€)                      |
 
 In general the external-generic threat is easy to predict according to what makes the company valuable. It is the most common: criminals want to be effective (reproducibility and scalability) so they don’t want to focus on specific targets.\
 On the other hand, non-financial attacks or internal ones are difficult to predict.&#x20;
