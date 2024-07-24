@@ -603,7 +603,7 @@ Neural networks can model very **complex patterns** and decision boundaries in t
 The activation functions may differ per neuron, they are typically fixed for each layer.\
 The processing element (neuron) perform two operations:
 
-1. It takes the input and multiplies them with the weights (including intercepts  β zero$$\beta_0$$, which is the bias term).&#x20;
+1. It takes the input and multiplies them with the weights (including intercepts  β zero, which is the bias term).&#x20;
 2. Puts this into a nonlinear transformation function (logistic regression),
 
 **MultiLayer Perceptron** (MLP) is made of a input layer, an hidden layer (**feature extractor**) that combine the inputs into features that are then subsequently given to the output layer to make the prediction.&#x20;
@@ -658,7 +658,7 @@ They deal with the shortcomings of NN:
 * Objective function is non-convex (multiple local minima).
 * Effort that to tune the number of hidden neurons.
 
-It is based on linear programming (objective function, constraint), which main limitation is that it can estimate multiple optimal solutions. SVMs add an extra objective to the analysis to overcome this.&#x20;
+It is based on linear programming (objective function, constraint), its main limitation is that it can estimate multiple optimal solutions. SVMs add an extra objective to the analysis to overcome this.&#x20;
 
 It is based on support vectors (training points that lie on one hyperplane).\
 It is a convex optimization problem: no local minima are present but only one global minimum.&#x20;
@@ -1485,7 +1485,12 @@ The main disadvantage is that it can lead to lot of false positive, so the exper
 
 <summary>Describe what are the 5 key characteristics of a successful fraud analytical model. For each characteristic, provide a brief description and highlight its importance in the fraud detection task.</summary>
 
+The key characteristics of a fraud analytics model are:
 
+* Statistical accuracy: detection power and correctness of the statistical model in flagging suspicious cases. We need to make sure that the model generalizes well and is not over-fitted to the historical data set.
+* Interpretability: when a deeper understanding of the detected frauds is required, a fraud-detection model must be interpretable. It depends on the technique used: white box models are more interpretable than black-box ones (trade-off between interpretability and accuracy).
+* Operational efficiency: time and effort that is required to the entire process of deploying the system (collecting data, process them, build the model, estimate the results and optimize the model). A cost-benefit analysis can be made.&#x20;
+* Regulatory compliance: it may be internal or external regularization that applies to the development and application of a model. A fraud-detection model should be in line and comply with all applicable regulation and legislation.
 
 </details>
 
