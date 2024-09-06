@@ -1185,11 +1185,11 @@ There are two types of anti-forensics techniques:
 
 When data is created, some space into the disk is allocated and metadata are created aswell (containing information useful for the OS to locate data).&#x20;
 
-When a data is deleted its relative file entry in the FS is flagged as deleted but the actual data is not deallocated. Then at random some time, the data may be deleted or the space written with other data. Before this operations occur we are still able to recover the file since it is still present.&#x20;
+When a data is deleted its relative file entry in the FS is flagged as deleted but the actual data is not deallocated. Then at random some time, the FS entry may be removed (until this happens we can still find metadata about the file) or the space is over-written with other data (until this happens we are still able to recover the file since it is still present).&#x20;
 
-When a file is deleted, some or all of its metadata can persist in the file system. We can exploit the slack space, that contains information about deleted data or partial data, to recover the file.
+When a file is deleted, some or all of its metadata can persist in the file system. We can exploit the slack space, that may contains partial data, to recover the file.
 
-If the metadata had been deleted we can still recover data trough carving: we identify successive headers, anything in between two headers, if not too large, is a candidate file.&#x20;
+If the metadata had been deleted we may recover data trough carving: we identify successive headers, anything in between two headers, if not too large, is a candidate file.&#x20;
 
 </details>
 
@@ -1199,7 +1199,7 @@ If the metadata had been deleted we can still recover data trough carving: we id
 
 An anti-fraud strategy is based on two main components:
 
-* Fraud detection: aim at detecting frauds after they have happened, so it is an ex-post approach. They role of the detector is to discourage fraudsters and make fraud difficult. A fraud score is computed for each transaction, and then an expert is called to analyze each one of the flagged as fraudulent.&#x20;
+* Fraud detection: aim at detecting frauds after they have happened, so it is an ex-post approach. The main objective is to discourage fraudsters and make fraud difficult. A fraud score is computed for each transaction, and then an expert is called to analyze each one of the flagged as fraudulent.&#x20;
 * Fraud prevention: aim at preventing frauds, so it is an ex-ante approach. It is generally based on multi-factor authentication.&#x20;
 
 They are complimentary, but not independent. If a fraud adapts to a detection mechanism, it will also impact prevention and vice-versa.
@@ -1210,9 +1210,12 @@ They are complimentary, but not independent. If a fraud adapts to a detection me
 
 <summary>By considering the scenario described above, explain which type of techniques and/or system you would deploy, providing a brief explanation of how they work, the order of deployment, and their advantages and disadvantages.</summary>
 
-I would start with a rule-based approach, since we do not have historical data. Its main disadvantage is that is not automatically updated so it require the expert input. For this reason i0t is difficult to maintain.&#x20;
+I would start with a rule-based approach, since we do not have historical data. It require the expert input, who has to generate a set of rules based on its knowledge. \
+Its main disadvantage is that is not automatically updated so it require continuously the expert input. For this reason it is difficult to maintain and it is not operationally efficient.&#x20;
 
-Then we can develop an unsupervised learning model. In this way we would be able to detect newer fraud mechanism, and we can collect historical labelled data. The main disadvantage is that it can lead to lot of false positive.
+At the same time, we can develop an unsupervised learning model. In this way we would be able to detect newer fraud mechanism, and we can collect historical labelled data. The main disadvantage is that it can lead to lot of false positive, need extensive validation and it is prone to deception.
+
+After we have collected enough historical labelled data, we can develop a supervised learning model to make it work in parallel with the other two before mentioned. In this way, having different models to work together, we are able to mitigate each one drawbacks.&#x20;
 
 </details>
 
@@ -1241,7 +1244,7 @@ It is a malware that once infected a computer it encrypts all data and ask the v
 It works in 3 steps:
 
 1. The C\&C generate a pair of private-public keys, then sends the public key to the ransomware.
-2. The ransomware encrypts the data with a symmetric algorithm and the public key.&#x20;
+2. The ransomware encrypts the data with a symmetric algorithm and encrypt the symmetric key with the public key.&#x20;
 3. Once the ransom is paid the data are recovered with the private key. Since the private key reside in the C\&C server, it is impossible to recover the data without paying&#x20;
 
 A mitigations against it are backups.
@@ -1256,7 +1259,7 @@ The cybercrime ecosystem is very complex. In this case we can consider:
 
 * Ransomware developers: that develop the malicious code.
 * Testers: that test the malware against common antiviruses, to ensure that it is not easily detected.
-* Enables: that provide the infrastructure to spread the malware (ex. botnets).
+* Enablers: that provide the infrastructure to spread the malware (ex. botnets or bulletproof hosting).
 * Money mules: that launder the money in order to break the traceability, in exchange for a percentage.&#x20;
 
 </details>
@@ -1266,7 +1269,7 @@ The cybercrime ecosystem is very complex. In this case we can consider:
 <summary>What is the role of cryptocurrencies in the ransomware phenomenon?</summary>
 
 Cryptocurrencies are de-centralized currency, since it eliminates the need of a trusted authority. It allows users to manage their accounts and move money (send and receive).\
-The key point that make cryptocurrencies useful in the ransomware phenomenon is its pseudo-anonymity: each user may have different accounts, so they can easily break the chain of transactions. Every user can have an arbitrarily large number of identities, that are not liked to personal information of the owner, so he/she can easily break the transaction into multiple ones.\
+The key point that make cryptocurrencies useful in the ransomware phenomenon is its pseudo-anonymity: each user may have different public addresses, so they can easily break the chain of transactions. Every user can have an arbitrarily large number of identities, that are not linked to personal information of the owner, so he/she can easily break the transaction into multiple ones (ex. blockchain hopping).\
 Moreover, a lack of regularization has motivated the use of cryptocurrencies in cybercrimes.
 
 </details>
@@ -1342,7 +1345,7 @@ The main advantage is that with UL we are able to detect newer cases and learn n
 Once a historical collection of labelled data is made a supervised learning model can be developed.\
 The main disadvantages are the inability to detect new frauds and the fact that it can lead to lot of false negatives.
 
-A better solution is to use both models at the same time&#x20;
+A better solution is to use both models at the same time.
 
 </details>
 
