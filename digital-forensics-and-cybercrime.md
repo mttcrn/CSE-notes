@@ -76,7 +76,7 @@ Cryptocurrency is a completely decentralized way of managing transactions, since
 
 BitCoin is a secure, **decentralizes payment system** implementation. It is also a tool for the storage, verification and auditing of information including digital representations of values (ex. NFT).\
 The BitCoin protocol defines a network over internet to mine bitcoins. Each **node** manage a group of **addresses** that holds coins, each address is a **hash of a private-public pair of keys** and act as a **pseudonym** of the coin’s holder.\
-The nodes view is formed by a **blockchain**, a shared, append-only, trustable, ledger of all coins transactions. A block is a transaction within a certain timeframe. The blockchain is a linked list of all the blocks: it contains all the transactions that have ever taken place since BitCoin creation.
+The nodes view is formed by a **blockchain**, a shared, append-only, trustable, ledger of all transactions. A block is a transaction within a certain timeframe. The blockchain is a linked list of all the blocks: it contains all the transactions that have ever taken place since BitCoin creation.
 
 A wallet is the SW that allows to:
 
@@ -154,7 +154,7 @@ Obtaining information from a human is easier than performing an attack to an inf
 
 ### Anti-fraud strategy
 
-Fraud-detection and prevention mechanism aim at reducing losses due to fraud. Fraudsters, like other criminals, tend to look for the easy way, so the key idea is to make difficult the fraud.
+Fraud-detection and prevention mechanism aim at reducing losses due to fraud. Fraudsters, like other criminals, tend to look for the easy way: we have to make the fraud difficult.
 
 * **Fraud detection**: recognize or **discover** fraudulent activities after they have happened (ex-post approach).
 * **Fraud prevention**: **avoid** or reduce fraud that will happen (ex-ante approach).
@@ -164,11 +164,11 @@ Fraud-detection and prevention mechanism aim at reducing losses due to fraud. Fr
 Fraud detection approach compute a score (fraud risk level) for each transaction in order to retrieve the most likely fraudulent action. The fraud risk level is provided, then an actual human will investigate the transactions flagged as positive. The more information he has, the better will be his work.
 
 Prevention mechanism is a combination of multi-factor authentication (ex. OTP, smart cards, TOTP).\
-An example is **PSD2**, an European regulatory requirement which has the goal of reducing fraud and making online payments more secure. It requires to use at least two of the following three elements: something the customer knows (e.g. PIN), has (e.g. OTP) or is (e.g. fingerprint). Usually subscriptions, small transactions or low-risk transactions are exempted (recall the security-usability trade-off).
+An example is **PSD2** (Payment Services Directive), an European regulatory requirement which has the goal of reducing fraud and making online payments more secure. It requires to use at least two of the following three elements: something the customer knows (e.g. PIN), has (e.g. OTP) or is (e.g. fingerprint). Usually subscriptions, small transactions or low-risk transactions are exempted (recall the security-usability trade-off).
 
 ### Expert based knowledge
 
-The expert based approach is built on the **domain knowledge** of the **fraud analyst** that is able to gather and process the right information in the right manner in a more efficient way. It involves a manual investigation of suspicious cases, which may indicate a new fraud mechanism that allows extending the fraud detection and prevention mechanism.
+The expert based approach is built on the **domain knowledge** of the **fraud analyst** that is able to gather and process the right information in the right manner. It involves a manual investigation of suspicious cases, which may indicate a new fraud mechanism that allows extending the fraud detection and prevention mechanism.
 
 When fraudulent activities have been detected and confirmed, two types of measures are typically taken:
 
@@ -199,14 +199,13 @@ Disadvantages of rule-based engine:
 
 * Expensive to build: it requires manual input by the fraud experts.
 * Difficult to maintain and manage: updated are needed in order to keep the rule base effective, every single case require human follow-up and investigation.
-* New fraud patterns are not automatically signaled: fraud is a dynamic phenomenon, fraudsters can learn the rules and circumvent them. They are static.&#x20;
+* New fraud patterns are not automatically signaled: fraud is a dynamic phenomenon, fraudsters can learn the rules and circumvent them, but the rules are static.&#x20;
 
 So, rule based engine must continuously monitored, improved, and updated to remain effective.
 
-Fraud becomes easier to detect the more time has passed. For this reasons in the last years we have seen a shift from rule-based engine to data-driven engine since big data can be explored and exploited for fraud detection at a lower cost.
+Fraud becomes easier to detect the more time has passed. For this reasons in the last years we have seen a shift from rule-based engine to data-driven engine since big data can be exploited at a lower cost.
 
-Expert-based fraud-detection system relies on human expert input, evaluation, and monitoring. It is a starting point and a complementary tool to develop an effective fraud-detection and prevention system. \
-On the other hand, data-driven fraud-detection systems requires less human involvement, could lead to a more efficient and effective system, expert knowledge remains crucial to build effective systems.
+Expert-based fraud-detection system relies on human expert input, evaluation, and monitoring. It is a starting point and a complementary tool to develop an effective fraud-detection and prevention system. On the other hand, data-driven fraud-detection systems requires less human involvement, could lead to a more efficient and effective system. Expert knowledge remains crucial to build effective systems.
 
 ### Data-Driven Fraud Detection
 
@@ -221,7 +220,7 @@ Main characteristics:
 
     The higher precision is due to the higher fraction of inspected frauds.
 * Operational and cost efficiency: \
-  The increasing amount of cases to be analyzed, requires automated processes. Operational requirements exist, imposing time constraints on the processing of a case. Expert-based fraud detection systems is challenging and labor intensive. On the contrary automated data-driven approaches are compliant with stringent operational requirements.
+  The increasing amount of cases to be analyzed, requires automated processes. Operational requirements exist, imposing time constraints on the processing of a case. Expert-based fraud detection systems is challenging and labor intensive while automated data-driven approaches are compliant with stringent operational requirements.
 
 The negative social and financial impact of frauds increase awareness and attention that lead to growing investments and research from academia, industry, and government.
 
@@ -232,13 +231,13 @@ Fraud-detection approaches have evolved: we have made huge steps in adopting pow
 Challenges of developing fraud-detection models:
 
 * **Dynamic nature of fraud**. \
-  Fraudsters adapt their approaches to commit fraud without being exposed (camouflage). We need adaptive analytical models for detection and prevention.
+  Fraudsters adapt their approaches (camouflage) so we need adaptive analytical models for detection and prevention.
 * **Good detection power**. \
   In order to detect fraud as accurately as possible, we want a low false negative rate (missed frauds) especially involving large amounts (high financial impact) & a low false alarm rate, to avoid harassing good customers and prevent accounts or transactions to be blocked unnecessarily.
 * **Skewness of the data**. \
   In general, we have plenty of historical examples of non-fraudulent cases, but only a limited number of fraudulent cases. It is a needle-in-a-haystack problem: we might experience difficulties in learning an accurate model.
 * **Operational efficiency** (big data management). \
-  We have a limited amount of time available to reach a decision and let a transaction pass or not. It impacts the design of the operational IT system and the analytical model since it should not take too long to evaluate. The information or the variables used by the model should not take long to be gathered or calculated.
+  We have a limited amount of time available to reach a decision and let a transaction pass or not. It impacts the design of the analytical model since it should not take too long to evaluate. The information or the variables used by the model should not take long to be gathered or calculated.
 
 There is a need for new techniques that are able to detect and address stealthy patterns:
 
@@ -267,13 +266,13 @@ In developing a fraud detection system we generally start with an expert-based r
 * **Fraud prevention**: preventing fraud to be committed in future.
 * **Feedback loop**: newly detected cases should be added to the DB of historical fraud cases, which is used to learn or induce the detection model. It automatize the process.&#x20;
 
-A **regular update** of the model is recommendable given the **dynamic nature of fraud**. The **frequency of retraining** or **updating the detection model** depends on several factors:
+A **regular update** of the model is recommendable given the **dynamic nature of fraud**. The **frequency of re-training** or **updating the detection model** depends on several factors:
 
 * The volatility of the fraud behavior.
 * The detection power of the current model.
 * The amount of (similar) confirmed cases already available in the DB.
 * The rate at which new cases are being confirmed.
-* The required effort to retain the model.
+* The required effort to re-train the model.
 
 An alternative technique is **reinforcement learning**, which works by **continuously updates** the model by learning from the newest observations. This allows continuous updates **avoiding costs**, but it **enlarges threats**: if I avoid the automatized detection system once, I can do it anytime.
 
@@ -320,8 +319,7 @@ Key characteristics of successful fraud analytics models:
 In theory, for data “the bigger the better” but real data is typically “dirty” (inconsistencies, incompleteness, duplication, ..). Messy data will yield messy analytical model. \
 For this reason data-filtering mechanism must be applied to clean up and reduce the data since even the slightest mistake can make the results invalid.
 
-Variety of different sources provide different information: transaction data, contractual, subscription or account data, sociodemographic information, survey, expert-based data, publicly available data, and so on.\
-We have to decide which ones are useful for our purposes.
+Variety of different sources provide different information: transaction data, contractual, subscription or account data, sociodemographic information, survey, expert-based data, publicly available data, and so on. We have to decide which ones are useful for our purposes.
 
 Transactional data is structured and detailed information capturing the key characteristics of a customer transaction. It can be summarized over longer time horizons by aggregating it (averages, absolute/relative trends, max/min values, recency, frequency and monetary). The interaction between transactions is very useful for fraud detection (anti-money laundering).
 
@@ -334,11 +332,11 @@ Types of data elements:
 
 * **Continuous data**: defined on a interval, which can be both limited or unlimited.
 * **Categorical data**:
-  * **Nominal**: can only take on a limited set of values with no meaningful ordering in between.
-  * **Ordinal**: can only take on a limited set of values with a meaningful ordering in between.
+  * **Nominal**: can take on a limited set of values with no meaningful ordering.
+  * **Ordinal**: can take on a limited set of values with a meaningful ordering.
   * **Binary**: can only take two values (yes/no).
 
-**Sampling** is the process that take a subset of historical data to build an analytical model. A good sample must be **representative** for the entities and we must choose the **optimal time window**. We need to made a **trade-off** between **lots of data** (a more robust analytical model) and **recent data** (more representative). We have to choose an “average” period to get as accurate as possible a picture of the target population. We have to take into account that sampling has a direct impact on the fraud detection power. \
+**Sampling** is the process that take a subset of historical data to build an analytical model. A good sample must be **representative** for the entities and we must choose the **optimal time window**. We need to make a **trade-off** between **lots of data** (a more robust analytical model) and **recent data** (more representative). We have to choose an “average” period to get as accurate as possible a picture of the target population. We have to take into account that sampling has a direct impact on the fraud detection power. \
 Sampling bias should be avoided even if is not straightforward.
 
 In order to **mitigate seasonality effect** or **bias** we can:
@@ -365,7 +363,7 @@ They can occur because of various reasons: the information can be **non applicab
 * **Delete** observation or variables with lots of missing values. This assumes that information is missing at random and has no meaningful interpretation/relationship with the target.
 * **Keep** missing values can be meaningful and may have a relation with fraud and needs to be considered as a separate category.
 
-We need to statistically test whether missing information is related to the target variable or not. If yes, then we can adopt the keep strategy and make a special category for it. If not, one can depending on the number of observations available, decide to either delete or replace.
+We need to statistically test whether missing information is related to the target variable or not. If yes, then we can adopt the keep strategy and make a special category for it. If not, depending on the number of observations available, we can decide to either delete or replace them.
 
 **Outliers** are extreme observations that are very dissimilar to the rest of the population. It can be univariate (outlying on one dimension) or multivariate (on multiple dimension).
 
@@ -653,12 +651,12 @@ A **two stage model** setup provides an ideal balance between model interpretabi
 
 #### Support vector machines (SVMs)
 
-They deal with the shortcomings of NN:
+They deal with the following shortcomings of NN:
 
+* Effort needed tune the number of hidden neurons (optimization problem).
 * Objective function is non-convex (multiple local minima).
-* Effort that to tune the number of hidden neurons.
 
-It is based on linear programming (objective function, constraint), its main limitation is that it can estimate multiple optimal solutions. SVMs add an extra objective to the analysis to overcome this.&#x20;
+It is based on linear programming (objective function, constraint) whose main limitation is that it can estimate multiple optimal solutions: extra objective is added to the analysis to overcome this.&#x20;
 
 It is based on support vectors (training points that lie on one hyperplane).\
 It is a convex optimization problem: no local minima are present but only one global minimum.&#x20;
@@ -728,7 +726,7 @@ When evaluating predictive models, two key decisions need to be made:&#x20;
 * **Justifiability**: verifies to what extent the relationships modeled are in line with expectations.
 * **Operational** **efficiency**: ease of implementation, use and monitoring of the final model.
 
-Fraud detection dataset s often have a very **skew target class distribution frauds** (< 1%). This creates a problem for the analytical techniques: since it has lots of non-fraudulent observations it will tend to classify every observation as non-fraudulent.\
+Fraud detection datasets often have a very **skew target class distribution frauds** (< 1%). This creates a problem for the analytical techniques: since it has lots of non-fraudulent observations it will tend to classify every observation as non-fraudulent.\
 It is recommended to increase the number of total fraudulent observations or their weight, such that the analytical techniques can pay better attention to them.\
 In order to overcome this problem, it is possible to:
 
@@ -816,7 +814,7 @@ HW used for acquisition:&#x20;
 * External disks.
 * USB, firewire, SATA and e-SATA controllers, if possibile.
 
-SW used for acquisition: essentially Linux OS that have an **extensive native file system support** and **ease** of **accessing** **drives**/**partitions** without "touching" (mounting) them. It can be used to acquire the **bitstream** of an hard drive (bit-by-bit clone).
+SW used for acquisition: essentially Linux OS that have an **extensive native file system support** and **ease** of **accessing** **drives**/**partitions** without "touching" (mounting) them. It can be used to acquire the **bitstream** of an hard drive (bit-by-bit clone, since if we only copy the allocated content we potentially lose information).
 
 ### Basic procedure of acquisition of a powered-down system
 
@@ -825,9 +823,9 @@ SW used for acquisition: essentially Linux OS that have an **extensive native fi
 3. Compute the hash of the source.&#x20;
 4. Copy the source.
 5. Compute the hashes of the source and the clone.
-6. Compare the two hashes.
+6. Compare the three hashes.
 
-This operation could alter the evidence with irreversibile consequences. By comparing the two hashes we know if everything is ok or if something has changed. \
+This operation could alter the evidence with irreversibile consequences. By comparing the three hashes we know if everything is ok or if something has changed. \
 It could be good to compute also MD5 (not really used) and SHA-1 (almost deprecated) hashes of the image at least, for redundancy and compatibility.
 
 Main challenges/limitations:
@@ -858,12 +856,12 @@ The needed toolset is composed of:
 
 * **Linux**: because it has the most **extensive native system support** (ex. support in **hot swapping drives** and devices, **mounting images**, ..).\
   Windows cannot be used since there is NO possibility to specify that a resource is read-only (not even with a write blocker). It tampers with drives and modifies evidence. It has NO image handling or hotswapping of drives.
-* **Virtualization**: a set of Windows machines with different versions, networks with the Linux host and using Samba to share drives (hybrid approach).
+* **Virtualization**: a set of guests Windows machines with different versions in a network with the Linux host using Samba to share drives (hybrid approach).
 
 In using Linux has a host, and Windows as a guest, we are able to work the images in Linux, mounting them in read-only and then exporting them via Samba to Windows, but at the same time we can use some specific Windows tools.\
 It is not always possibile to use Samba: if Windows must see the file system (ex. file recovery tool, unallocated space analysis) we can mount the image as a read-only loop device under Linux, and/or use the "non-persistent" mode of VMWare.
 
-We have to take into account that everything that we do must be scientific: it must be repeatable and validatable (another expert must be able to perform the same analysis by hand, at least in theory).\
+We have to take into account that everything that we do must be scientific: it must be repeatable and validable (another expert must be able to perform the same analysis by hand, at least in theory).\
 So analysis SW needs to be open sources and possibly free.&#x20;
 
 #### Recovery of deleted data
@@ -875,8 +873,12 @@ The OS is "lazy" and optimizations cause data persistence and locality. When we 
 * First, the file entry in the FS is flagged as deleted. Until here, it can be "undeleted" by simply removing  the flag.
 * Then, at some random time, two things will happen (not in a particular order): the FS entry will be removed when the FS is rewritten or rebalanced (until this happens we can find metadata on the file), the actual blocks allocated with the file will be overwritten with other contents (until this happens we can retrieve the actual blocks on disk).
 
-In a HHD the **slack space** (padding between end of a file and next cluster) contains data about files that have been deleted (less than 4 sectors, 4KB).\
-Since sectors are one after the other, there is an high probability that a file is stored continuously. So, even if we do not have metadata anymore, we can scan the entire drive as a single bitstream in order to locate headers & footers of interesting file types: anything in between, if not to large, is a candidate file (file recovering through **carving**).\
+In a HHD the **slack space** (padding between end of a file and next cluster) contains data about files that have been deleted (less than 4 sectors, 4KB).
+
+<figure><img src=".gitbook/assets/slakc.png" alt="" width="563"><figcaption></figcaption></figure>
+
+File carving can be used to recover data from a hard disk where the metadata was removed or otherwise damaged.\
+Since sectors are one after the other, there is an high probability that a file is stored continuously. So, even if we do not have metadata anymore, we can scan the entire drive as a single bitstream in order to locate headers & footers of interesting file types: anything in between, if not to large, is a candidate file (file recovering through **carving**). \
 This is not normally the case because of **fragmentation** (no really common in modern HHD, at most it is divided in two parts) and **headerless** caused by encryption and compression (in this case we need the file to be complete, otherwise it is meaningless).
 
 ### Anti-forensics techniques
@@ -1529,3 +1531,47 @@ Further data could be driven from a peer-to-peer analysis: the customer should b
 
 </details>
 
+<details>
+
+<summary>What are the differences between data and metadata in the context of forensics acquisition?</summary>
+
+Data refers to the actual content that is being investigated (ex. images, documents, files, ..). \
+Metadata is data about data: it helps the expert in recovering the actual data as it gives important information such as last access, last modification, extension, file size, creation time.
+
+Generally speaking, data is the evidence that directly relates to the investigation while metadata helps to verify the authenticity, timeline, and usage patterns, ensuring the integrity of the forensic analysis.
+
+</details>
+
+<details>
+
+<summary>What is the slack space?</summary>
+
+The slack space is located between the end of a file and the end of the cluster. It contains deleted data that has not been entirely overwritten.
+
+It occurs because files rarely use all allocated cluster space, leaving leftover data from previously deleted files which can be useful in forensics investigations.
+
+</details>
+
+<details>
+
+<summary>What is file carving?</summary>
+
+File carving is a technique used to recover data from unallocated disk space without relying on FS metadata. It works by scanning the disk as a bitstream, identifying a pair of header and footer and analyze what is placed in between: if not too long it can be a candidate file.&#x20;
+
+</details>
+
+<details>
+
+<summary>Can we use file carving to recover the information contained in the slack space?</summary>
+
+Yes, file carving can be used to recover the information in the slack space. Trough file carving we can analyze the slack space to find relevant signatures or patterns that may indicate the presence of certain data types. However, the process can be challenging because slack space is often fragmented, and there is no FS metadata to assist.
+
+</details>
+
+<details>
+
+<summary>What makes the fraud detection an imbalanced class?</summary>
+
+Data about frauds are often very skew: <1% are fraudulent cases. Fraud detection is an unbalanced class since the distribution of fraudulent and non-fraudulent cases is not equal, we have lot of non-fraudulent cases that can impact the ability of a detection model to works correctly since it tend to favor the majority class.&#x20;
+
+</details>
