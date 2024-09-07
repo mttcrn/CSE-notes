@@ -52,9 +52,7 @@ for i in range(start, end + 1):
 
 </code></pre>
 
-&#x20;
-
-Now I have everything to craft the exploit with python:
+&#x20;Now I have everything to craft the exploit with python:
 
 <pre data-overflow="wrap"><code>#to enter in create_art and exploit the string format vulnerability
 <strong>start = "2\n" 
@@ -80,13 +78,23 @@ print(start + win + exp + cat + end)
 
 ## Mission2: Muda
 
+The vulnerability is a buffer overflow. We have a buffer of 256bit, that is checked for the presence of "0x0b" or "0x05" (respectively execve and open).&#x20;
+
+The idea is to use a shellcode that open a privileged shell that does not use the previous commands.&#x20;
+
 ## Mission3: ret2thefuture
 
 ## Mission4: Darkroom&#x20;
+
+It is a reverse engineering challenge: the source code is not provided.&#x20;
 
 ## Mission5: 90s&#x20;
 
 ## Mission6: Endianness Problem
 
+#### Useful resources:
 
+{% embed url="https://ir0nstone.gitbook.io/notes" %}
+
+{% embed url="https://book.jorianwoltjer.com/" %}
 

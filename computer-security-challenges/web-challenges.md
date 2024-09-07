@@ -229,5 +229,6 @@ I searched for a way that would allow me to read the flag, and I found the SIMIL
 
 > a' OR gnome\_name SIMILAR TO '\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-#### Useful resources
+#### Useful resources:
 
+{% embed url="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet" %}
