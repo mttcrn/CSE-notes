@@ -52,7 +52,7 @@ Edge computing aim at moving the computing outside the cloud (such as 5G technol
 
 <div data-full-width="false">
 
-<figure><img src=".gitbook/assets/Untitled 3 (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 3 (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 </div>
 
@@ -60,24 +60,24 @@ Edge computing aim at moving the computing outside the cloud (such as 5G technol
 
 Embedded PCs are PC in which we just have the main board (such as Raspberry). It support the pervasive computation. They suffer from the fact that they are a computer.
 
-<figure><img src=".gitbook/assets/Untitled 4 (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 4 (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 #### Internet of Things (IoT)
 
 Internet-of-Things (IoT) is an environment in which the computation is divided into different devices.
 
-<figure><img src=".gitbook/assets/Untitled 5 (1).png" alt="" width="339"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 5 (1) (1).png" alt="" width="339"><figcaption></figcaption></figure>
 
 An IT perspective for computing infrastructures:\
 The software is the reason why the system exists. The operating system “mask” the hardware level. The term “architecture” means that we are organizing spaces, in order for them to have a goal.
 
 <div>
 
-<figure><img src=".gitbook/assets/Untitled 6 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 6 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
  
 
-<figure><img src=".gitbook/assets/Untitled 7 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 7 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -122,11 +122,11 @@ WSCs belong to a **single organization**, they use a relatively **homogeneous ha
 
 <div>
 
-<figure><img src=".gitbook/assets/Untitled 10 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 10 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
  
 
-<figure><img src=".gitbook/assets/Untitled 9 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 9 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -142,17 +142,17 @@ The world is divided into **geographic areas** (GAs) defined by geo-political bo
 
 **Computing regions** are seen by the customers as the **finer grain discretization** of the infrastructure. It is possibile to exchange data between data centers of the same computing region having a fixed latency. The region are far enough such that if there is a large blackout or atmospherical event, the infrastructure can survive.
 
-<figure><img src=".gitbook/assets/Untitled 11 (1).png" alt="" width="264"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 11 (1) (1).png" alt="" width="264"><figcaption></figcaption></figure>
 
 The **availability zone** (AZs) are **finer grain location** within a single computing region. They allow customers to run mission critical application with **high availability** and **fault tolerance** to **datacenters failures**. It is different from the concept of availability set. Application-level synchronous replication among AZs. 3 is the minimum number of AZs and enough for quorum.
 
 <div>
 
-<figure><img src=".gitbook/assets/Untitled 12 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 12 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
  
 
-<figure><img src=".gitbook/assets/Untitled 13.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -223,7 +223,7 @@ Cooling represent 25% or the entire costs of the data center management.
 
  
 
-<figure><img src=".gitbook/assets/Untitled (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Untitled (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
