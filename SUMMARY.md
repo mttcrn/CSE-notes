@@ -4,6 +4,7 @@
 * [Computer Ethics](computer-ethics.md)
 * [Computing Infrastructures](computing-infrastructures.md)
 * [Foundations of Operations Research](foundations-of-operations-research.md)
+* [Artificial Neural Networks and Deep Learning](artificial-neural-networks-and-deep-learning.md)
 * [Computer Security cheatsheet](computer-security-cheatsheet.md)
 * [Digital Forensics & Cybercrime](digital-forensics-and-cybercrime.md)
 
