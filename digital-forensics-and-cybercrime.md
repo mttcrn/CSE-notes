@@ -37,7 +37,7 @@ On the other hand, non-financial attacks or internal ones are difficult to predi
 
 Internal threats can be countered by contracts and separation of duties.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>internal threats</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>internal threats</p></figcaption></figure>
 
 ### Financially-oriented attacks
 
@@ -50,7 +50,7 @@ A **ransomware** is a malware which encrypts a device and asks for ransom to dec
 2. The C\&C server generates public and private key pair, then sends the public key to the ransomware.
 3. The ransomware encrypts the symmetric key using the public key.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1).png" alt="" width="349"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="349"><figcaption></figcaption></figure>
 
 The only way to recover data is by using the private key that is stored in the C\&C server. A mitigation against it are backups.
 
@@ -1353,7 +1353,7 @@ A better solution is to use both models at the same time.
 
 <summary>After a few days, the company is the victim of a fraudulent campaign. Therefore, you decide to analyze available data. Considering the data contained in the table shown below, which shows the first rows of the current  dataset, explain the analysis you would apply on that data and what are the first insights you can extract from it. </summary>
 
-![](<.gitbook/assets/image (1) (1).png>)
+![](<.gitbook/assets/image (1) (1) (1).png>)
 
 As an expert I would first focus on the flagged cases and try to extract all information that are relevant in those cases. In this example we can notice that the timestamp of the flagged cases is at night, while the other transactions are made during the day. Another noticeable feature is that UserID 4 can be likely related to a fraud since he/she made a small transaction followed by a big one. UserID 2 is showing a strange behaviour aswell, by making multiple small transaction in the same day.&#x20;
 
@@ -1519,7 +1519,7 @@ Then, once we have enough labelled data, we can deploy a supervised learning mod
 
 <summary>You work for the Time Variance Authority (TVA), a company specialized in detecting banking frauds. You suspect that some fraudulent patterns are not detected by the fraud detection system developed by your company. Therefore, you decide to analyze some data acquired from an already deployed system.<br>By taking into consideration only the graphs shown above, which shows the amount spent by one customer, explain the analysis you would apply on the data and what the first insights you can extract from it. </summary>
 
-![](.gitbook/assets/image.png)
+![](<.gitbook/assets/image (1).png>)
 
 I would apply a the break-point analysis that is an inter-account technique.\
 It consist of:

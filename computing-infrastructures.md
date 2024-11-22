@@ -25,36 +25,20 @@ For example a server, that is mine and that I can access (and no one else) from 
 
 A data center is composed by 3 server: for processing, for storage and for communications.
 
-<div align="center">
-
-<figure><img src=".gitbook/assets/image (102).png" alt="" width="375"><figcaption></figcaption></figure>
-
-</div>
+<div align="center"><figure><img src=".gitbook/assets/image (102).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 To access the resources a **virtualization layer** is needed.
 
 * **VMMs**: provide the full stack (OS, LIB, APP). Application depends on guest OS.
 * **Containers**: applications are packaged with all their dependencies into a standardized unit for software development/deployment.
 
-<div align="left">
-
-<figure><img src=".gitbook/assets/image (103).png" alt="" width="375"><figcaption><p>Virtual Machine Manager</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (104).png" alt="" width="375"><figcaption><p>Container</p></figcaption></figure>
-
-</div>
+<div align="left"><figure><img src=".gitbook/assets/image (103).png" alt="" width="375"><figcaption><p>Virtual Machine Manager</p></figcaption></figure> <figure><img src=".gitbook/assets/image (104).png" alt="" width="375"><figcaption><p>Container</p></figcaption></figure></div>
 
 #### Edge Computing
 
 Edge computing aim at moving the computing outside the cloud (such as 5G technology).
 
-<div data-full-width="false">
-
-<figure><img src=".gitbook/assets/Untitled 3 (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
-
-</div>
+<div data-full-width="false"><figure><img src=".gitbook/assets/Untitled 3 (1) (1).png" alt="" width="188"><figcaption></figcaption></figure></div>
 
 #### Embedded PCs
 
@@ -71,15 +55,7 @@ Internet-of-Things (IoT) is an environment in which the computation is divided i
 An IT perspective for computing infrastructures:\
 The software is the reason why the system exists. The operating system “mask” the hardware level. The term “architecture” means that we are organizing spaces, in order for them to have a goal.
 
-<div>
-
-<figure><img src=".gitbook/assets/Untitled 6 (1) (1).png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/Untitled 7 (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/Untitled 6 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 7 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 ### Data Centers (DC)
 
@@ -120,15 +96,7 @@ WSCs belong to a **single organization**, they use a relatively **homogeneous ha
 * The common resource management infrastructure allows significant **deployments flexibility**.
 * The requirements of homogeneity, single-organization control and cost efficiency motivate the designer to take new approaches in designing WSCs.
 
-<div>
-
-<figure><img src=".gitbook/assets/Untitled 10 (1) (1).png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/Untitled 9 (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/Untitled 10 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 9 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 #### From data centers to warehouse-scale computer (and back)
 
@@ -146,15 +114,7 @@ The world is divided into **geographic areas** (GAs) defined by geo-political bo
 
 The **availability zone** (AZs) are **finer grain location** within a single computing region. They allow customers to run mission critical application with **high availability** and **fault tolerance** to **datacenters failures**. It is different from the concept of availability set. Application-level synchronous replication among AZs. 3 is the minimum number of AZs and enough for quorum.
 
-<div>
-
-<figure><img src=".gitbook/assets/Untitled 12 (1) (1).png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/Untitled 12 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure></div>
 
 **Services provided through WSCs** must guarantee **high availability**, typically aiming for at least **99.99% uptime**. Achieving such fault-free operation is difficult when a large collection of hardware and system software is involved. WSC workloads must be designed to gracefully tolerate large numbers of component faults with little or no impact on service level performance and availability. This is exactly the goal of the **dependability**.
 
@@ -217,15 +177,7 @@ The IT equipment is stored into **corridors** (in order to **allow air flow** an
 
 Cooling represent 25% or the entire costs of the data center management.
 
-<div>
-
-<figure><img src=".gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/Untitled (2) (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled (2) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 There is a **mismatch**: the complexity increases faster than the performance of the current technology. In order to overcome this problem, the idea is to **parallelize** inside the same machine more effectively. To satisfy this growth, WSCs deploy specialized **accelerator hardware** such as **GPU**, **TPU** or **FPGA**.
 
@@ -427,11 +379,7 @@ In summary:
 * **Unrecoverable Bit Error Ratio** (**UBER**): a metric for the rate of occurrence of data errors, equal to the number of data errors per bits read.
 * **Endurance rating**: terabytes written (**TBW** is the total amount of data that can be written into an SSD before it is likely to fail). The number of TB that may be written to the SSD while still meeting the requirements.
 
-<div align="center">
-
-<figure><img src=".gitbook/assets/image (87).png" alt="" width="563"><figcaption><p>HDD: the UBER is fixed in time<br>SSD: at the beginning of their lifetime they are very robust, but then they became less robust.<br>This is why we use the SSD for storing information that we do not want to rewrite frequently (such as OS and programs), and we use HHD for data that we will rewrite often. This is also why we use both SSD and HHD at the same time.</p></figcaption></figure>
-
-</div>
+<div align="center"><figure><img src=".gitbook/assets/image (87).png" alt="" width="563"><figcaption><p>HDD: the UBER is fixed in time<br>SSD: at the beginning of their lifetime they are very robust, but then they became less robust.<br>This is why we use the SSD for storing information that we do not want to rewrite frequently (such as OS and programs), and we use HHD for data that we will rewrite often. This is also why we use both SSD and HHD at the same time.</p></figcaption></figure></div>
 
 Memory cells can accept data recording between 3’000 and 100’000 during its lifetime. Once the limit value is exceeded, the cell “forgets” any new data. A typical TBW for a 250 GB SSD is between 60 and 150 TB of data written to the drive. It is difficult to comment on the duration of SSDs.
 
@@ -536,15 +484,7 @@ RAID levels can be **combined**.
 * RAID level 0 + 1: group of **striped** disks that are **then mirrored**. A minimum of 4 drives is needed. After the first failure the model becomes a RAID 0.
 * RAID level 1 + 0: group of **mirrored** disks that are **then striped**. A minimum of 4 drives is needed. It is used in DB with very high workloads (fast writes).
 
-<div>
-
-<figure><img src=".gitbook/assets/image (73).png" alt="" width="188"><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (74).png" alt="" width="188"><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/image (73).png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (74).png" alt="" width="188"><figcaption></figcaption></figure></div>
 
 The blocks are the same but are allocated in a different order. **Performance** and **storage capacity** on both RAID 10 and RAID 01 are the **same**. The main difference is the **fault tolerance level**: in RAID 01 fault tolerance is less than in RAID 10.
 
@@ -629,15 +569,7 @@ East-west traffic is usually larger than north-south traffic.
 
 #### Three-tier "classical" network
 
-<div>
-
-<figure><img src=".gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure></div>
 
 It is the simplest and most widely used topology.\
 Servers are connected to the DCN through access switches. Each access-level switch is connected to at least two aggregation-level switches. Aggregation-level switches are connected to core-level switches (gateways). \
@@ -693,15 +625,7 @@ Each switching module is bidirectional.\
 Each leaf has t switching modules with 2k bidirectional ports per module.\
 Each spine has k switching modules with t bidirectional ports per module.
 
-<div>
-
-<figure><img src=".gitbook/assets/image (46).png" alt=""><figcaption><p>Clos topology</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (47).png" alt=""><figcaption><p>Leaf and spine topology</p></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/image (46).png" alt=""><figcaption><p>Clos topology</p></figcaption></figure> <figure><img src=".gitbook/assets/image (47).png" alt=""><figcaption><p>Leaf and spine topology</p></figcaption></figure></div>
 
 #### PoD (point of delivery)
 
@@ -789,7 +713,7 @@ The liquid circulating through the heat sinks transports the heat to a liquid-to
 
 In order to protect against power failure, **battery** and **diesel generators** are used to **backup** the **external supply**. The batteries are designed in order to guarantee 30s of autonomy, that are needed for the generator to start.
 
-The UPS (uninterruptible power supply_)_ typically combines three functions in one system:
+The UPS (uninterruptible power suppl&#x79;_)_ typically combines three functions in one system:
 
 * Contains a **transfer switch** that **chooses** the **active power input** (either utility power or generator power).
 * Contains some form of **energy storage** (electrical, chemical, mechanical) to bridge the time between the utility failure and the availability of generator power.
@@ -933,19 +857,7 @@ The virtualization is implemented by **adding layers between execution stack lay
 * **Application-level virtualization**: A virtualization layer is placed between the OS and some applications (ex. Java VM). It provides the same interfaces to the applications. Applications run in their environment, independently from OS.
 * **System-level virtualization**: The virtualization layer provides the interface of a physical machine to a secondary OS and a set of application running in it, allowing them to run on top of an existing OS. It is placed between the system’s OS and other OS. It enables different OSs to run on a single HW.
 
-<div>
-
-<figure><img src=".gitbook/assets/image (66).png" alt=""><figcaption><p>HW-level</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (67).png" alt=""><figcaption><p>application-level</p></figcaption></figure>
-
- 
-
-<figure><img src=".gitbook/assets/image (68).png" alt=""><figcaption><p>system-level</p></figcaption></figure>
-
-</div>
+<div><figure><img src=".gitbook/assets/image (66).png" alt=""><figcaption><p>HW-level</p></figcaption></figure> <figure><img src=".gitbook/assets/image (67).png" alt=""><figcaption><p>application-level</p></figcaption></figure> <figure><img src=".gitbook/assets/image (68).png" alt=""><figcaption><p>system-level</p></figcaption></figure></div>
 
 Properties of virtualization technologies:
 
@@ -1212,15 +1124,7 @@ Characteristics:
 1. **Unavailability**: $$1 - A(t)$$. When the system is not repairable: $$A(t) = R(t)$$. In general (**repairable systems**): $$A(t) ≥ R(t)$$.
 2.  Some reference numbers:
 
-    <div>
-
-    <figure><img src=".gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
-
-     
-
-    <figure><img src=".gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure>
-
-    </div>
+    <div><figure><img src=".gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure></div>
 
 ### R(t) & A(t) related indices
 
