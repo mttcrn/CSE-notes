@@ -1267,3 +1267,52 @@ This can be done with an neural autoencoder: it is made of an encoding (smaller)
 
 Each unique word $$w$$ in a vocabulary $$V$$ (typically $$||V|| > 10^6$$) is mapped to a continuous m-dimensional space (typically $$100 < m <500$$).\
 It is based on the idea that similar words end up to be close to each other in the feature space. It fight the course of dimensionality with compression (dimensionality reduction), smoothing (discrete to continuous) and densification (sparse to dense).
+
+## Attention Mechanism and Transformers
+
+Fixed source representation in basic seq-to-seq models may become a representation bottleneck as it gets suboptimal for both encoder (as it may be hard to compress the full sentence) and decoder (as different information may be relevant at different steps).\
+Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. Attention mechanism are differentiable, thus trainable. Attention scores can be computed in different ways:&#x20;
+
+* Simple dot-product: this product represent how the two are similar.&#x20;
+* Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It does not add parameter, but only an activation function. Non-linear.
+* Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. $$w_2$$ decides the complexity. Non-linear.
+
+<figure><img src=".gitbook/assets/Screenshot 2024-12-17 155832.png" alt="" width="563"><figcaption><p>red: decoder information (skip signal)<br>green: encoder information (gate signal)</p></figcaption></figure>
+
+#### Chatbots generative response
+
+Chatbots can be defined along at least two dimensions: core algoritmh and context handling.
+
+* Generative: encode the question into a context vector and generate the answer word by word using conditioned probability distribution over answer's vocabulary.
+  * Single turn: build the input vector by considering the incoming question. They may lose important information about the history of the conversation and generate irrelevant responses $$\{(q_i, a_i)\}$$.
+  * Multi-turn: the input vector is built by considering a multi-turn conversational context, containing also incoming question $$\{([q_{i-2}; a_{i-2};q_{i-1};a_{i-1}], a_i)\}$$
+* Retrieval: rely on knowledge base of question-answer pairs. When a new question comes is, inference phase encodes it in a context vector and by using similarity measure retrieves the top-k neighbor knowledge base items.
+
+We can directly apply seq-to-seq models to the conversation between two agents.&#x20;
+
+<figure><img src=".gitbook/assets/Screenshot 2024-12-17 163039.png" alt="" width="536"><figcaption></figcaption></figure>
+
+NLP community belived LSTMs with attention could yield SOTA performance on any task. But some limits were preventing this:
+
+* Performing inference (and training) is sequential in nature.
+* Parallelization at sample level is precluded by recurrence sequential nature.
+* Parallelization can happen at level of batch only.
+* Memory constraints limit batching across to many examples.
+* This becomes critical at longer sequence length.
+
+Google proposes to speed up training by replacing RNN (sequential in nature) with attention mechanism (parallel in nature).
+
+<figure><img src=".gitbook/assets/Screenshot 2024-12-17 170047.png" alt="" width="446"><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2024-12-17 170750.png" alt="" width="436"><figcaption><p>Used to implement self-attention mechanism.<br>It allows parallel execution (thus parallel training).</p></figcaption></figure>
+
+Multiple head attentions allow the model to focus on different things, both at encoding and decoding time.
+
+### Transformers
+
+<figure><img src=".gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
+
+#### Position encoding&#x20;
+
+Self-attention mechanism is permutation invariant by nature as it does not depend on the position not the order of words in the sequence. If you change the order of words, this has no impact on the attention values, but just on their order. Positional encoding is used to make self-attention depend also on the position of the input.&#x20;
+
