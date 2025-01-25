@@ -147,7 +147,7 @@ $$
 argmin_w \sum_n^N (t_n - g(x_n | w))^2
 $$
 
-We have to minimize the sum of squared errors.
+We have to minimize the **sum of squared errors** (SSE). In general, we use the **mean of squared errors** (MSE).
 
 For classification the goal is to approximate a posterior probability $$t$$ having $$N$$ observation: $$g(x_n|w) = p(t_n|x_n)$$ with $$t_n \in \{0, 1\}$$ so that $$t_n \sim Be(g(x_n|w))$$. \
 We write the MLE for the data and look for the weights which maximize the log-likelihood:
@@ -156,7 +156,7 @@ $$
 argmin_w - \sum_n^N t_n log\  g(x_n|w) + (1- t_n)log(1-g(x_n|w))
 $$
 
-We have to minimize the binary cross entropy.
+We have to minimize the **binary cross entropy**. In multiclass classification problem we use the **categorical cross entropy**.
 
 Error functions (like the ones just defined) define the task to be solved. They are defined using knowledge/assumptions on the data distribution, exploiting background knowledge on the task and the model or by trial and error.
 
@@ -231,12 +231,10 @@ Model selection and evaluation happens at different levels: at parameters level,
 
 ### Weight decay: limiting overfitting by weights regularization
 
-Regularization is about constraining the model "freedom", based on a-priori assumption on the model, to reduce overfitting. \
-So far we have maximized the data likelihood: $$w_{MLE} = argmax_w P (D|w)$$.\
-We can reduce model "freedom" by using a Bayesian approach: we make assumption on the parameters a priori distribution.\
+Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters a priori distribution.\
 In general, small weights improve generalization of NN: $$P(w) \sim N(0, \sigma^2_w)$$ it means assuming that on average the weights are close to zero.&#x20;
 
-<figure><img src=".gitbook/assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption><p>Regularization can be performed by adding to the loss function the L2 norm (or L1) of the weights, times a gamma factor. It is a sort of "penalty factor".</p></figcaption></figure>
 
 We can use cross-validation to select the proper $$\gamma$$:&#x20;
 
@@ -293,12 +291,15 @@ $$
 
 ### Weights initialization
 
-The final result of the gradient descent if affected by weight initialization. We have to avoid zero (identical updated, all weights will learn in the same way, no learning will happen), or big numbers (if unlucky it might take very long to converge, may lead to overfitting or cause varnishing gradient). \
+The final result of the gradient descent is affected by weight initialization. We have to avoid zero (identical updated, all weights will learn in the same way, no learning will happen), or big numbers (if unlucky it might take very long to converge, may lead to overfitting or cause varnishing gradient). \
 We can take $$w \sim N(0, \sigma^2 = 0,01)$$ that is good for small networks, but it might be a problem for deeper NN.
 
 In deep networks if weights starts too small, then gradient shrinks ad it passes trough each layer, if they start too large, then gradient grows as it passes trough each layer until it is too massive to be useful. Weights should not bee to small nor too large.&#x20;
 
-#### Xavier & He initialization
+We can use transfer learning by taking a pre-trained NN whose weights are generally optimal \[[#transfer-learning](artificial-neural-networks-and-deep-learning.md#transfer-learning "mention")].\
+We can also use an autoencoder to provide a good initialization when the dataset is small \[[#ae-for-classifier-initialization](artificial-neural-networks-and-deep-learning.md#ae-for-classifier-initialization "mention")].
+
+#### Xavier, Glorot & Bengio, He initialization
 
 Suppose we have an input $$x$$ with $$I$$ components and a linear neuron with random weights $$w$$. Its output is $$h_j = w_{j1}x_1 + ... + w_{ji}x_I + ...  + w_{jI}x_I$$.\
 We can derive that $$w_{ij}x_i$$ is going to have variance:$$Var(w_{ji}x_i) = E[x_i ]^2 Var(w_{ji}) + E[w_{ji}]^2Var(x_i)+Var(w_{ji})Var(x_i)$$.\
@@ -314,7 +315,8 @@ Generally speaking, the weights are initialized as a standard distributions with
 
 ### Batch Normalization
 
-It can be shown that networks converge faster if inputs have been whitened (zero mean, unit variances) and are uncorrelated to account for **covariate shift** (distribution of the input data changes between the training phase and the testing/deployment phase).&#x20;
+It can be shown that networks converge faster if inputs have been whitened (zero mean, unit variances) and are uncorrelated to account for **covariate shift**. \
+During training, we have to take into account:
 
 * **Covariate Shift**: changes in the input data distribution between training and testing phases, leading to performance degradation. Whitening the inputs helps mitigate this issue.
 * **Internal Covariate Shift**: changes in the distribution of inputs to each layer during training, caused by updates to model parameters. Batch Normalization solve this issue.
@@ -328,8 +330,8 @@ Batch normalization has shown to:
 
 * Improve gradient flow trough the network.
 * Allow using higher learning rates (faster learning).
-* Reduce the strong dependence on weights initialization.
-* Acts as a form of regularization slightly reducing the need for dropout.
+* Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
+* Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
 
 ### More about gradient descent: Nesterov Accelerated gradient
 
@@ -697,8 +699,7 @@ Each layer features a more powerful functional approximation than a conv layer.&
 <figure><img src=".gitbook/assets/1_SPxyv6TZPlqFnM7LqZ6Dug.png" alt="" width="563"><figcaption></figcaption></figure>
 
 They also introduce global average pooling layers (GAP): instead of a FC layer at the end of the network, compute the average of each feature map. \
-The GAP corresponds to a multiplication against a block diagonal, non-trainable, constant matrix (the input is flattened layer-wise in a vector). \
-A MLP corresponds to a multiplication against a trainable dense matrix.&#x20;
+The GAP corresponds to a multiplication against a block diagonal, non-trainable, constant matrix (the input is flattened layer-wise in a vector) that is a trainable dense matrix.&#x20;
 
 <figure><img src=".gitbook/assets/Screenshot 2025-01-21 102518.png" alt="" width="269"><figcaption></figcaption></figure>
 
@@ -713,7 +714,7 @@ In general, GAP can be used with more/fewer classes than channels provided an hi
 * More interpretability, creates a direct connection between layers and classes outputs.&#x20;
 * It acts as a structural regularizer.
 * Increases robustness to spatial transformation of the input images.\
-  Features extracted by the conv part of the network are invariant to SHIFT of the input images. The MLP after the flattening is not invariant to shifts (since different input neurons are connected by different weights). So, a CNN trained on centered images might not be able to correcly classify shifted ones. The GAP solves this problem since the two images lead to the same or very similar features.&#x20;
+  Features extracted by the conv part of the network are invariant to SHIFT of the input images. The MLP after the flattening is not invariant to shifts (since different input neurons are connected by different weights). So, a CNN trained on centered images might not be able to correctly classify shifted ones. The GAP solves this problem since the two images lead to the same or very similar features.&#x20;
 * The network can be used to classify images of different sizes.&#x20;
 
 Global pooling layers perform a global operation on each channel, along the spatial component, and out of each channel it keep a single value. Pooling operations can be the avg (GAP) or the max (GMP).
@@ -919,7 +920,7 @@ PCA/whitening preprocessing are not commonly used with CNN. The most frequent is
 Normalization statistics are parameters of the ML model: any preprocessing statistics must be computed on training data, and applied to the validation/test data. First split in training, validation and test and then normalize the data. \
 When using pre-trained model it is better to use the given pre-processing function.&#x20;
 
-#### Batch Normalization
+#### Batch Normalization \[[#batch-normalization](artificial-neural-networks-and-deep-learning.md#batch-normalization "mention")]
 
 Consider a batch of activations $$\{x_i\}$$, this transformation $$x_i ' = {{x_i - E[x_i]}\over{\sqrt{var[x_i]}}}$$ (where mean and variance are computed from each batch and separately for each channel) bring the activations to unit variance and zero mean.&#x20;
 
@@ -1070,23 +1071,12 @@ It uses a combined loss since it has to take into account both classification (a
 ### Faster R-CNN
 
 Instead of the ROI extraction algorithm, it trains a **region proposal network** (**RPN**) which is a F-CNN. \
-RPN operates on the same feature maps used for classification, thus at the last conv layer. RPN can be seen as an additional (learnable) module that improves efficiency and focus over the most promising regions for object detection. \
-The goal of the RPN is to associate to each spatial location $$k$$ anchor boxes, that are ROI having different scales and ratios. \
-Assume that the feature maps are $$r_b \times c_b$$. The network outputs $$r_b \times c_b \times k$$ candidates anchor and estimate objectiveness scores for each anchor.&#x20;
+RPN operates on the same feature maps used for classification, thus at the last conv layer. RPN can be seen as an additional (learnable) module that improves efficiency and focus over the most promising regions for object detection.&#x20;
 
-The classification network is trained to predict the object probability, that is the probability for an anchor to contain an object. Each of these $$k$$ probability pairs $$[p, 1-p]$$ corresponds to a specific anchor (having specific dimension) and expresses the probability for that anchor in that special location to contain any object. \
-RPN estimate $$2k$$ probabilities per each spatial location. In each neuron we get an estimate of whether there is an object in that location for the anchor. Estimate are obtained by sigmoid activation.
-
-The regression network is trained to adjust each of the $$k$$ anchors to better match object grounds truth.\
-RPN estimate $$4k$$ probabilities per each spatial location. In each neuron we get an estimate of the 4 bounding box correction factors for each anchor.&#x20;
-
-The RPN returns $$k$$ proposals for each location in the latent space: $$2k$$ objectiveness scores and $$4k$$ correction bounding boxes. \
-Proposal are selected analyzing:
+The goal of the RPN is to associate to each spatial location $$k$$ anchor boxes, that are ROI having different scales and ratios. For each anchor, it estimates $$2k$$ objectiveness scores, that is the probability for an anchor to contain an object, and $$4k$$ BB coordinates: in total $$6k$$ probabilities. Estimate are obtained by sigmoid activation. Proposal are selected analyzing:&#x20;
 
 * Non-maximum suppression based on the objectiveness score and the IoU considering corrected boxes.&#x20;
-* Fixed threshold on the objectiveness score.&#x20;
-
-Only the top $$n_{prop}$$ proposals are propagated to the next layer (nonmaximum suppression).&#x20;
+* Fixed threshold on the objectiveness score.
 
 <figure><img src=".gitbook/assets/Screenshot 2024-11-22 132840.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -1099,7 +1089,7 @@ During training, object/non object ground truth is defined by measuring the over
 
 Training procedure:
 
-1. Train RPN keeping backbone network froozen thus training only RPN layers. This ignores object classes but just bounding box locations.&#x20;
+1. Train RPN keeping backbone network frozen thus training only RPN layers. This ignores object classes but just bounding box locations.&#x20;
 2. Train fast R-CNN using proposals from RPN trained before. Fine tune the whole fast R-CNN including the backbone.
 3. Fine tune the RPN in cascade of a new backbone.
 4. Freeze backbone and RPN and fine tune only the last layers of the faster R-CNN.
@@ -1186,14 +1176,13 @@ Autoencoders are NN used for data reconstruction (unsupervised learning).  The t
 
 <figure><img src=".gitbook/assets/Screenshot 2024-11-27 133346.png" alt="" width="563"><figcaption></figcaption></figure>
 
-They can be trained to reconstruct all the data in a training set. The reconstruction loss over a batch $$S$$ is $$l(S) = \sum_{s \in S} ||s - \mathcal{D}(\epsilon (s)) ||_2$$ and training of $$\mathcal{D}(\epsilon(\cdot))$$ is performed through standard backpropagation algorithms. \
-The autoencoders thus learns the identity mapping. There are NO external labels involved in training, as the reconstruction of the input is performed.&#x20;
+They can be trained to reconstruct all the data in a training set. The reconstruction loss over a batch $$S$$ is $$l(S) = \sum_{s \in S} ||s - D(E(s)) ||_2$$ and training of $$D(E(\cdot))$$ is performed through standard backpropagation algorithms. \
+The autoencoders thus learns the identity mapping. There are NO external labels involved in training, as the reconstruction of the input is performed: it is an unsupervised technique called self-supervised learning.
 
-Features $$z = \epsilon(s)$$ are latent representation. \
-AE do not provide exact reconstruction since $$n \ll d$$, by doing so we expect the latent representation to be a meaningful and compact representation of the input.\
-It is possible to add a regularization term $$+ \lambda \mathcal{R} (s)$$ to steer latent representation $$\epsilon(s)$$ to satisfy desired properties or the reconstruction $$\mathcal{D}(\epsilon(s))$$.\
-More powerful and nonlinear representation can be learned by stacking multiple hidden layers (deep AE).\
-It is possible to use conv layers and traspose conv to implement a deep convolutional AE.
+Features $$z = E(s)$$ are latent representation. \
+AE do not provide exact reconstruction since $$d \ll n$$, by doing so we expect the latent representation to be a meaningful and compact representation of the input.\
+It is possible to add a regularization term $$+ \lambda \mathcal{R} (s)$$ to steer latent representation $$E(s)$$ to satisfy desired properties or the reconstruction $$D(E(s))$$.\
+More powerful and nonlinear representation can be learned by stacking multiple hidden layers (deep AE) with the use conv and traspose conv layers.
 
 The larger the latent representation, the better images are reconstructed. As limit, when the latent dimension is as big as the input you can perfectly reconstruct it (learning the identity mapping from network input to network output).
 
@@ -1313,9 +1302,9 @@ However, more advanced architectures like LSTMs and GRUs mitigate the vanishing 
 
 ### Long Short-Term Memories (LSTM)
 
-The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions: information gets into the cell whenever its "write" gate is on, then it stays in the cell as long as its "keep" gate is on and it can be read from the cell by turning on its "read" gate. It can backpropagate through this since the loop has fixed weight.&#x20;
+The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions: information gets into the cell whenever its "write" gate is on, then it stays in the cell as long as its "keep" gate is on and it can be read from the cell by turning on its "read" gate. It has one cell state and three main gates.&#x20;
 
-The Constant Error Carousel (CEC) is mechanism in LSTMs that allows information (errors or gradients) to flow through time steps with minimal decay, overcoming the vanishing gradient problem often seen in traditional RNNs, and uses linear activations. \
+The **Constant Error Carousel** (CEC) is mechanism in LSTMs that allows information (errors or gradients) to flow through time steps with minimal decay, overcoming the vanishing gradient problem often seen in traditional RNNs, and uses linear activations. \
 The ability of LSTMs to maintain a constant error signal over long periods is achieved through the cell state, which can carry information across many time steps without being significantly altered. The cell state is regulated by the forget and input gates, allowing the network to retain or modify information as needed.
 
 It can be used for doing inference in two ways:
@@ -1365,6 +1354,8 @@ $$
 
 in sequence-to-sequence modeling, we learn from data a model $$P(y|x, \theta)$$ and our prediction now becomes $$y^* = \argmax_y P(y_1, .., y_n | x_1, .., x_m, \theta)$$ where $$\theta$$ are the parameters.
 
+### Seq2Seq models
+
 Sequence-to-sequence models as encoder-decoder architectures:
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-07 170041.png" alt="" width="563"><figcaption></figcaption></figure>
@@ -1378,8 +1369,6 @@ To compute the $$\argmax$$ over all possible sequence we can use:
 * Greedy decoding: at each step pick the most probable token but this does not guarantee to reach the best sequence and it does not allow to backtrack from errors in early stages of classification.&#x20;
 * Beam search: keep track of several most probably hypotheses.
 
-#### Training seq2seq models
-
 Given a training sample $$<x,y>$$ with input sequence $$x = x_1, .., x_m$$ and target sequence $$y=y_1, .., y_n$$, at time $$t$$ our model predicts $$p_t = p(\cdot | y_1, .., y_{t-1}, x_1, .., x_m)$$.\
 Using a one-hot vector for $$y_t$$ we can use the cross-entropy as loss (since it is a classification problem):
 
@@ -1389,8 +1378,8 @@ $$
 
 Over the entire sequence cross-entropy becomes $$- \sum_{t=0} ^n y_t^T \log(p_t)$$.
 
-At training time, the decoder does not feed the output of each time step to the next as the input to the decoder time steps are the target from the training. \
-At inference time the decoder feeds the output of each time step as input to the next one.&#x20;
+At training time, the decoder does not feed the output of each time step to the next as the input to the next to ensure that the decoder learn from the correct context (and to enable faster convergence).\
+At inference time the decoder feeds the output of each time step as input to the next one: as we do not have the ground truth from the dataset (correct labels) the decoder must rely on its own predictions to generate the output.&#x20;
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-07 171826.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -1449,8 +1438,9 @@ We can have two class of problems:
 
 ## Attention Mechanism and Transformers
 
-Fixed source representation in basic seq-to-seq models may become a representation bottleneck as it gets suboptimal for both encoder (as it may be hard to compress the full sentence) and decoder (as different information may be relevant at different steps).\
-Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. Attention mechanism computes a weighted sum of the encoder's outputs (hidden states) to dynamically create a context vector for each decoding step. \
+Fixed source representation in basic seq2seq models may become a representation bottleneck as it gets suboptimal for both encoder (as it may be hard to compress the full sentence) and decoder (as different information may be relevant at different steps).\
+Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. \
+It computes a weighted sum of the encoder's outputs (hidden states) to dynamically create a context vector for each decoding step. \
 Attention mechanism are differentiable, thus trainable. \
 Attention scores can be computed in different ways:&#x20;
 
