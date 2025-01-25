@@ -306,28 +306,21 @@ Now if our inputs and weights both have mean zero, that simplifies to:$$Var(w_{j
 If we assume that all $$w_i$$ and $$x_i$$ are i.i.d. we obtain:$$Var(h_j) = Var(w_{j1}x_1 + ... + w_{ji}x_I + ...  + w_{jI}x_I) = I * Var(w_i)Var(x_i)$$: the variance of the input is the variance of the output scaled by $$I * Var(w_i)$$.\
 If we want the variance of the input and the output to be the same we need to impose $$I * Var(w_j) = 1$$.&#x20;
 
-For this reason Xavier proposes to initialize $$w \sim N(0, 1/n_{in})$$.
-
-By performing similar reasoning for the gradient Glorot & Bengio found $$n_{out} Var(w_j) = 1$$ and to accomodate that Xavier proposes $$w \sim N(0, {2 \over n_{in} + n_{out}}))$$.
-
+For this reason Xavier proposes to initialize $$w \sim N(0, 1/n_{in})$$.\
+By performing similar reasoning for the gradient Glorot & Bengio found $$n_{out} Var(w_j) = 1$$ and to accomodate that Xavier proposes $$w \sim N(0, {2 \over n_{in} + n_{out}}))$$.\
 More recently He initialization was proposed: $$w \sim N(0, 2 / n_{in})$$.
+
+Generally speaking, the weights are initialized as a standard distributions with zero mean and variance inversely proportional to the number of inputs and/or outputs. In this way, the variance of the weights is keep under control.
 
 ### Batch Normalization
 
-Networks converge faster if inputs have been whitened (zero mean, unit variances) and are uncorrelated to account for **covariate shift** (distribution of the input data changes between the training phase and the testing/deployment phase). \
-We can also have an internal covariate shift (distribution of the inputs to each layer changes during training, often due to changing model parameters, making the learning process slower and less stable).\
-Batch normalization is a technique to cope with this:
+It can be shown that networks converge faster if inputs have been whitened (zero mean, unit variances) and are uncorrelated to account for **covariate shift** (distribution of the input data changes between the training phase and the testing/deployment phase).&#x20;
 
-* Forces activations to take values on a unit Gaussian at the beginning of the training.
-* Adds a batch normalization layer after FC or conv layers, and before nonlinearities.
-* It is a sort of preprocessing at every layer of the network but integrated into the network itself in a differentiable way.
+* **Covariate Shift**: changes in the input data distribution between training and testing phases, leading to performance degradation. Whitening the inputs helps mitigate this issue.
+* **Internal Covariate Shift**: changes in the distribution of inputs to each layer during training, caused by updates to model parameters. Batch Normalization solve this issue.
 
-In practice:
-
-* Each unit's pre-activation is normalized (mean substraction, standard deviation division).
-* During training, mean and standard deviation are computerd for each mini-batch.
-* Backpropagation takes into account normalization.
-* At test time, the global mean/standard deviation are used (global statistics are estimated using training running averages).
+Batch normalization (BN) normalizes the pre-activation (input to the activation function) to have zero mean and unit variance for each mini-batch, then, it applies a learnable linear transformation to allow the model to scale and shift the normalized values.\
+It is placed after FC or conv layers, and before non-linear activation functions.
 
 <figure><img src=".gitbook/assets/Screenshot 2025-01-19 171319.png" alt="" width="305"><figcaption><p>normalization is a linear operation, so it can be back-propagated.<br>scale and shift is a linear transformation used so that the network can learn how much normalization needs.</p></figcaption></figure>
 
@@ -1021,7 +1014,7 @@ It gives better insights on the model's functioning than what was previously ach
 
 ## Object detection
 
-It assign to an input image $$I \in \mathbb{R}^{R \times C \times 3}$$ multiple labels $$\{l_i\}$$ from a fixed set of categories, each corresponding to an instance of that object and the coordinates $$\{(x, y, h, w)_i\}$$ of the bounding box enclosing each object.&#x20;
+It assign to an input image $$I \in \mathbb{R}^{R \times C \times 3}$$ multiple labels $$\{l_i\}$$ from a fixed set of categories and the coordinates $$\{(x, y, h, w)_i\}$$ of the bounding box enclosing each object.&#x20;
 
 A training set of annotated images with labels and bounding boxes for each object is required. Each image requires a varying number of outputs.&#x20;
 
@@ -1036,18 +1029,17 @@ An approach similar to the sliding window for semantic segmentation can be used:
 * Cons: it is very inefficient since it does not re-use features that are "shared" among overlapping crops, we have to choose the crop size, it is difficult to detect objects in different scales, a huge number of crops of different sizes should be considered.&#x20;
 * Plus: no need of retraining the CNN.&#x20;
 
-### Region Proposal algorithm & R-CNN
+### Region Proposal algorithm & Region-CNN
 
-The region proposal algorithms (and networks) are meant to identify bounding boxes that correspond to a candidate object in the image. The idea is to apply a region proposal algorithm and then classify by a CNN the image inside each proposal region.&#x20;
-
-R-CNN (regions-CNN) works as follows:
+The region proposal algorithms (and networks) are meant to identify bounding boxes that correspond to a candidate object in the image. The idea is to apply a region proposal algorithm and then classify  the image inside each proposal region using a CNN. \
+R-CNN works as follows:
 
 1. Extract region proposal from the input image: there is no learning in this phase.
 2. Warping the region to a predefined size: this is necessary since the CNN has a FC layer.&#x20;
 3. Compute CNN features. The CNN is fine-tuned over the classes to be detected by placing a FC layer after feature extraction.&#x20;
-4. Classify regions. The regions are refined by a regression network to correct the bounding box estimate from ROI (region of interest) algorithm (BB regressor). SVM is trained to minimize the classification error over the extracted ROI.&#x20;
+4. Classify regions. The regions are refined by a regression network to correct the bounding box estimate from ROI (region of interest) algorithm. SVM is trained to minimize the classification error over the extracted ROI.&#x20;
 
-#### Mean Interection Over Union (MIoU)
+#### Intersection Over Union (IoU)
 
 To quantitatively asses the network performance over each and every image in the test set we use the following loss function:
 
@@ -1062,20 +1054,23 @@ Limitations of R-CNN:
 
 #### Fast R-CNN
 
-1. The whole image is fed to a CNN that extract feature maps.
-2. Region proposal are identified from the image and projected into the feature maps. Regions are directly cropped from the feature maps, and not from the image. In this way we reuse convolutional computations.&#x20;
-3. ROI pooling layers extracts a fixed size $$H \times W$$ activation from each region proposal. Each ROI in the feature maps is divided in a $$H \times W$$ grid and then maxpooling over the grid provides a fixes sized input (vectorized) to the next step.
-4. Fixed-size is still required to feed data to a FC layer. The FC layer estimate both classes and BB location. A convex combination of the two is used as a multitask loss to be optimized (as in R-CNN but no SVM here).&#x20;
-5. Training is performed in an end-to-end manner: the convolutional part is executed only once.
+1. The whole image is fed to a CNN that extract feature maps.\
+   Region proposal are identified from the image and projected into the feature maps. Regions are directly cropped from the feature maps, and not from the image. In this way we reuse convolutional computations.&#x20;
+2. ROI pooling layers extracts a fixed size activation from each region proposal thanks to maxpooling over a grid of fixed size.&#x20;
+3. Fixed-size is still required to feed data to a FC layer. The FC layer estimate both classes and BB location. A convex combination of the two is used as a multitask loss to be optimized (as in R-CNN but no SVM here).&#x20;
+4. Training is performed in an end-to-end manner: the convolutional part is executed only once.
 
 In this architecture is possible to back-propagate through the whole network, thus train the whole network in an end-to-end manner. It becomes faster during testing. \
 Now that convolutions are not repeated on overlapping areas, the vast majority of test time is spent on ROI (region of interest) extraction.&#x20;
 
+<figure><img src=".gitbook/assets/fast_RCNN.jpg" alt="" width="563"><figcaption></figcaption></figure>
+
+It uses a combined loss since it has to take into account both classification (assign labels) and regression (BB regressor).
+
 ### Faster R-CNN
 
-Instead of the ROI extraction algorithm, train a **region proposal network** (**RPN**) which is a F-CNN. \
-RPN operates on the same feature maps used for classification, thus at the last conv layer. RPN can be seen as an additional (learnable) module that improves efficiency and focus fast R-CNN over the most promising regions for object detection.&#x20;
-
+Instead of the ROI extraction algorithm, it trains a **region proposal network** (**RPN**) which is a F-CNN. \
+RPN operates on the same feature maps used for classification, thus at the last conv layer. RPN can be seen as an additional (learnable) module that improves efficiency and focus over the most promising regions for object detection. \
 The goal of the RPN is to associate to each spatial location $$k$$ anchor boxes, that are ROI having different scales and ratios. \
 Assume that the feature maps are $$r_b \times c_b$$. The network outputs $$r_b \times c_b \times k$$ candidates anchor and estimate objectiveness scores for each anchor.&#x20;
 
@@ -1161,8 +1156,10 @@ A more appealing perspective would be to train the network to measure distances 
 
 #### Siamese networks
 
-Two networks that perform the same operations, using the same weights $$W$$. \
-During training they are fed with pairs of images $$(I_i , I_j)$$ that might refer or not to the same individual.&#x20;
+It consists of two or more identical subnetworks (with shared weights and parameters), which process different inputs and compare their outputs.\
+During training they are fed with pairs of images $$(I_i , I_j)$$ that might refer or not to the same individual. They extract a latent representation of the input image and then compare it using a difference (distance in the latent space).
+
+The loss function has the objective of maximizing the distance between different images and viceversa.&#x20;
 
 #### Contrastive Loss
 
@@ -1303,19 +1300,28 @@ We can use models with memory (dynamical systems):
 * Linear dynamical systems.\
   States are continuous with Gaussian uncertainty. Transformations are assumed to be linear. State can be estimated using Kalaman filtering.&#x20;
 
-Recurrent NN are models in which memory is implemented via recurrent connections. The distributed hidden state allows to store information efficiently. Non linear dynamics allows complex hidden state updates.&#x20;
+RNNs are models in which memory is implemented via recurrent connections. They consist of an hidden state to track temporal evolution and a FFNN.\
+The distributed hidden state allows to store information efficiently. Non linear dynamics allows complex hidden state updates.&#x20;
 
-Backpropagation trough time: perform network unroll for U steps, initialize $$W_B, V_B$$ replicas to be the same, compute gradients and update replicas with the average of their gradients.
+RNNs are trained using backpropagation trough time (BPTT) which is a variant of BP. It perform network unroll for U steps, initialize weights and biases to be the same (making the network a repetition of itself across time), compute gradients and update replicas with the average of their gradients.
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-07 160123.png" alt="" width="375"><figcaption></figcaption></figure>
 
-Sometime output might be related to some input happened quite long before. However backpropagation through time was not able to train recurrent NN significantly back in time (due to not being able to backpropagate trough many layers).\
-Build recurrent NN using small modules that are designed to remember values for a long time.&#x20;
+Sometime output might be related to some input happened quite long before. However BPTT is not able to train RNN significantly back in time (due to not being able to backpropagate trough many layers).\
+At earlier layers of the RNNs the weights are updated to nearly 0 gradient because they receive gradients that are backpropagated through the entire sequence: they experience the most dramatic decay.\
+However, more advanced architectures like LSTMs and GRUs mitigate the vanishing gradient problem that standard RNNs face during BPTT.
 
 ### Long Short-Term Memories (LSTM)
 
-The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions: information gets into the cell whenever its "write" gate is on, then it stays in the cell as long as its "keep" gate is on and it can be read from the cell by turning on its "read" gate.\
-It can backpropagate through this since the loop has fixed weight.
+The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions: information gets into the cell whenever its "write" gate is on, then it stays in the cell as long as its "keep" gate is on and it can be read from the cell by turning on its "read" gate. It can backpropagate through this since the loop has fixed weight.&#x20;
+
+The Constant Error Carousel (CEC) is mechanism in LSTMs that allows information (errors or gradients) to flow through time steps with minimal decay, overcoming the vanishing gradient problem often seen in traditional RNNs, and uses linear activations. \
+The ability of LSTMs to maintain a constant error signal over long periods is achieved through the cell state, which can carry information across many time steps without being significantly altered. The cell state is regulated by the forget and input gates, allowing the network to retain or modify information as needed.
+
+It can be used for doing inference in two ways:
+
+* Online (one word at time): at timestep in the input sequence correspond to a single timestep in the LSTM layer, the final state is used as feature representation for the entire sequence and is fed to a FFNN for prediction.&#x20;
+* Batch (entire sentence at time): the LSTM layer outputs a sequence of hidden states, one for each timestep in the input sequence, which can be used to make predictions.
 
 #### Gate Recurrent Unit (GRU)
 
@@ -1325,7 +1331,7 @@ It combines the forget and input gates into a single "update gate". It also merg
 
 When conditioning on full input sequence bidirectional RNNs exploit it: the idea is to have one RNNs trasverse the sequence left-to-right, have another RNN trasverse the sequence right-to-left, use concatenation of hidden layers as feature representation.&#x20;
 
-When initializing RNN we need to specify the initial state: it could be a fixed value (such as 0), but it is better to treat the initial state as a learnable parameter -> start off with random guesses of the initial state values, backpropagate the prediction error trough time all the way to the initial stat values and compute the gradient of the error w.r.t. these, update these parameters by gradient descent.&#x20;
+When initializing RNN we need to specify the initial state: it could be a fixed value (such as 0), but it is better to treat the initial state as a learnable parameter, we start off with random guesses, backpropagate the prediction error trough time all the way to the initial state values and compute the gradient of the error w.r.t. these, at the end update these parameters by gradient descent.&#x20;
 
 ## Seq2Seq and Word Embedding
 
@@ -1414,23 +1420,47 @@ With classic one-hot vector space representations word pairs share no similarity
 
 This can be done with an neural autoencoder: it is made of an encoding (smaller) and a decoding one, the idea is to compress the input and reconstruct it with minimal loss. It constrain the representation to be sparse.
 
-<figure><img src=".gitbook/assets/Screenshot 2024-12-09 145401.png" alt="" width="563"><figcaption></figcaption></figure>
-
 ### Word Embedding
 
 Each unique word $$w$$ in a vocabulary $$V$$ (typically $$||V|| > 10^6$$) is mapped to a continuous m-dimensional space (typically $$100 < m <500$$).\
-It is based on the idea that similar words end up to be close to each other in the feature space. It fight the course of dimensionality with compression (dimensionality reduction), smoothing (discrete to continuous) and densification (sparse to dense).
+It is based on the idea that similar words end up to be close to each other in the feature space. It fight the course of dimensionality with compression (dimensionality reduction), smoothing (discrete to continuous) and densification (sparse to dense).\
+It is an unsupervised technique since labeling is not required but learned in the process.
+
+Word embedding techniques may overfit if the dataset is too small (not representative of the target domain) or if the network used is too complex. As a consequence, the embedding learned are not able to generalize and make predictions over unseen data, since the latent representation is too specific. \
+To prevent overfit to occur it is possibile to use early stopping or cross-validation.
+
+#### Neural Net Language model
+
+It implements word embedding by exploiting the connections found between words during training. \
+It has an input layer, which takes couples \<word, context>, a projection layers that maps the embedding to the vocabulary words, hidden layers (nonlinear) to perform the computations and an output layer which gives a probability distribution of words.
+
+#### Word2Vec
+
+Word2Vec is used to perform word embedding from the one-hot-encoding to a dense vector representation. \
+The embedding is obtained via unsupervised learning by predicting the one-hot encoding of a word from the one-hot encodings of the surrounding words. Each input one-hot encoded word is projected into a continuous vector and the n vectors obtained are averaged. This average is then used to predict the output word via softmax. \
+The training is performed using multi-class cross-entropy.
+
+It is similar to the Neural Net Language model but removes the hidden layers and shares projection layer. The context in input contain both current ant previous words. The output is still a probability of a word given a context, but is found considering both previous and successive context words.&#x20;
+
+We can have two class of problems:
+
+* **Skip-gram** model: predicts the context given a target word by minimizing negative log likelihood of the context given the target sample (loss function).
+* **Continuous Bag of Word** model (**CBOW**): predicts the word given its context by minimizing the negative log likelihood of the word given its context.
 
 ## Attention Mechanism and Transformers
 
 Fixed source representation in basic seq-to-seq models may become a representation bottleneck as it gets suboptimal for both encoder (as it may be hard to compress the full sentence) and decoder (as different information may be relevant at different steps).\
-Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. Attention mechanism are differentiable, thus trainable. Attention scores can be computed in different ways:&#x20;
+Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. Attention mechanism computes a weighted sum of the encoder's outputs (hidden states) to dynamically create a context vector for each decoding step. \
+Attention mechanism are differentiable, thus trainable. \
+Attention scores can be computed in different ways:&#x20;
 
 * Simple dot-product: this product represent how the two are similar.&#x20;
 * Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It does not add parameter, but only an activation function. Non-linear.
 * Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. $$w_2$$ decides the complexity. Non-linear.
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-17 155832.png" alt="" width="563"><figcaption><p>red: decoder information (skip signal)<br>green: encoder information (gate signal)</p></figcaption></figure>
+
+By using attention mechanism in seq2seq models, the whole input is evaluated at each step of the sequence generation: the input is a sort of context memory. On the other hand, seq2seq models without attention mechanism cancel the input once the encoding is completed.&#x20;
 
 #### Chatbots generative response
 
