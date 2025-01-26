@@ -234,9 +234,9 @@ Model selection and evaluation happens at different levels: at parameters level,
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters a priori distribution.\
 In general, small weights improve generalization of NN: $$P(w) \sim N(0, \sigma^2_w)$$ it means assuming that on average the weights are close to zero.&#x20;
 
-<figure><img src=".gitbook/assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption><p>Regularization can be performed by adding to the loss function the L2 norm (or L1) of the weights, times a gamma factor. It is a sort of "penalty factor".</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption><p>Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".</p></figcaption></figure>
 
-We can use cross-validation to select the proper $$\gamma$$:&#x20;
+To select the proper $$\gamma$$ we can use hyperparameter tuning tools, or cross-validation:
 
 * Split data in training and validation sets.
 * Minimize for different values of $$\gamma$$:  $$E_{\gamma}^{TRAIN} = \sum_{n=1}^{N_{TRAIN}} (t_n - g(x_n | w))^2 + \gamma \sum_{q=1}^Q (w_q)^2$$.
@@ -246,7 +246,8 @@ We can use cross-validation to select the proper $$\gamma$$:&#x20;
 
 ### Dropout: limiting overfitting by stochastic regularization
 
-By turning off randomly some neurons we force to learn an independent feature preventing hidden units to rely on other units (co-adaptation). We train a subset of the full network at each epoch. On average we are using 70% of the network. \
+By turning off randomly some neurons, the network is forced to learn redundant representations of data, preventing hidden units to rely on other units (co-adaptation) thus becoming more immune to random noise and training set peculiarities.\
+We train a subset of the full network at each epoch using on average 70% of the network. \
 It behaves as an ensemble method: it trains weaker classifiers on different mini-batches, then at test time we implicitly average the responses of all ensemble members as we remove masks and average output by weight scaling.&#x20;
 
 ## Trips and tricks: best practices
@@ -255,7 +256,7 @@ It behaves as an ensemble method: it trains weaker classifiers on different mini
 
 Activation functions such as Sigmoid or Tanh saturate: the gradient is close to zero, or anyway less than 1. This is an issue in back-propagation, since it requires gradient multiplication and in this way learning in deep networks does not happen. It is the **varnishing gradient problem**.&#x20;
 
-<figure><img src=".gitbook/assets/gradient_saturation.png" alt="" width="277"><figcaption><p>tanh saturation</p></figcaption></figure>
+<figure><img src=".gitbook/assets/sigmoid_tanh.png" alt=""><figcaption><p>The derivatives are bounded between [0, 1] causing vanishing gradient problem.</p></figcaption></figure>
 
 To overcome this problem we can use the Rectified Linear Unit (**ReLU**) activation function: $$g(a) = ReLu(a) = max(0,a)$$, $$g'(a) = 1_{a >0}$$.&#x20;
 
@@ -275,7 +276,7 @@ It has potential disadvantages:
 
 Some variants of the ReLU are:
 
-* Leaky ReLU: fix for the "dying ReLU" problem.&#x20;
+* Leaky ReLU: fix for the "dying ReLU" problem by adding a steepness if $$x \le 0$$.
 
 $$
 x \ \ \ \ if \ x\ge 0 \\ 0,01x \ \ \ otherwise
@@ -286,8 +287,6 @@ $$
 $$
 x \ \ \ \ if \ x\ge 0 \\ \alpha (e^x -1) \ \ \ otherwise
 $$
-
-<figure><img src=".gitbook/assets/Screenshot 2024-10-09 141220.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Weights initialization
 
@@ -316,7 +315,7 @@ Generally speaking, the weights are initialized as a standard distributions with
 ### Batch Normalization
 
 It can be shown that networks converge faster if inputs have been whitened (zero mean, unit variances) and are uncorrelated to account for **covariate shift**. \
-During training, we have to take into account:
+In a NN, we have to take into account:
 
 * **Covariate Shift**: changes in the input data distribution between training and testing phases, leading to performance degradation. Whitening the inputs helps mitigate this issue.
 * **Internal Covariate Shift**: changes in the distribution of inputs to each layer during training, caused by updates to model parameters. Batch Normalization solve this issue.
@@ -408,10 +407,6 @@ It is equivalent to correlation up to a "flip" in the filter w.&#x20;
 ### The image classification problem
 
 Assign to an input image $$I \in \mathbb{R}^{R \times C \times 3}$$ a label y from a fixed set of categories $$\Lambda$$. The classifier is a function $$f_0$$ such that $$I \rightarrow f_0 (I) \in \Lambda$$.\
-
-
-<figure><img src=".gitbook/assets/Screenshot 2024-10-15 100252.png" alt="" width="256"><figcaption></figcaption></figure>
-
 Column-wise unfolding can be implemented: colors recall the color plane where images are from.
 
 <figure><img src=".gitbook/assets/Screenshot 2024-10-15 100424.png" alt="" width="563"><figcaption></figcaption></figure>
@@ -878,7 +873,7 @@ Given a pre-trained CNN for classification to which transfer learning has been a
   Interleave the heat maps to form an image as large as the input.\
   In this way we exploit the whole depth of the network by using an efficient implementation. However, the upsampling method is very rigid. \
   The same effect can be obtained by: remove strides in pooling layer (equivalent to computing the output of all the shifted versions at once), rarefy the filters of the following convolution layer by upsampling and zero padding, then repeat the same operation along each channel dimension and for each subsampling layer.&#x20;
-* Learn upsampling in a FC-CNN.\
+* Learn upsampling in a FCNN.\
   Data-driven upsampling of the coarse outputs to pixel-dense outputs. These filters are initialized as bilinear upsampling filters. \
   Linear upsampling of a factor $$f$$ can be implemented as a convolution against a filter with a fractional stride $$1/f$$. Upsampling filters can thus be learned during network training (provided a segmentation training set). These predictions are very coarse. Upsampling filters are learned with initialization equal to the bilinear interpolation.&#x20;
 
@@ -1181,10 +1176,13 @@ The autoencoders thus learns the identity mapping. There are NO external labels 
 
 Features $$z = E(s)$$ are latent representation. \
 AE do not provide exact reconstruction since $$d \ll n$$, by doing so we expect the latent representation to be a meaningful and compact representation of the input.\
-It is possible to add a regularization term $$+ \lambda \mathcal{R} (s)$$ to steer latent representation $$E(s)$$ to satisfy desired properties or the reconstruction $$D(E(s))$$.\
+It is possible to add a regularization term $$+ \lambda \mathcal{R} (s)$$ to steer latent representation $$E(s)$$ to satisfy desired properties of the reconstruction $$D(E(s))$$.\
 More powerful and nonlinear representation can be learned by stacking multiple hidden layers (deep AE) with the use conv and traspose conv layers.
 
 The larger the latent representation, the better images are reconstructed. As limit, when the latent dimension is as big as the input you can perfectly reconstruct it (learning the identity mapping from network input to network output).
+
+The embedding size (bottleneck layer) is determined by balancing data complexity, application requirements, and empirical testing to achieve effective compression or feature extraction without losing important information. If it is too large the AE may overfit, if it is too small the AE may underfit. \
+It can be found by trial & error, tuning, by evaluating the outputs (using cross-validation) or by having a particular knowledge on the dataset.&#x20;
 
 ### AE for classifier initialization
 
@@ -1289,8 +1287,8 @@ We can use models with memory (dynamical systems):
 * Linear dynamical systems.\
   States are continuous with Gaussian uncertainty. Transformations are assumed to be linear. State can be estimated using Kalaman filtering.&#x20;
 
-RNNs are models in which memory is implemented via recurrent connections. They consist of an hidden state to track temporal evolution and a FFNN.\
-The distributed hidden state allows to store information efficiently. Non linear dynamics allows complex hidden state updates.&#x20;
+RNNs are models in which memory is implemented via **recurrent connections**, which allows to take into account the temporal order in which the data is presented. RNNs consist of a distributed hidden,  state to track temporal evolution and allows to store information efficiently, and a FFNN. \
+Non linear dynamics allows complex hidden state updates.&#x20;
 
 RNNs are trained using backpropagation trough time (BPTT) which is a variant of BP. It perform network unroll for U steps, initialize weights and biases to be the same (making the network a repetition of itself across time), compute gradients and update replicas with the average of their gradients.
 
@@ -1360,8 +1358,6 @@ Sequence-to-sequence models as encoder-decoder architectures:
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-07 170041.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Screenshot 2024-12-07 170152.png" alt="" width="563"><figcaption></figcaption></figure>
-
 Once we have trained the mode (learning $$\theta$$), we predict a sequence $$y = y_1, .., y_n$$ given $$x = x_1, .., x_m$$ by selecting $$y' = \argmax_y \prod^n_{t=1} P(y_t | y_{<t}, x_1, .., x_m, \theta)$$.
 
 To compute the $$\argmax$$ over all possible sequence we can use:
@@ -1401,7 +1397,7 @@ Special characters:
 
 ### Text Encoding
 
-Performance of real-world applications depends on the input encoding. For local representation we can use N-grams, bag-of-world or 1-of-N encoding. For continuous representation we can use latent semantic analysis, latent Dirichlet analysis or distributed representation.
+Performance of real-world applications depends on the input encoding. For local representation we can use N-grams, BOW or 1-of-N encoding. For continuous representation we can use latent semantic analysis, latent Dirichlet analysis or distributed representation.
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-07 174347.png" alt="" width="352"><figcaption><p>N-grams representation</p></figcaption></figure>
 
