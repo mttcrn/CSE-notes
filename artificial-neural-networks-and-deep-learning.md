@@ -831,11 +831,15 @@ Drawbacks of convolutions only:
 Semantic segmentation faces an inherent tension between semantics and location: global information resolve what, while local information resolve where. \
 Combining fine layers and coarse layers lets the model make local predictions that respect global structure.&#x20;
 
-<figure><img src=".gitbook/assets/Screenshot 2024-11-16 173459.png" alt="" width="563"><figcaption><p>An architecture like this would probably be more suitable: the first half is the same of a classification network, while the second half is meant to upsample the predictions to cover each pixel in the image. <br>Increasing the image size is necessary to obtain sharp contours and spatially detailed class prediction.<br>Encoder (downsampling) -> decoder (upsampling)</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2024-11-16 173459.png" alt="" width="563"><figcaption><p>An architecture like this would probably be more suitable: the first half is the same of a classification network, while the second half is meant to upsample the predictions to cover each pixel in the image. <br>Increasing the image size is necessary to obtain sharp contours and spatially detailed class prediction.<br>encoder (downsampling) -> decoder (upsampling)</p></figcaption></figure>
 
 Upsampling based on convolution gives more degrees of freedom, since the filters can be learned.
 
-#### Upsampling and Max Unpolling
+Training is based on a weighted loss function: class-specific weights can be used to adjust the importance of each class to handle class imbalance or emphasizing certain classes that are more critical.
+
+Random masking involves randomly occluding (masking) parts of the input image or label map during training. This is typically done by setting random regions of the input image or label to zero (or another placeholder value). It mimics the effect of selectively removing some data during training, which introduces stochasticity into the learning process.
+
+#### Upsampling and Max Unpooling
 
 <figure><img src=".gitbook/assets/Screenshot 2025-01-21 115016.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -850,13 +854,9 @@ It use a large number of feature channels in the upsampling part. It use excessi
 
 <figure><img src=".gitbook/assets/1_zYrwp34DslR_9wLHMVAITg.png" alt="" width="563"><figcaption><p>At each downsampling the number of feature maps is doubled.</p></figcaption></figure>
 
-The training is based on a weighted loss function.
-
 ### CNN: images with different size
 
-CNNs are meant to process input of a fixed size. The conv and subsampling layers operate in a sliding manner over image having arbitrary size. The FC layer constrains the input to a fixed size.
-
-Convolutional filters can be applied to volumes of any size, yielding a larger volumes in the network until the FC layer. The FC layer however does require a fixed input size. Thus CNN cannot compute class scores yet extract feature when fed with images with different size.
+CNNs are meant to process input of a fixed size. The conv and subsampling layers operate in a sliding manner, so they can be applied to images of any size. The FC layer constrains the input to a fixed size. Thus CNN cannot compute class scores yet extract feature when fed with images with different size.
 
 However, since the FC is linear, it can be represented as convolution. This transformation can be applied to each hidden layer of a FC network placed at the CNN top. This transformation consist in reading the weights from the neuron in the dense layer and recycling these together with bias in the filters of a new 1 x 1 convolutional layer.&#x20;
 
@@ -1256,7 +1256,7 @@ We assume that a TR containing only normal images is given.\
 A generator $$\mathcal{G}$$ trained exclusively on TR, provides a mapping from the space of random vectors $$z \sim \phi_z$$ and to the manifold where images live $$s \sim \phi_s$$. Thus, an anomaly score for a test image is given by $$s \rightarrow \mathcal{G}^{-1} (s) \rightarrow \phi_z(\mathcal{G(s)})$$.\
 Unfortunately, it is not possibile to invert $$\mathcal{G}$$.
 
-#### BiGANs (bidirectional GANs) 
+#### BiGANs (bidirectional GANs)
 
 The BiGAN adds an encoder $$\epsilon$$ which brings an image back to the space of "noise vectors" and it can be used to reconstruct the input image $$\mathcal{G}(\epsilon(s))$$ (as in AE).
 
@@ -1431,6 +1431,8 @@ We can have two class of problems:
 
 * **Skip-gram** model: predicts the context given a target word by minimizing negative log likelihood of the context given the target sample (loss function).
 * **Continuous Bag of Word** model (**CBOW**): predicts the word given its context by minimizing the negative log likelihood of the word given its context.
+
+Linear relationships in the embedding space arise naturally since the embedding are optimized to reflect semantic and syntactic relationships through word co-occurrences. So, we have a constant female-male difference vector, as well as country-capital (an so on).
 
 ## Attention Mechanism and Transformers
 
