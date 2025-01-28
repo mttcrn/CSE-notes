@@ -122,12 +122,10 @@ Since using all the data points (batch) might be unpractical, so we use variatio
 <figure><img src=".gitbook/assets/GD_var.png" alt="" width="563"><figcaption></figcaption></figure>
 
 In batch GD we use one batch and one epoch. \
-In SDG we need as many steps (iterations) as the number of data points since we fix one data point at a time before we reach an epoch. \
+In SDG we need as many steps (iterations) as the number of data points since we fix one data point at a time before we reach an epoch. SDG has higher variance during loss minimization than BG. \
 In mini-batch GD we need as many steps (iterations) as the number of data divided by the batch size.
 
 Weights update can be done in parallel, locally, and it requires only two passes. We apply the chain rule (derivative of composition of functions) to the back propagation formula obtaining:
-
-<figure><img src=".gitbook/assets/chain_rule.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Maximum Likelihood Estimation
 
@@ -546,21 +544,18 @@ It is also possibile to use a different stride. It is possible to adopt stride =
 
 ### Dense layers
 
-At the end of the CNN, the spatial dimension is lost. The last layer is called dense as each output neuron is connected to each input neuron.
+In a dense layer each output neuron is connected to each input neuron: dense layers discard spatial relationships, focusing only on feature combinations.\
+They can contribute to overfitting as they have FC neurons, resulting in a large number of trainable parameters. This high parameter count increases the model's capacity to memorize the training data instead of generalizing to unseen data.
 
-The output of a fully connected (FC) layer has the same size as the number of classes, and provides a score for the input image to belong to each class.
-
-<figure><img src=".gitbook/assets/Screenshot 2025-01-20 113537.png" alt="" width="563"><figcaption><p>FEN (feature extraction network) structure.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2025-01-20 113537.png" alt="" width="563"><figcaption><p>FEN (feature extraction network) structure.<br>The output is a FC layer which has the same size as the number of classes, and provides a score for the input image to belong to each class.</p></figcaption></figure>
 
 #### Dense layer vs. Convolutional layer&#x20;
 
 Since convolution is a linear operation, if we unroll the input image to a vector then we can consider the convolution weights as the weights of a dense layer. So both convolution and dense layer can be described as a linear operator.&#x20;
 
-The difference between MLP and CNNs is in the matrix.
-
-In the dense layer the matrix is dense, since there are different weights connecting each input and output neurons. Also the bias vector is dense, as a different values is associated to each neuron. &#x20;
-
-In convolutional layer the matrix is sparse, since only a few input neurons contribute to define each output (convolution is local) thus most entries are zeros. The circular structure of the matrix reflects convolution spanning all the channels of the input x. Moreover, the same filter is used to compute the output of an entire output channel and the same bias value is used for many output neurons, since it is associated with the filter and not to the neuron.&#x20;
+The difference between is in the matrix.\
+In the dense layer the matrix is dense, since there are different weights connecting each input and output neurons and also the bias vector is dense, as a different values is associated to each neuron.  \
+In convolutional layer the matrix is sparse, since only a few input neurons contribute to define each output (convolution is local) thus most entries are zeros. The circular structure of the matrix reflects convolution spanning all the channels of the input. Moreover, the same filter is used to compute the output of an entire output channel and the same bias value is used for many output neurons, since it is associated with the filter and not to the neuron.&#x20;
 
 Any convolutional layer can be implemented by a FC layer performing exactly the same computations. \
 The weight matrix would be:
@@ -568,7 +563,7 @@ The weight matrix would be:
 * A large matrix with #rows equal to #output neurons and #cols equal to #input neurons.
 * That is mostly zero except for certain blocks where the local connectivity takes place.
 * The weights in many blocks are equal due to parameter sharing. \
-  Undelying assumption: if one feature is useful to compute at dome spatial position $$(x, y)$$, then it should also be useful to compute at a different position $$(x', y')$$. So in a CNN, all the neurons in the same slice of a feature map use the same weights and bias.
+  Underlying assumption: if one feature is useful to compute at dome spatial position $$(x, y)$$, then it should also be useful to compute at a different position $$(x', y')$$. So in a CNN, all the neurons in the same slice of a feature map use the same weights and bias.
 
 The opposite is also true: a FC layer can be implemented with a convolutional layer.
 
@@ -1065,7 +1060,7 @@ It uses a combined loss since it has to take into account both classification (a
 
 ### Faster R-CNN
 
-Instead of the ROI extraction algorithm, it trains a **region proposal network** (**RPN**) which is a F-CNN. \
+Instead of the ROI extraction algorithm, it trains a **region proposal network** (**RPN**) which is a FCNN. \
 RPN operates on the same feature maps used for classification, thus at the last conv layer. RPN can be seen as an additional (learnable) module that improves efficiency and focus over the most promising regions for object detection.&#x20;
 
 The goal of the RPN is to associate to each spatial location $$k$$ anchor boxes, that are ROI having different scales and ratios. For each anchor, it estimates $$2k$$ objectiveness scores, that is the probability for an anchor to contain an object, and $$4k$$ BB coordinates: in total $$6k$$ probabilities. Estimate are obtained by sigmoid activation. Proposal are selected analyzing:&#x20;
@@ -1434,7 +1429,7 @@ We can have two class of problems:
 
 Linear relationships in the embedding space arise naturally since the embedding are optimized to reflect semantic and syntactic relationships through word co-occurrences. So, we have a constant female-male difference vector, as well as country-capital (an so on).
 
-## Attention Mechanism and Transformers
+### Attention Mechanism in seq2seq models
 
 Fixed source representation in basic seq2seq models may become a representation bottleneck as it gets suboptimal for both encoder (as it may be hard to compress the full sentence) and decoder (as different information may be relevant at different steps).\
 Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important. \
@@ -1442,9 +1437,9 @@ It computes a weighted sum of the encoder's outputs (hidden states) to dynamical
 Attention mechanism are differentiable, thus trainable. \
 Attention scores can be computed in different ways:&#x20;
 
-* Simple dot-product: this product represent how the two are similar.&#x20;
-* Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It does not add parameter, but only an activation function. Non-linear.
-* Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. $$w_2$$ decides the complexity. Non-linear.
+* Simple dot-product (no paramters).
+* Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It introduces a weighting matrix and thus it has the matrix parameters.&#x20;
+* Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. It learns a FFNN and thus it has the parameters of the network.&#x20;
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-17 155832.png" alt="" width="563"><figcaption><p>red: decoder information (skip signal)<br>green: encoder information (gate signal)</p></figcaption></figure>
 
@@ -1475,22 +1470,22 @@ Google proposes to speed up training by replacing RNN (sequential in nature) wit
 
 <figure><img src=".gitbook/assets/Screenshot 2024-12-17 170047.png" alt="" width="446"><figcaption></figcaption></figure>
 
-#### Self-attention
-
-It operates between representation of the same nature. It is implemented via query (asking for information), key (saying that it has some information) and value (giving the information). The use of query, key and value allows parallel execution.&#x20;
-
-<figure><img src=".gitbook/assets/Screenshot 2025-01-22 145450.png" alt="" width="362"><figcaption></figcaption></figure>
-
-#### Multi-head attention
-
-Multiple head attentions allow the model to focus on different things, both at encoding and decoding time. It is implemented as a concatenation of several attention heads.
-
-### Transformers
+## Transformers
 
 <figure><img src=".gitbook/assets/image (184).png" alt=""><figcaption><p>Feed forward blocks with two linear layers and ReLU activation.<br>A normalization layer normalize each single vector representation in a batch independently, applies scale and bias globally (which are trainable layer level parameters).<br>Incorporates residual connections. </p></figcaption></figure>
 
-#### Position encoding&#x20;
+### Self attention
 
-Self-attention mechanism is permutation invariant by nature as it does not depend on the position not the order of words in the sequence.\
-Positional encoding is used to make self-attention depend also on the position of the input.&#x20;
+It was introduces in transformers to encode each input token according to the others input tokens. The same happens with the decoder, but with a masked approach: since during inference we do not know the word following the current processed word, it is not possibile to compute the attention score, so we simply mask them (by adding -inf to their multiplication) so that they will not influence current word.&#x20;
+
+It operates between representation of the same nature. It is implemented via query ("what to focus on"), key ("what each element represents") and value (actual information). The use of query, key and value allows parallel execution.&#x20;
+
+<figure><img src=".gitbook/assets/Screenshot 2025-01-22 145450.png" alt="" width="362"><figcaption><p>For each query, the attention score is calculated via the dot product between the query and all keys.</p></figcaption></figure>
+
+Self-attention mechanism is permutation invariant by nature as it does not depend on the position not the order of words in the sequence. **Positional encoding** is used to make self-attention depend also on the position of the input. \
+A unique positional encoding vector is added to each token embedding, with the purpose  to represent the token's position in the sequence. It is often computed using sine and cosine functions of different frequencies.
+
+#### Multi-head attention
+
+Multiple head attentions allow the model to focus on different things, both at encoding and decoding time. Each head in the multi-head attention computes its attention independently, and their outputs are concatenated and linearly transformed to form the final output: it "cross" multiple Q, K, V coming from the encoder to the decoder.&#x20;
 
