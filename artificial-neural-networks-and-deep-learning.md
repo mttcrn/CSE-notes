@@ -944,7 +944,7 @@ For example, human-pose estimation is formulated as a CNN-regression problem tow
 ### Weak-supervised Localization
 
 In supervised learning a model $$\mathcal{M}$$ performing inference in $$Y$$ requires a training set $$TR \sub X \times Y$$.\
-For some tasks these types of annotations are very expensive to gather.
+For some tasks these annotations can be very expensive to gather.
 
 In weak-supervised learning we obtain a model able to solve a task in $$Y$$, but using labels that are easier to gather in a different domain $$K$$. Therefore, $$\mathcal{M}$$ after training perform inference as $$\mathcal{M} : X \rightarrow Y$$ but is trained using $$TR \sub X \times K$$ where $$K \neq Y$$.
 
@@ -959,7 +959,7 @@ The advantages of GAP layer extend beyond simply acting as a structural regulari
 Assuming that we have a CNN architecture trained, so at the end of the convolutional block we have $$n$$ feature maps $$f_k (\cdot, \cdot)$$ having resolution "similar" to the input image and a GAP layer that computes $$n$$ averages $$F_k$$.\
 By adding a single FC layer after the GAP, we can compute $$S_c$$ for each class $$c$$ as the weighted sum of $$\{F_k\}$$, where weights are defined during training, and the class probability $$P_c$$.
 
-<figure><img src=".gitbook/assets/Screenshot 2024-11-22 104719.png" alt="" width="377"><figcaption><p>Thanks to the FC layer, the number of channels of the last conv <br>layer can differ from the number of classes.</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Screenshot 2024-11-22 104719.png" alt="" width="251"><figcaption><p>Thanks to the FC layer, the number of channels of the last conv layer can differ from the number of classes.</p></figcaption></figure>
 
 Last layer weights $$\{w_k^c\}$$ encode how relevant each feature map is to yield the final prediction.\
 CAM is defined as $$M_c(x, y) = \sum_k w_k^c f_k (x, y)$$ and it directly indicates the importance of the activations at $$(x, y)$$ for predicting the class $$c$$.
