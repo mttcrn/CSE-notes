@@ -87,9 +87,9 @@ For all hidden neurons we use sigmoid or tanh.&#x20;
 
 ### Universal Approximator theorem
 
-_“A single hidden layer feedforward neural network with S shaped activation functions can approximate any measurable function to any desired degree of accuracy on a compact set”._
+_“A single hidden layer feedforward neural network with S shaped activation functions (sigmoid or tanh) can approximate any measurable function to any desired degree of accuracy on a compact set”._
 
-_Regardless the function we are learning, a single layer can represent it. In the worst case, an exponential number of hidden units may be required. The layer may have to be unfeasibly large and may fail to learn and generalize._&#x20;
+Regardless the function we are learning, a single layer can represent it. In the worst case, an exponential number of hidden units may be required. The layer may have to be unfeasibly large and may fail to learn and generalize.&#x20;
 
 ### Gradient Descent (or Back Propagation)
 
@@ -248,7 +248,7 @@ By turning off randomly some neurons, the network is forced to learn redundant r
 We train a subset of the full network at each epoch using on average 70% of the network. \
 It behaves as an ensemble method: it trains weaker classifiers on different mini-batches, then at test time we implicitly average the responses of all ensemble members as we remove masks and average output by weight scaling.&#x20;
 
-## Trips and tricks: best practices
+## Tips and tricks: best practices in NN
 
 ### Better activation functions
 
@@ -965,11 +965,9 @@ Last layer weights $$\{w_k^c\}$$ encode how relevant each feature map is to yiel
 CAM is defined as $$M_c(x, y) = \sum_k w_k^c f_k (x, y)$$ and it directly indicates the importance of the activations at $$(x, y)$$ for predicting the class $$c$$.
 
 CAM can be included in any pre-trained network, as long as all the FC layers at the end are removed. \
-The FC layer used for CAM is simple, few neurons and no hidden layer. \
-Classification performance might drop.\
-CAM resolution (localization accuracy) can improve by "anticipating" GAP to larger convolutional feature maps (but this reduces the semantic information within these layers).\
-GAP encourages the identification of the whole object, as all the parts of the values in the activation map concurs to the classification. \
-GMP (max pooling) is enough to have a high maximum, thus promotes specific discriminative features.&#x20;
+The FC layer used for CAM is simple, few neurons and no hidden layer. CAM has a low computational overhead during inference.&#x20;
+
+CAM resolution (localization accuracy) can improve by "anticipating" GAP to larger convolutional feature maps (but this reduces the semantic information within these layers). GAP encourages the identification of the whole object, as all the parts of the values in the activation map concurs to the classification. GMP (max pooling) is enough to have a high maximum, thus promotes specific discriminative features.&#x20;
 
 ### CNN visualization
 
@@ -1039,7 +1037,7 @@ To quantitatively asses the network performance over each and every image in the
 Limitations of R-CNN:
 
 * Ad-hoc training objectives and not an end-to-end training
-* Regions proposal are from a different algorithm and that part has not been optimized for the detection by CNN.
+* Regions proposal are from a different algorithm (selective search, select rectangular regions in an image) which has not been optimized for the detection by CNN.
 * Training is slow and takes a lot of disk space to store feature.
 * Inference (detection) is slow since the CNN has to be executed on each region proposal (no feature re-use).
 
@@ -1195,8 +1193,6 @@ AE provide a good initialization (and reduce the risk of overfitting) because of
 One option would be to train an autoencoder, discard the encoder and draw a random vectors $$z \sim \phi_z$$, to mimic a "new latent representation" and feed this to the decoder input. \
 This approach does not work since we do not know the distribution of proper latent representation (or it is very difficult to estimate).
 
-<figure><img src=".gitbook/assets/Screenshot 2024-11-27 145351.png" alt="" width="563"><figcaption></figcaption></figure>
-
 This is a viable image generation approach only in a low dimensional latent space. When d increases, high density regions are rare, distributions $$\phi_z$$ is difficult to estimate.\
 Variational autoencoders forces $$z$$ to follow a Gaussian distribution (on top of enabling accurate reconstruction). These are considered generative models (networks able to generate realistic images).
 
@@ -1217,6 +1213,8 @@ The biggest challenge is to define a suitable loss for assessing whether the out
 * Generator $$\mathcal{G}$$ that produces realistic samples. It tries to fool the discriminator: if it succeeded it means that is a good generator. It is the model keep in the end. \
   $$\mathcal{G}$$ has never seen an image of $$S$$.
 * Discriminator $$\mathcal{D}$$ that takes as input an image and assess whether it is real or generated by $$\mathcal{G}$$. The goal is to recognize all the images that are generated. In this way, the loss of $$\mathcal{G}$$ is given by $$\mathcal{D}$$. After a successful GAN training $$\mathcal{D}$$ is not able to distinguish fake images.&#x20;
+
+<figure><img src=".gitbook/assets/GANs.jpg" alt="" width="563"><figcaption></figcaption></figure>
 
 Both $$\mathcal{D}$$ and $$\mathcal{G}$$ are conveniently chosen as MLP or CNN. \
 They take as input $$\mathcal{D} = \mathcal{D}(s, \theta_d)$$ and $$\mathcal{G} = \mathcal{G}(z ,\theta_g)$$ where $$\theta_g$$ and $$\theta_d$$ are network parameters, $$s \in \mathbb{R}^n$$ is an input image (either real or generated) and $$z \in \mathbb{R}^d$$ is some random noise to be fed to the generator. \
@@ -1295,7 +1293,12 @@ However, more advanced architectures like LSTMs and GRUs mitigate the vanishing 
 
 ### Long Short-Term Memories (LSTM)
 
-The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions: information gets into the cell whenever its "write" gate is on, then it stays in the cell as long as its "keep" gate is on and it can be read from the cell by turning on its "read" gate. It has one cell state and three main gates.&#x20;
+The problem of vanishing gradient was resolved designing a memory cell using logistic and linear units with multiplicative interactions:&#x20;
+
+The forget gate decides how much of the previous memory to forget. The input gate decides how much of the new information to store in the memory. The candidate cell state proposes new information to be added to the cell state. The output gate determines how much of the memory to reveal as output.
+
+information gets into the cell whenever its input ("write") gate is on, then it stays in the cell as long as its forget ("keep") gate is off and it can be read from the cell by turning on its output ("read") gate. It has one cell state and three main gates. \
+Gates are controlled by a set of weights with bias and are activated by sigmoid, so their output is in \[0, 1]. The cell state is activated by tanh, so its output is in \[-1, 1].
 
 The **Constant Error Carousel** (CEC) is mechanism in LSTMs that allows information (errors or gradients) to flow through time steps with minimal decay, overcoming the vanishing gradient problem often seen in traditional RNNs, and uses linear activations. \
 The ability of LSTMs to maintain a constant error signal over long periods is achieved through the cell state, which can carry information across many time steps without being significantly altered. The cell state is regulated by the forget and input gates, allowing the network to retain or modify information as needed.
