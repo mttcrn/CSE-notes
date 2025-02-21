@@ -89,4 +89,8 @@ RExp are patterns that allow us to search within text document for specific sequ
 
 RExp provide a powerful language for writing rules to extract content from text documents. 
 - Advantages: simplicity of approach, rules can be made precise to reduce the number of false positives. 
-- Limitations: extraction rules must (usually) be written by hand, some false positives are usually present due to insufficiency of syntactic structure, often many false negatives due to the fact that rule is not general enough, hard to integrate knowledge of context around extracted entity. 
+- Limitations: extraction rules must (usually) be written by hand, some false positives are usually present due to insufficiency of syntactic structure, often many false negatives due to the fact that rule is not general enough, hard to integrate knowledge of context around extracted entity.
+
+![[Pasted image 20250221105723.png]]
+
+![[../.gitbook/assets/Untitled (2).png]]
