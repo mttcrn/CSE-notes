@@ -34,9 +34,11 @@ where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights as
 According to the **Hebbian learning theory**: "the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 $$
-w_i ^ {k+1} = w_i^k + \Delta w_i^k 
+\begin{cases}
+	w_i ^ {k+1} = w_i^k + \Delta w_i^k \\
+	\Delta w_i ^k = \eta \cdot x_i ^k \cdot t^k
+\end{cases}
 $$
-$$\Delta w_i ^k = \eta \cdot x_i ^k \cdot t^k$$
 where $\eta$ is the learning rate, $x_i ^k$ is the $i^{th}$ input of a neuron A at time k and $t^k$ is the desired output of neuron B at time k.
 Starting from a random initialization, the weights are fixed one sample at a time (online), and only if the sample is not correctly predicted.
 
