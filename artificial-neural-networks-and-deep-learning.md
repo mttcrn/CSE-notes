@@ -150,10 +150,8 @@ Let's consider the hyperplane (affine set) $L \in \mathbb{R}^2$ $L: w_0 + w^Tx =
 Any two points $x_1 , x_2$ on $L \in \mathbb{R}^2$ have $w^T (x_1 - x_2) = 0$.
 The versor normal to $L \in \mathbb{R}^2$ is then $w^* = {w \over ||w||}$.
 For any point $x_0$ in $L \in \mathbb{R}^2$ we have $w^Tx_0 = -w_0$.
-The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by 
-$$
-w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)
-$$The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. 
+The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by $w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)$.
+The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. 
 
 ![algebra](algebra.png)
 
