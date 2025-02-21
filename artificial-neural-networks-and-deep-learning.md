@@ -238,7 +238,7 @@ More recently He initialization was proposed: $w \sim N(0, 2 / n_{in})$.
 Generally speaking, the weights are initialized as a standard distributions with zero mean and variance inversely proportional to the number of inputs and/or outputs. In this way, the variance of the weights is keep under control.
 ### Batch Normalization
 In a NN, we have to take into account:
-* **Covariate Shift**: changes in the input data distribution between training and testing phases, leading to performance degradation. Whitening the inputs (zero mean, unit variance) helps mitigate this issue.
+- **Covariate Shift**: changes in the input data distribution between training and testing phases, leading to performance degradation. Whitening the inputs (zero mean, unit variance) helps mitigate this issue.
 * **Internal Covariate Shift**: changes in the distribution of inputs to each layer during training, caused by updates to model parameters. Batch Normalization solve this issue.
 
 Batch normalization (BN) normalizes the pre-activation (input to the activation function) to have zero mean and unit variance for each mini-batch, then, it applies a learnable linear transformation to allow the model to scale and shift the normalized values.
