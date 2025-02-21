@@ -17,5 +17,5 @@
 
 ## AI topics
 
-* [Artificial Neural Networks and Deep Learning](ai-topics/artificial-neural-networks-and-deep-learning.md)
+* [Artificial Neural Networks and Deep Learning](artificial-neural-networks-and-deep-learning.md)
 - [Natural Language Processing](ai-topics/natural-language-processing.md)
