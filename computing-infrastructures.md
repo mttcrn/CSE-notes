@@ -25,37 +25,37 @@ For example a server, that is mine and that I can access (and no one else) from 
 
 A data center is composed by 3 server: for processing, for storage and for communications.
 
-<div align="center"><figure><img src=".gitbook/assets/image (102).png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src="/assets/image (102).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 To access the resources a **virtualization layer** is needed.
 
 * **VMMs**: provide the full stack (OS, LIB, APP). Application depends on guest OS.
 * **Containers**: applications are packaged with all their dependencies into a standardized unit for software development/deployment.
 
-<div align="left"><figure><img src=".gitbook/assets/image (103).png" alt="" width="375"><figcaption><p>Virtual Machine Manager</p></figcaption></figure> <figure><img src=".gitbook/assets/image (104).png" alt="" width="375"><figcaption><p>Container</p></figcaption></figure></div>
+<div align="left"><figure><img src="/assets/image (103).png" alt="" width="375"><figcaption><p>Virtual Machine Manager</p></figcaption></figure> <figure><img src="/assets/image (104).png" alt="" width="375"><figcaption><p>Container</p></figcaption></figure></div>
 
 #### Edge Computing
 
 Edge computing aim at moving the computing outside the cloud (such as 5G technology).
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/Untitled 3 (1) (1).png" alt="" width="188"><figcaption></figcaption></figure></div>
+<div data-full-width="false"><figure><img src="/assets/Untitled 3 (1) (1).png" alt="" width="188"><figcaption></figcaption></figure></div>
 
 #### Embedded PCs
 
 Embedded PCs are PC in which we just have the main board (such as Raspberry). It support the pervasive computation. They suffer from the fact that they are a computer.
 
-<figure><img src=".gitbook/assets/Untitled 4 (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 4 (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 #### Internet of Things (IoT)
 
 Internet-of-Things (IoT) is an environment in which the computation is divided into different devices.
 
-<figure><img src=".gitbook/assets/Untitled 5 (1) (1).png" alt="" width="339"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 5 (1) (1).png" alt="" width="339"><figcaption></figcaption></figure>
 
 An IT perspective for computing infrastructures:\
 The software is the reason why the system exists. The operating system “mask” the hardware level. The term “architecture” means that we are organizing spaces, in order for them to have a goal.
 
-<div><figure><img src=".gitbook/assets/Untitled 6 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 7 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/Untitled 6 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/Untitled 7 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 ### Data Centers (DC)
 
@@ -96,7 +96,7 @@ WSCs belong to a **single organization**, they use a relatively **homogeneous ha
 * The common resource management infrastructure allows significant **deployments flexibility**.
 * The requirements of homogeneity, single-organization control and cost efficiency motivate the designer to take new approaches in designing WSCs.
 
-<div><figure><img src=".gitbook/assets/Untitled 10 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 9 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/Untitled 10 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/Untitled 9 (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 #### From data centers to warehouse-scale computer (and back)
 
@@ -110,11 +110,11 @@ The world is divided into **geographic areas** (GAs) defined by geo-political bo
 
 **Computing regions** are seen by the customers as the **finer grain discretization** of the infrastructure. It is possibile to exchange data between data centers of the same computing region having a fixed latency. The region are far enough such that if there is a large blackout or atmospherical event, the infrastructure can survive.
 
-<figure><img src=".gitbook/assets/Untitled 11 (1) (1).png" alt="" width="264"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 11 (1) (1).png" alt="" width="264"><figcaption></figcaption></figure>
 
 The **availability zone** (AZs) are **finer grain location** within a single computing region. They allow customers to run mission critical application with **high availability** and **fault tolerance** to **datacenters failures**. It is different from the concept of availability set. Application-level synchronous replication among AZs. 3 is the minimum number of AZs and enough for quorum.
 
-<div><figure><img src=".gitbook/assets/Untitled 12 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/Untitled 12 (1) (1).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure></div>
 
 **Services provided through WSCs** must guarantee **high availability**, typically aiming for at least **99.99% uptime**. Achieving such fault-free operation is difficult when a large collection of hardware and system software is involved. WSC workloads must be designed to gracefully tolerate large numbers of component faults with little or no impact on service level performance and availability. This is exactly the goal of the **dependability**.
 
@@ -122,7 +122,7 @@ The **availability zone** (AZs) are **finer grain location** within a single com
 
 Hardware implementation of WCSs might differ significantly each other (different markets, scenarios, ..). However, the **architectural organization** of these systems is relatively **stable**.
 
-<figure><img src=".gitbook/assets/Untitled 14 (1).png" alt="" width="522"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 14 (1).png" alt="" width="522"><figcaption></figcaption></figure>
 
 **Servers**: the main processing equipment.
 
@@ -136,7 +136,7 @@ Hardware implementation of WCSs might differ significantly each other (different
 * **SAN**: storage area network.
 * **RAID** (redundant array of inexpensive disks) controllers.
 
-<figure><img src=".gitbook/assets/image (92).png" alt="" width="326"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (92).png" alt="" width="326"><figcaption></figcaption></figure>
 
 **Networking**: providing internal and external connections, and allow networks interconnections among the devices. They can be **hubs**, **routers**, **DNS or DHCP servers**, **load balancers**, technology switches, **firewalls**, and many more. It masks the file system to the user. The data center is not effective without networking.
 
@@ -155,21 +155,21 @@ The **motherboard** provides **sockets** and **plug-in slots** to install **CPUs
 **Racks** are special **shelves** that accomodate all the IT equipment and allow their interconnection. Server racks are measures in rack units (**1U = 44.45 mm**).\
 The advantage of using these is that it allows designers to stack up other electronic devices along with the servers. IT equipment must conform to specific sizes to fit into the rack shelves. The rack is the shelf that holds tens of servers together. It handles shared power delivery, battery backup, and power conversion. It is often convenient to connect the network cables at the top of the rack, such a rack-level switch is appropriately called a TOR (Top of Rack) switch.
 
-<figure><img src=".gitbook/assets/Untitled 16 (1).png" alt="" width="226"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 16 (1).png" alt="" width="226"><figcaption></figcaption></figure>
 
 * **Tower** servers: looks and fells much like a traditional tower PC.
 
-<figure><img src=".gitbook/assets/Untitled 17 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 17 (1).png" alt=""><figcaption></figcaption></figure>
 
 * **Rack** servers: are designed to be positioned in a bay, by vertically stacking servers one over the other along with other devices (storage units, cooling systems, network peripherals, batteries).
 
-<figure><img src=".gitbook/assets/Untitled 18 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 18 (1).png" alt=""><figcaption></figcaption></figure>
 
 * **Blade** servers: latest and most advanced type of servers in the market. They can be termed as **hybrid rack** servers, in which servers are placed inside blade enclosures, forming a blade system.
 
-<figure><img src=".gitbook/assets/Untitled 19 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 19 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Untitled 20.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 20.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### From the rack to the datacenter
 
@@ -177,38 +177,38 @@ The IT equipment is stored into **corridors** (in order to **allow air flow** an
 
 Cooling represent 25% or the entire costs of the data center management.
 
-<div><figure><img src=".gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Untitled (2) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/image (105).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/Untitled (2) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 There is a **mismatch**: the complexity increases faster than the performance of the current technology. In order to overcome this problem, the idea is to **parallelize** inside the same machine more effectively. To satisfy this growth, WSCs deploy specialized **accelerator hardware** such as **GPU**, **TPU** or **FPGA**.
 
-<figure><img src=".gitbook/assets/image (106).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (106).png" alt="" width="188"><figcaption></figcaption></figure>
 
 In **GPU** (graphical processing unit) the same program is executed on many data elements in parallel (**data parallel computations**). The scientific codes are mapped onto the matrix operations. Up to 1000x faster than CPU.\
 The performance is limited by the **slowest learner** (**slowest GPU**, since data can be aggregated when all GPUs have finished their computation) and **transmitting data** (that can be resolved with an high performance network).
 
 GPUs are configured with a **CPU host connected to a PCle-attached accelerator tray with multiple GPUs**. GPUs within the tray are connected using **high-bandwidth interconnects** such as NVlink. We want, in general, the NVlink to perform better since we use more communication among GPUs.
 
-<figure><img src=".gitbook/assets/image (107).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (107).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (108).png" alt="" width="563"><figcaption><p>Processed data are aggregated when all GPUs have finished the computation</p></figcaption></figure>
+<figure><img src="/assets/image (108).png" alt="" width="563"><figcaption><p>Processed data are aggregated when all GPUs have finished the computation</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (110).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (110).png" alt="" width="563"><figcaption></figcaption></figure>
 
 **TPUs** (**Tensor Processors Units**) are **ML-specific hardware**, a custom-built integrated circuit developed specifically ML and tailored for TensorFlow. They are used for **training** and **inference**. The basic unit of TPUs are tensors. Each **tensor core** has an **array for matrix computations** (MXU) and a **connection to high bandwidth memory** (HBM) to store **parameters** and **intermediate values** during the computation.
 
 In a rack multiple TPUs v2 accelerator boards are connected through a custom high-bandwidth network, that enables fast parameter reconciliation with well-controlled tail latencies. TPUs v3 is the first liquid-cooled accelerator in Google’s data center. 2.5x faster than TPU v2. TPUs v4 are about 2.7x faster than TPU v3. Same computing capacity as 10 millions of laptops.
 
-<figure><img src=".gitbook/assets/image (112).png" alt=""><figcaption><p>TPU v2</p></figcaption></figure>
+<figure><img src="/assets/image (112).png" alt=""><figcaption><p>TPU v2</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (113).png" alt=""><figcaption><p>TPU v3</p></figcaption></figure>
+<figure><img src="/assets/image (113).png" alt=""><figcaption><p>TPU v3</p></figcaption></figure>
 
 **FPGAs** (Field-Programmable Gate Array) are **array of logic gates** that can be programmed by the user of the device. Array of carefully designed and interconnected digital sub-circuits that efficiently implement common functions offering very high levels of flexibility. The digital sub-circuits are called **configurable logic blocks** (CLBs).
 
-<figure><img src=".gitbook/assets/image (115).png" alt="" width="419"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (115).png" alt="" width="419"><figcaption></figcaption></figure>
 
 #### CPU, GPU, TPU and FPGA: an AI comparison
 
-<figure><img src=".gitbook/assets/image (116).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (116).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Storage
 
@@ -224,14 +224,14 @@ Some HDD manufacturers produce Solid State Hybrid Disks (SSHD) that combine a sm
 **Disk** are seen by the OS as a **collection of data blocks** that can be read or written independently. \
 In order to allow the management, each block is characterized by a **unique numerical address** called **LBA** (Logical Block Address). Typically, the OS **groups blocks into clusters** to simplify the access to the disk (mapping between where the information is physically located and how the OS access them). Cluster are the **minimal unit that an OS can read from/write to** a disk. Typical cluster size range from 1 disk sector (512 B) to 128 sectors (64 KB).
 
-<figure><img src=".gitbook/assets/image (117).png" alt="" width="256"><figcaption><p>As we can see, the disk can contain several clusters.</p></figcaption></figure>
+<figure><img src="/assets/image (117).png" alt="" width="256"><figcaption><p>As we can see, the disk can contain several clusters.</p></figcaption></figure>
 
 Clusters contains two types of information:
 
 * **File data**: the actual content of the files.
 * **Meta data**: additional information required to **support** the **management** of the system. It contains file names, directory structures and symbolic links, file size and file type, creation, modification, last access dates, security information (owners, access list, encryption), and links to the LBA where the file content can be located on the disk.
 
-<figure><img src=".gitbook/assets/image (118).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (118).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Clusters are used to simplify/reduce the memory associated with the meta data.  Since the file system can only access clusters, the real occupation of space on a disk for a file is always a multiple of the cluster size. \
 Given the file size (s), the cluster size (c) and the actual size on the disk (a) then it follows that $$a = ceil(s/c) * c$$. Then the quantity $$w = a - s$$ is a **wasted disk space** due to the organization of file into clusters. This waste is called **internal fragmentation** of files.
@@ -246,7 +246,7 @@ Given the file size (s), the cluster size (c) and the actual size on the disk (a
 
 An **hard drive disk** (HDD) is a data storage using **rotating disks** (**platters**) **coated with magnetic material**. Data is read in a **random-access manner**, meaning individual blocks of data can be stored or retrieved in any order rather than sequentially. An HHD consists of one or more rigid (”hard”) rotating disks (platters) with magnetic heads arranged on a **moving actuator arm** to read and write data to the surfaces.
 
-<figure><img src=".gitbook/assets/image (121).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (121).png" alt="" width="563"><figcaption></figcaption></figure>
 
 It is very fragile. A single pieces of dust can impact how the head read/write the information. If the head crush the data of the HDD will not be recover.
 
@@ -257,14 +257,14 @@ Many disks incorporate **caches** (**track buffer**), a small amount of RAM (8, 
 **Write through cache:** drive reports that writes are complete after they have been written to disk. \
 Today, some disks include **flash memory** for **persistent caching** (hybrid drives). This means that the cache is not flushed when removing the power.
 
-<figure><img src=".gitbook/assets/image (123).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (123).png" alt="" width="375"><figcaption></figcaption></figure>
 
 There could be 4 types of **delay**:
 
 1. **Rotational delay**: time to rotate the desired sector to the read head. Related to the RPM (round per minute). Full rotation delay is $$R = {1\over DiskRPM}$$. In seconds $$R_{sec} = 60* R$$ . The rotational delay is $$T_{rotation_{AVG}} = R_{sec}/2$$. The 2 comes from the fact that in general we have to rotate among half the disk.
 2.  **Seek delay**: time to move the read head to a different track. It is characterized by different phases: accelleration, coasting (constant speed), decelleration, settling. $$T_{seek}$$ modelling consider a linear dependency with the distance. $$T_{seek_{AVG}} = T_{seek_{MAX}}/3$$.&#x20;
 
-    <figure><img src=".gitbook/assets/image (124).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (124).png" alt="" width="375"><figcaption></figcaption></figure>
 3. **Transfer time**: time to read or write bytes. It is the final phase of the I/O that takes place. It includes the time for the head to pass on the sectors and the I/O transfer.
 4. **Controller overhead**: overhead for the request management. Buffer management (data transfer) and interrupt sending time.
 
@@ -296,7 +296,7 @@ In many circumstances this is not the case: files are larger than a block and th
 
 In a solid-state drive there are **NO mechanical components** (it is a plus since the most delay is associated with the moving parts). It is build out of **transistors** (like memory and processors).
 
-<figure><img src=".gitbook/assets/image (83).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (83).png" alt="" width="375"><figcaption></figcaption></figure>
 
 It retain information despite power loss unlike typical RAM. \
 A controller is included in the device with one or more solid state memory components. \
@@ -311,7 +311,7 @@ Storing bits:
 * Triple-level cell (TLC)
 * QLC, PLC, ..
 
-<figure><img src=".gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 Only empty pages can be written. Only dirty pages can be erased, but this must be done at the block level. It is meaningful to read only pages in use. If no empty page exists, some dirty page must be erased. If no block containing just dirty or empty pages exists, then special procedures should be followed to gather empty pages over the disk. To erase the value in flash memory the original voltage must be reset to neutral before a new voltage can be applied, known as write amplification.
 
@@ -319,7 +319,7 @@ Remark: we can write and read a single page of data from a SSD, but we have to d
 
 This **mismatch** is one of the cause for the **write amplification** problem: the actual amount of information physically written to the storage media is a multiple of the logical amount intended to be written. Write amplification degrades a lot the performance of an SSD as time passes.
 
-<figure><img src=".gitbook/assets/image (85).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (85).png" alt="" width="375"><figcaption></figcaption></figure>
 
 Another problem is that **flash cells wear out** due to the break down of the oxide layer within the floating-gate transistors of a NAND flash memory. The erasing process hits the flash cell with a relatively large charge of electrical energy. So each time a block is erased:
 
@@ -337,7 +337,7 @@ Direct mapping between logical to physical pages is not feasible. **Flash Transi
       Old version of data are called garbage and (sooner or later) they must be reclaimed for new writes to take place. Garbage collection is the process of finding garbage blocks and reclaiming them. \
       It is a simple process for fully garbage blocks, but more complex for partial cases (find a suitable partial block, copy non-garbage pages, erase the entire block for writing).
 
-    <figure><img src=".gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (86).png" alt=""><figcaption></figcaption></figure>
 * &#x20;**Wear leveling**: FTL should try to spread writes across the blocks of the flash ensuring that all of the blocks of the device wear out at roughly the same time.
 
 Garbage collection is expensive: it requires reading and rewriting of live data, the ideal case is when the entire block consist of only dead pages. The cost depends on the amount of data blocks that have to be **migrated**. Some solutions to alleviate the problem:
@@ -379,7 +379,7 @@ In summary:
 * **Unrecoverable Bit Error Ratio** (**UBER**): a metric for the rate of occurrence of data errors, equal to the number of data errors per bits read.
 * **Endurance rating**: terabytes written (**TBW** is the total amount of data that can be written into an SSD before it is likely to fail). The number of TB that may be written to the SSD while still meeting the requirements.
 
-<div align="center"><figure><img src=".gitbook/assets/image (87).png" alt="" width="563"><figcaption><p>HDD: the UBER is fixed in time<br>SSD: at the beginning of their lifetime they are very robust, but then they became less robust.<br>This is why we use the SSD for storing information that we do not want to rewrite frequently (such as OS and programs), and we use HHD for data that we will rewrite often. This is also why we use both SSD and HHD at the same time.</p></figcaption></figure></div>
+<div align="center"><figure><img src="/assets/image (87).png" alt="" width="563"><figcaption><p>HDD: the UBER is fixed in time<br>SSD: at the beginning of their lifetime they are very robust, but then they became less robust.<br>This is why we use the SSD for storing information that we do not want to rewrite frequently (such as OS and programs), and we use HHD for data that we will rewrite often. This is also why we use both SSD and HHD at the same time.</p></figcaption></figure></div>
 
 Memory cells can accept data recording between 3’000 and 100’000 during its lifetime. Once the limit value is exceeded, the cell “forgets” any new data. A typical TBW for a 250 GB SSD is between 60 and 150 TB of data written to the drive. It is difficult to comment on the duration of SSDs.
 
@@ -400,7 +400,7 @@ Memory cells can accept data recording between 3’000 and 100’000 during its 
 
 
 
-    <figure><img src=".gitbook/assets/image (89).png" alt="" width="563"><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (89).png" alt="" width="563"><figcaption></figcaption></figure>
 *   A **storage area networks** (SAN) are remote storage units that are connected to a server using a specific networking technology and are visible as disks/volumes by the client OS.
 
     * SANs have a special network devoted to the accesses to storage devices: two distinct networks one TCP/IP and one dedicated network (ex. Fiber Channel). \
@@ -410,9 +410,9 @@ Memory cells can accept data recording between 3’000 and 100’000 during its 
     NAS provides both storage and file storage. They appear to the client OS as a file server (the client can map network drives to shares on that server). Traditionally used for low-volume access to a large amount of storage by many users. \
     SAN provides only **block-based storage** and leaves file storing concerns on the “client” side. A disk available through a SAN still appears to the client OS as a disk: it will be visible in the disks and volumes management utilities (along with client's local disks), and available to be formatted with a file system. Traditionally used for petabytes of storage and multiple, simultaneous access to files, such as streaming audio/video.
 
-<figure><img src=".gitbook/assets/image (90).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (90).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (91).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (91).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### RAID (redundant arrays of independent disks)
 
@@ -427,7 +427,7 @@ Two orthogonal techniques:
 
 1.  **Data striping**: to improve **performance**. It is not very robust: if only one disk fail, the entire information is lost. **I/O virtualization**: data are distributed transparently over the disks (no action is required to the users by the OS).&#x20;
 
-    <figure><img src=".gitbook/assets/image (69).png" alt="" width="375"><figcaption><p>2 Byte interleaving (stripe unit)</p></figcaption></figure>
+    <figure><img src="/assets/image (69).png" alt="" width="375"><figcaption><p>2 Byte interleaving (stripe unit)</p></figcaption></figure>
 2. **Redundancy**: to improve **reliability**. It is necessary to overcome the problem of data striping.
 
 In data striping data are written sequentially in units (stripe unit: bit, byte, blocks, ..) on multiple disks according to a cyclic algorithm (**round robin**).\
@@ -442,7 +442,7 @@ Hard drives are great devices (relatively fast, persistent storage) but we want 
 
 Instead RAID use multiple disks to create the illusion of a large, faster, more reliable disk. Externally it looks like a single disk. Data blocks are read/written as usual. No need for software to explicitly manage multiple disks or perform error checking/recovery. Internally it is a **complex computing system**: disks are managed by a dedicated CPU + software, it has RAM and non-volatile memory, many different configuration options (RAID levels).
 
-<figure><img src=".gitbook/assets/image (70).png" alt="" width="563"><figcaption><p>Standard RAID levels</p></figcaption></figure>
+<figure><img src="/assets/image (70).png" alt="" width="563"><figcaption><p>Standard RAID levels</p></figcaption></figure>
 
 #### RAID level 0: striping, no redundancy
 
@@ -454,7 +454,7 @@ Key idea: present an array of disks as a single large disk. Maximize parallelism
 
 (-) **Single disk failure will result in the data loss**.&#x20;
 
-<figure><img src=".gitbook/assets/image (71).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (71).png" alt="" width="563"><figcaption></figcaption></figure>
 
 The disk number is equal to the logical block number. The offset is equal to the logical block number divided by the number of disks.
 
@@ -479,12 +479,12 @@ In practice this is never used, because the **overhead** and **costs** are too *
 
 RAID levels can be **combined**.
 
-<figure><img src=".gitbook/assets/image (72).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (72).png" alt="" width="563"><figcaption></figcaption></figure>
 
 * RAID level 0 + 1: group of **striped** disks that are **then mirrored**. A minimum of 4 drives is needed. After the first failure the model becomes a RAID 0.
 * RAID level 1 + 0: group of **mirrored** disks that are **then striped**. A minimum of 4 drives is needed. It is used in DB with very high workloads (fast writes).
 
-<div><figure><img src=".gitbook/assets/image (73).png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (74).png" alt="" width="188"><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/image (73).png" alt="" width="188"><figcaption></figcaption></figure> <figure><img src="/assets/image (74).png" alt="" width="188"><figcaption></figcaption></figure></div>
 
 The blocks are the same but are allocated in a different order. **Performance** and **storage capacity** on both RAID 10 and RAID 01 are the **same**. The main difference is the **fault tolerance level**: in RAID 01 fault tolerance is less than in RAID 10.
 
@@ -504,7 +504,7 @@ Reads (serial or random) are not a problem in RAID 4. Random writes in RAID 4:
 
 RAID 4 has a terribile write performance: **bottle-necked** by the **parity drive**. On the contrary, RAID 4 provides good performance of random reads thanks to parallelization across all non-parity blocks in the stripe (allow multiple simultaneous reading operations).
 
-<figure><img src=".gitbook/assets/image (75).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (75).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### RAID level 5: rotating parity
 
@@ -516,7 +516,7 @@ Random writes in RAID 5:
 
 So a total of 4 operations (2 reads, 2 writes) distributed across all drives.
 
-<figure><img src=".gitbook/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### **RAID level 6:**&#x20;
 
@@ -528,7 +528,7 @@ More fault tolerance w.r.t. RAID 5:
 * It has high overhead per writes, since each write require 6 disk accesses due to the need to update both the P and Q parity blocks (slow writes).
 * Minimum set of 4 data disks.
 
-<figure><img src=".gitbook/assets/image (76).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (76).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Many RAID systems include a hot spare (idle, unused disk installed in the system), if a drive fails the array is immediately rebuilt using the hot spare.
 
@@ -560,7 +560,7 @@ DCNs can be classified into three main categories:
 
 ### Switch-centric architectures
 
-<figure><img src=".gitbook/assets/image (42).png" alt="" width="548"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (42).png" alt="" width="548"><figcaption></figcaption></figure>
 
 Within a DCN traffic can be divided into North-South traffic and East-West traffic. The first is the traffic from the outside the DCN to a server within.
 
@@ -569,7 +569,7 @@ East-west traffic is usually larger than north-south traffic.
 
 #### Three-tier "classical" network
 
-<div><figure><img src=".gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="/assets/image (43).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/image (49).png" alt=""><figcaption></figcaption></figure></div>
 
 It is the simplest and most widely used topology.\
 Servers are connected to the DCN through access switches. Each access-level switch is connected to at least two aggregation-level switches. Aggregation-level switches are connected to core-level switches (gateways). \
@@ -584,21 +584,21 @@ It can be very expensive in large data-centers since upper layers require faster
 In a rack, all servers are connected to a ToR (top of rack) access switch. The servers and the ToR switch are co-located in the same rack while aggregation switches are in dedicated racks or in shared racks with other ToR switches and servers. ToR uses over-subscription.\
 Limited scalability, higher complexity for switch management (high number of switches) but simpler cable management.
 
-<figure><img src=".gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
 #### EoR (end of row) architectures
 
 Aggregation switches are positioned one per corridor, at the end of a line (row). Servers in a racks are connected directly to the aggregation switch in another rack. Aggregation switches must have a larger number of ports. \
 More complex cabling but simpler switch management and scalable.&#x20;
 
-<figure><img src=".gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
 #### Leaf-spine architecture&#x20;
 
 It is made of two stage interconnections: ToR switches (leaf) and dedicated (aggregation) switches (spine).\
 Each stage is fully interconnected. It is a non-folded clos structure.&#x20;
 
-<figure><img src=".gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
 The basic idea is that we have an input stage, a middle stage and an output stage, the input is connected to the output via the middle stage in such a way that it is always possible to have a path from one input to an output.
 
@@ -613,7 +613,7 @@ Let k be the number of middle stages switches, and n be the number of input and 
 
 NB: t is a free design parameter, the total number of input/output $$N = t \cdot n$$ can scale freely by increasing the size of middle-stage switches.
 
-<figure><img src=".gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (45).png" alt=""><figcaption></figcaption></figure>
 
 #### Clos topology (n = m = k)
 
@@ -625,7 +625,7 @@ Each switching module is bidirectional.\
 Each leaf has t switching modules with 2k bidirectional ports per module.\
 Each spine has k switching modules with t bidirectional ports per module.
 
-<div><figure><img src=".gitbook/assets/image (46).png" alt=""><figcaption><p>Clos topology</p></figcaption></figure> <figure><img src=".gitbook/assets/image (47).png" alt=""><figcaption><p>Leaf and spine topology</p></figcaption></figure></div>
+<div><figure><img src="/assets/image (46).png" alt=""><figcaption><p>Clos topology</p></figcaption></figure> <figure><img src="/assets/image (47).png" alt=""><figcaption><p>Leaf and spine topology</p></figcaption></figure></div>
 
 #### PoD (point of delivery)
 
@@ -633,7 +633,7 @@ A PoD is a module or group of network, compute, storage, and application compone
 
 It is a leaf with $$2k^2$$ bidirectional ports: $$k^2$$ ports to the server and $$k^2$$ports to the datacenter network.&#x20;
 
-<figure><img src=".gitbook/assets/image (48).png" alt="" width="209"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (48).png" alt="" width="209"><figcaption></figcaption></figure>
 
 The PoD datacenter network architecture is highly scalable and cost-efficient, utilizing a pod-based model known as the Fat Tree. This model aims to maximize bisection bandwidth.
 
@@ -642,7 +642,7 @@ The PoD datacenter network architecture is highly scalable and cost-efficient, u
 At the edge layer, there are $$2k$$ PoDs (groups of servers) each with $$k^2$$ severs.\
 Each edge switch is directly connected to k servers in a pod and k aggregation switches. This enable partial connectivity at switch level allowing for efficient intra-pod and inter-pod communications.
 
-<figure><img src=".gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (52).png" alt=""><figcaption></figcaption></figure>
 
 #### VL2 network
 
@@ -651,7 +651,7 @@ It is a cost-effective hierarchical fat-tree-based DCN architecture with high bi
 It uses $$D_A/2$$ intermediate switches, $$D_I$$ aggregation switches and $$D_A \cdot D_I / 2$$ ToR switches. The number of servers is $$20 (D_A \cdot D_I)/4$$.\
 It uses a load-balancing technique called valiant load balancing (VLB).
 
-<figure><img src=".gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (56).png" alt=""><figcaption></figcaption></figure>
 
 ### Server centric architecture
 
@@ -660,18 +660,18 @@ It uses a 3D-Torus topology to interconnect the server directly. In this way, it
 
 The drawback is that servers with multiple NICs are required to assemble a 3D-Torus network, leading to long paths and high routing complexity.&#x20;
 
-<figure><img src=".gitbook/assets/image (54).png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (54).png" alt="" width="311"><figcaption></figcaption></figure>
 
 ### Hybrid architecture
 
-<figure><img src=".gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (55).png" alt=""><figcaption></figcaption></figure>
 
 ## Building level
 
 In general, we expect the datacenter to be located all in the same place, but this is not always the case.\
 WSC has other important components related to power delivery, cooling, and building infrastructure that also need to be considered.
 
-<figure><img src=".gitbook/assets/image (78).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (78).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Cooling systems
 
@@ -686,11 +686,11 @@ In closed loop systems with **two loops**:
 * The airflow through the underfloor plenum, the racks, and back to the CRAC (computer room air conditioning) defines the primary air circuit, that is the first loop.
 * The second loop (the liquid supply inside the CRACs units) leads directly from the CRAC to external heat exchangers (typically placed on the building roof) that discharge the heat to the environment.
 
-<figure><img src=".gitbook/assets/image (57).png" alt="" width="563"><figcaption><p>the second loop is inside the CRAC</p></figcaption></figure>
+<figure><img src="/assets/image (57).png" alt="" width="563"><figcaption><p>the second loop is inside the CRAC</p></figcaption></figure>
 
 A three loop system is commonly used in large-scale data centers.
 
-<figure><img src=".gitbook/assets/image (79).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (79).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Each topology presents trade-offs in complexity, efficiency, and cost:
 
@@ -707,7 +707,7 @@ The liquid circulating through the heat sinks transports the heat to a liquid-to
 
 **Container-based datacenters** go one step beyond in-row cooling by placing the server racks inside a physical container (typically 6-12m long) and integrating heat exchange and power distribution into the container as well.
 
-<figure><img src=".gitbook/assets/image (80).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (80).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Power supply
 
@@ -721,7 +721,7 @@ The UPS (uninterruptible power suppl&#x79;_)_ typically combines three functions
 
 Datacenters power consumption is an issue, since it can reach several MWs. Cooling usually requires about half the energy required by the IT equipment (server + network + disks). Energy transformation creates also a large amount of energy wasted for running a datacenter. DCs consume 3% of global electricity supply. DCs produce 2% of total greenhouse gas emissions.
 
-<figure><img src=".gitbook/assets/image (81).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (81).png" alt="" width="563"><figcaption></figcaption></figure>
 
 **Power usage effectiveness** (**PUE**) is the ratio of the total amount of energy used by a DC facility to the energy delivered to the computing equipment $$PUE = {Total\ Facility\ Power}/{IT\ Equipment\ Power}$$.
 
@@ -733,7 +733,7 @@ The **datacenter infrastructure efficiency** (DCiE) = PUE inverse.
 
 Data center availability is defined in four different tier level. Each one has its own requirements:
 
-<figure><img src=".gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 ## SW infrastructures
 
@@ -748,7 +748,7 @@ Cloud provisioning helps in reducing the costs and improving performance. Cloud 
 **Hardware resources** (CPU, RAM, ecc) are **partitioned** and **shared** among multiple virtual machines (VMs). \
 The virtual machine monitor (VMM) governs the access to the physical resources among running VMs.
 
-<figure><img src=".gitbook/assets/image (128).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (128).png" alt="" width="563"><figcaption></figcaption></figure>
 
 A machine is an execution environment capable of running a program. The difference between a physical machine and a VM is in the computer architecture:
 
@@ -763,7 +763,7 @@ The **ABI** (**application binary interface**) corresponds to level 3 in the lay
 
 One machine can only run instruction that were meant for it. OS can create new instructions for programs to access devices/hw. An application rely on system call provided by the OS.
 
-<figure><img src=".gitbook/assets/image (129).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (129).png" alt="" width="563"><figcaption></figcaption></figure>
 
 A VM is a **logical abstraction** able to provide a **virtualized execution environment**. More specifically:
 
@@ -798,15 +798,15 @@ The runtime software supports the **level 0-3** of the architecture.
 * It is placed at the **ABI interface**, on top of the OS/hardware combination.
 * It **emulates both user-level instructions** and **operating system calls**.
 
-<figure><img src=".gitbook/assets/image (131).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (131).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### Differences between system/process VM
 
 The differences relies on the difference between **host** (the underlying platform supporting the environment/system) and **guest** (the software that runs in the VM environment as the guest).
 
-<figure><img src=".gitbook/assets/image (133).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (133).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (135).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (135).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### **Multiprogrammed systems**
 
@@ -835,19 +835,19 @@ It is required when the **VMs** have a **different ISA/ABI from** the architectu
 
 The **VMM** is on **bare hardware**, and VMs fit on top. The VMM can **intercept guest OS’s interaction with hardware resources**. It is the most **efficient** VM architecture since HW executes the same instructions of VMs. Two different OSs on the same HW.
 
-<figure><img src=".gitbook/assets/image (136).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (136).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **Hosted VM**
 
 The virtualizing software is on top of an existing host OS.
 
-<figure><img src=".gitbook/assets/image (139).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (139).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **Whole-system VMs**
 
 All software is virtualized: ISAs are different so both application and OS code require emulations (no naive execution possibile). Usually the VMM and guest software is on top of a host OS running on the hardware. The VM software must emulate the entire hardware environment and all the guest ISA operations to equivalent OS call to the host.
 
-<figure><img src=".gitbook/assets/image (138).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (138).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Virtualization mechanism
 
@@ -857,11 +857,11 @@ The virtualization is implemented by **adding layers between execution stack lay
 * **Application-level virtualization**: A virtualization layer is placed between the OS and some applications (ex. Java VM). It provides the same interfaces to the applications. Applications run in their environment, independently from OS.
 * **System-level virtualization**: The virtualization layer provides the interface of a physical machine to a secondary OS and a set of application running in it, allowing them to run on top of an existing OS. It is placed between the system’s OS and other OS. It enables different OSs to run on a single HW.
 
-<div><figure><img src=".gitbook/assets/image (66).png" alt=""><figcaption><p>HW-level</p></figcaption></figure> <figure><img src=".gitbook/assets/image (67).png" alt=""><figcaption><p>application-level</p></figcaption></figure> <figure><img src=".gitbook/assets/image (68).png" alt=""><figcaption><p>system-level</p></figcaption></figure></div>
+<div><figure><img src="/assets/image (66).png" alt=""><figcaption><p>HW-level</p></figcaption></figure> <figure><img src="/assets/image (67).png" alt=""><figcaption><p>application-level</p></figcaption></figure> <figure><img src="/assets/image (68).png" alt=""><figcaption><p>system-level</p></figcaption></figure></div>
 
 Properties of virtualization technologies:
 
-<figure><img src=".gitbook/assets/image (143).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (143).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### VMM (virtual machine manger)
 
@@ -885,14 +885,14 @@ Three terms are used to identify the same thing:
       The **VMM runs in the host OS**, while **applications run in the guest OS** (this type is used when the user wants to interact with the machine). \
       It is **more flexible** in terms of underlying hardware. It is **simpler** to **manage** and **configure** (VMM can use the host OS to provide GUI, not only BIOS). Special care must be taken to **avoid conflict** between host OS and guest OS (ex. virtual memory). The host OS might consume a non negligible set of physical resources (it must be taken into account that resources are shared with the host OS). The guest OS is actually an application running code in a privileged way.
 
-    <figure><img src=".gitbook/assets/image (145).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (145).png" alt="" width="375"><figcaption></figcaption></figure>
 
 The overall architecture can be:
 
 * **Monolithic**: device drivers run within the hypervisor. It provides **better** **performance** and better **isolation**, but can run only on hardware for which the hypervisor has drivers.
 * **Microkernel**: device drivers run within a **service VM**. It has smaller hypervisor, it leverages drive ecosystem of an existing OS and it can use 3rd party driver (even if not always easy, recompiling might be required).
 
-<figure><img src=".gitbook/assets/image (146).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (146).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Virtualization techniques
 
@@ -909,7 +909,7 @@ The way in which the guest OS acts as the host OS. There are two different ways 
 
 They are different in assumptions, but the goal is almost the same. In para-virtualization we do not have access to system-calls: they are modified into hyper-calls that activate the hypervisor (not the hardware directly).
 
-<figure><img src=".gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (149).png" alt=""><figcaption></figcaption></figure>
 
 ### Containers
 
@@ -918,7 +918,7 @@ The main advantage is that their **behavior** is **predictable**, **repeatable**
 
 VM provides hardware virtualization, while containers provide virtualization at the **operating system level**. The main difference is that the containers share the host system kernel with other containers.
 
-<figure><img src=".gitbook/assets/image (150).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (150).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Characteristics:
 
@@ -940,7 +940,7 @@ Containers are typically used for:
 * Providing lightweight stand-alone sandbox environments for developing, testing, and teaching technologies, such as the Unix shell or a programming language.
 * Software as a Service applications.
 
-<figure><img src=".gitbook/assets/image (151).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (151).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Containers will not replace VM: if we need a different OS then we must use a VM.
 
@@ -953,7 +953,7 @@ Virtualization is the basis of data centers. Virtualization provide more to the 
 
 **Server consolidation** is the process of migrating network services and applications from physical to virtual machine. It is made by putting an **intermediate layer** of **processing**, that is virtualization, between the resources and the customers.
 
-<figure><img src=".gitbook/assets/image (152).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (152).png" alt="" width="375"><figcaption></figcaption></figure>
 
 It is possible to **automatically balances** the **workloads** according to set limits and guarantees. Server and applications are protected against component and system failure.
 
@@ -968,7 +968,7 @@ Advantages of consolidation:
 
 Cloud computing is a **model** for enabling **convenient** and **on-demand network access** to a **shared pool** of **configurable computing resources** (networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort or service provide interaction.
 
-<figure><img src=".gitbook/assets/image (153).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (153).png" alt="" width="375"><figcaption></figcaption></figure>
 
 * **Cloud Application layer** (SaaS): Users access the services provided by this layer trough **web-portals**, and may be required to pay fees to use them. Cloud applications can be developed on the cloud software environments or infrastructure components.
 * **Cloud Software Environment layer** (PaaS): Users are application developers. Providers **supply developers** with a **programming-language-level environment with well-defined API**. This facilitates interaction between environment and apps, accelerate the deployment and support scalability.
@@ -977,7 +977,7 @@ Cloud computing is a **model** for enabling **convenient** and **on-demand netwo
   * **Storage** (Data-aaS): It allows users to store their data at remote disks and access it anytime from any place. It facilitates cloud applications to scale beyond their limited server requirements (high dependability, replication, data consistency).
   * **Communication** (CaaS): It is part of a larger category of services known as SaaS, in which vendors offer software products and services over the internet. The core concept of CaaS is that accessing these services over the internet is extremely convenient.
 
-<figure><img src=".gitbook/assets/image (64).png" alt="" width="431"><figcaption><p>A variety of "as-a-service" offered in Clouds</p></figcaption></figure>
+<figure><img src="/assets/image (64).png" alt="" width="431"><figcaption><p>A variety of "as-a-service" offered in Clouds</p></figcaption></figure>
 
 Types of clouds:
 
@@ -994,7 +994,7 @@ Types of clouds:
   It can be internally or externally hosted. \
   Usually are companies that holds their private cloud, but that they can be subject to unpredictable peaks of load. The company rents resources from other types of cloud. In order to simplify the development process, the way in which VMs are started, terminated, address is given storage is accessed, must be similar as possible. Many standards are being developed but none is globally accepted yet. Currently, the Amazon EC2 model is the one with more compliant infrastructures.
 
-<figure><img src=".gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/image (62).png" alt=""><figcaption></figcaption></figure>
 
 Advantages of cloud computing:
 
@@ -1023,7 +1023,7 @@ Fog computing extends this concept by creating a distributed computing infrastru
 Advantages: decentralized, lower latency, localized processing.\
 It is ideal for real-time, latency-sensitive applications.
 
-<figure><img src=".gitbook/assets/image (63).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (63).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Machine (Deep) Learning as a service
 
@@ -1040,7 +1040,7 @@ The IT architecture for ML/DL on datacenters:
 
 Cloud computing simplifies the access to ML capabilities for designing a solution (without requiring a deep knowledge of ML) and setting up a project (managing demand increases and IT solution).
 
-<figure><img src=".gitbook/assets/image (154).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (154).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Methods
 
@@ -1056,7 +1056,7 @@ Dependability is a measure of **how much** we **trust a system**. It is the abil
 
 A lot of effort is devoted to make sure that the implementation matches specifications, fulfills requirements, meets constraints and optimizes selected parameters (performance, energy/power consumption, ..). Nevertheless, even if all above aspects are satisfied, things may fails because something broke.
 
-<figure><img src=".gitbook/assets/image (155).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (155).png" alt="" width="375"><figcaption></figcaption></figure>
 
 A single system failure may affect a large number of people (safety critical systems). A faliures may have high costs if it impacts economic losses or physical damage (mission critical systems). Systems that are not dependable are likely not to be used or adopted (reputation of a brand). Undependable systems may cause information loss with a high consequent recovery cost.
 
@@ -1124,17 +1124,17 @@ Characteristics:
 1. **Unavailability**: $$1 - A(t)$$. When the system is not repairable: $$A(t) = R(t)$$. In general (**repairable systems**): $$A(t) ≥ R(t)$$.
 2.  Some reference numbers:
 
-    <div><figure><img src=".gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/image (159).png" alt=""><figcaption></figcaption></figure></div>
+    <div><figure><img src="/assets/image (158).png" alt=""><figcaption></figcaption></figure> <figure><img src="/assets/image (159).png" alt=""><figcaption></figcaption></figure></div>
 
 ### R(t) & A(t) related indices
 
 * **MTTF** (Mean Time To Failure): mean time before any failure will occur. $$MTTF = \int_{0}^{\inf}{R(t)dt}$$.
 *   **MTBF** (Mean Time Between Failures): mean time between two consecutive failures. $$MTBF = total\ operating\ time / number\ of\ failures$$.
 
-    <figure><img src=".gitbook/assets/image (161).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (161).png" alt="" width="375"><figcaption></figcaption></figure>
 *   **FIT**: failures in time. It is another way of reporting MTBF. It is the number of expected failures per one billion hours ($$10^9$$) of operation for a device. $$1/MTBF = FIT = number\ of\ failures / total\ operating\ time$$. $$MTBF (in h) = 10^9 / FIT = 1 / \lambda$$ .
 
-    <figure><img src=".gitbook/assets/image (163).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="/assets/image (163).png" alt="" width="375"><figcaption></figcaption></figure>
 
 
 
@@ -1146,17 +1146,17 @@ Characteristics:
 
     Exploitation of R(t) information is used to compute, for a complex system, its reliability in time, that is the expected lifetime (computation of MTBF). Computation of the overall reliability starts from the components’ one.
 
-<figure><img src=".gitbook/assets/image (164).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (164).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### Reliability block diagram
 
 Reliability block diagrams are an inductive model where a **system** is divided **into blocks** that represent distinct elements such as components or subsystems. Every element in the RBD has its own reliability (previously calculated or modeled). Blocks are then combined together to model all the possibile success paths.
 
-<figure><img src=".gitbook/assets/image (165).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (165).png" alt="" width="563"><figcaption></figcaption></figure>
 
 RDBs are an approach to compute the reliability of a system starting from the reliability of its components.
 
-<figure><img src=".gitbook/assets/image (166).png" alt="" width="563"><figcaption><p>In series all components must be healthy for the system to work properly. In parallel if one component is healthy the system works properly.</p></figcaption></figure>
+<figure><img src="/assets/image (166).png" alt="" width="563"><figcaption><p>In series all components must be healthy for the system to work properly. In parallel if one component is healthy the system works properly.</p></figcaption></figure>
 
 In general, if system S is composed by components with a reliability having an exponential distribution (very common case): $$R_s(t) = e^{-\lambda_st}$$ where $$\lambda_s = \sum_{i = 1}^n \lambda_i$$ (failure in time). Then $$MTTF_s = { 1 \over \lambda_s} = 1 / (\sum_{i = 1}^n \lambda_i) = 1 / (\sum_{i = 1}^n {1 \over MTTF_i})$$.
 
@@ -1169,18 +1169,18 @@ A system may be composed of two parallel replicas:
 * The **primary replica** working all time.
 * The **redundant replica** (generally not active) that is activated when the primary replica fails.
 
-<figure><img src=".gitbook/assets/image (168).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (168).png" alt="" width="375"><figcaption></figcaption></figure>
 
 Obviously we need:
 
 * A mechanism to determine whether the primary replica is working properly or not (on-line self check).
 * A dynamic switching mechanism to disable the primary replica and activate the redundant one.
 
-<figure><img src=".gitbook/assets/image (169).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (169).png" alt="" width="563"><figcaption></figcaption></figure>
 
 More in general, a system having one primary replica and **n redundant replicas** (with **identical** replicas and **perfect switching**). $$R(t) = e^{-\lambda t} \sum_{i = 0}^{n - 1} {{\lambda t}^ i \over i!}$$.
 
-<figure><img src=".gitbook/assets/image (170).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (170).png" alt="" width="375"><figcaption></figcaption></figure>
 
 We can also have a system composed of n identical replicas where at least r replicas have to work fine for the entire system to work fine. $$R(t) = RV \sum_{i = r}^n R_c^i (1 - R_C)^{n - i} {n! \over i! (n-i)!} = RV \sum_{i = r}^n R_c^i (1 - R_C)^{n - i} \binom n i$$
 
@@ -1194,7 +1194,7 @@ The system works properly if 2 out of 3 components work properly and the voter w
 
 ## Performance Modeling
 
-<figure><img src=".gitbook/assets/image (171).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (171).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Computer performance is the total effectiveness of a computer system, including throughput, individual response time and availability. It can be characterized by the amount of useful work accomplished by a computer system/network compared to the time and resources used.
 
@@ -1207,11 +1207,11 @@ System quality can be evaluated trough:
 
 Complex system can be generalized with a model. Often models are the only artifact to deal with. Model used to drive design decisions. This is the **model-based approach**.
 
-<figure><img src=".gitbook/assets/image (173).png" alt="" width="563"><figcaption><p>Quality evaluation techniques</p></figcaption></figure>
+<figure><img src="/assets/image (173).png" alt="" width="563"><figcaption><p>Quality evaluation techniques</p></figcaption></figure>
 
 A model is a representation of a system that is simpler than the actual system, captures the essential (relevant) characteristics and can be evaluated to make predictions.
 
-<figure><img src=".gitbook/assets/image (174).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (174).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Model-based approach
 
@@ -1230,7 +1230,7 @@ Queueing theory applies whenever queues come up. In a computer system we can hav
 * A router in a network serves a queue of packets waiting to be routed.
 * Databases have lock queues, where transactions wait to acquire the lock on a record.
 
-<figure><img src=".gitbook/assets/image (175).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (175).png" alt="" width="375"><figcaption></figcaption></figure>
 
 Queueing theory is built on an area of mathematics called stochastic modelling and analysis. Success of queueing network: low-level details of a system are largely irrelevant to its high-level performance characteristics.
 
@@ -1240,7 +1240,7 @@ The basic scenario for a single queue is that customers, who belong to some popu
 
 Arrivals represent jobs entering the system: they specify how fast, how often and which types of jobs does the station service. We are interested in the average arrival rate $$\lambda$$ (req/s).
 
-<figure><img src=".gitbook/assets/image (176).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (176).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### Service
 
@@ -1272,11 +1272,11 @@ Ideally, members of the population are indistinguishable from each other. When t
 
 In many cases we can see the system as a collection of resources and devices with customers or jobs circulating between them. We can associate a service center with each resource in the system and the route customers among the service center. After service, at one service centre a customer may progress to other service centres, following some previously defined pattern of behaviour, corresponding to the customer’s requirement.
 
-<figure><img src=".gitbook/assets/image (177).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (177).png" alt="" width="563"><figcaption></figcaption></figure>
 
 A queueing network can be represented as a graph where nodes represent the service centers k and arcs the possible transitions of users from one service to another. Nodes and arcs together define the network topology.&#x20;
 
-<figure><img src=".gitbook/assets/image (178).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (178).png" alt="" width="375"><figcaption></figcaption></figure>
 
 A network may be:
 
@@ -1296,9 +1296,9 @@ Whenever a job has alternative routes, an appropriate selection policy must be d
 
 A client-server system, dealing with external arrivals, which is architected with three tiers.
 
-<figure><img src=".gitbook/assets/image (180).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (180).png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (179).png" alt="" width="563"><figcaption><p>Equivalent open network systems</p></figcaption></figure>
+<figure><img src="/assets/image (179).png" alt="" width="563"><figcaption><p>Equivalent open network systems</p></figcaption></figure>
 
 Tandem queuing networks are used to model production lines, where raw parts enter the systems, and after a set of stages, the final product is completed (and leaves).
 
@@ -1306,30 +1306,30 @@ Tandem queuing networks are used to model production lines, where raw parts ente
 
 A client-server system, with a finite number of customers, which is architected with three tiers.
 
-<figure><img src=".gitbook/assets/image (181).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (181).png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (182).png" alt="" width="401"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (182).png" alt="" width="401"><figcaption></figcaption></figure>
 
 ### Operational laws
 
 **Operational laws** are simple **equations** which may be used as an abstract representation or model of the average behaviour of almost any system. The laws are very **general** and make almost **no assumptions** about the behaviour of the random variables characterizing the system, are **simple** and can be applied **quickly** and **easily**. They are based on **observable variables**, values which we could derive from watching a system over a finite period of time. We assume that the system receives requests from its environment. Each request generate a job or a customer within the system. When the job is processed, the system responds to the environment with the result of the request.
 
-<figure><img src=".gitbook/assets/image (31).png" alt="" width="563"><figcaption><p>measurable quantities</p></figcaption></figure>
+<figure><img src="/assets/image (31).png" alt="" width="563"><figcaption><p>measurable quantities</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (32).png" alt="" width="563"><figcaption><p>derivable quantities</p></figcaption></figure>
+<figure><img src="/assets/image (32).png" alt="" width="563"><figcaption><p>derivable quantities</p></figcaption></figure>
 
 We assume that the system is **job flow balanced**: the number of arrivals is equal to the number of completions during an observation period ($$A=C$$). It is a testable assumption since it can be strictly satisfied by careful choice of measurement intervals. If the system is job flow balanced, the arrival rate will be the same as the completion rate ($$\lambda = X$$).
 
 A system may be regarded as being made up of a number of devices or resources. Each of there may be treated as a system in its own right. An external request generates a job within the system, this job may then circulate between the resources until all necessary processing has been done.
 
-<figure><img src=".gitbook/assets/image (33).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (33).png" alt="" width="563"><figcaption></figcaption></figure>
 
 * **Utilization law**: $$U_k = X_k S_k$$, where $$X_k$$ is the number of requests over time (throughput), and $$S_k$$ is the average service time. Assuming that each time a job visit the k-th resource the amount of processing (service time) is $$S_k$$. **Service time** is not necessarily the same as the response time of the job at that resource: in general a job might have to wait for some time before processing begin. The total amount of service that a system job generates at the k-th resources is called the **service demand** $$D_k=S_k V_k$$.
   * Average service time $$S_k$$ accounts for the average time that a job spends in station k when it is served.
   * Average service demand $$D_k$$ accounts for the average time a job spends in station k during its staying in the system. The demand can be greater, less than or equal to the average service depending on the way in which the jobs move in the system.
 * **Little’s law**: $$N = XR$$, where $$N$$ is the average number of requests in the system and $$X$$ is the throughput. It can be applied both at system or resource level
 
-<figure><img src=".gitbook/assets/image (34).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (34).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Back when most processing was done on shared mainframes the **think time** was the time that a programmer spent thinking before submitting another job. The think time is the time between processing being completed and the job becoming available as a request again. More generally in interactive systems, job spend time in the system not engaged in processing or waiting for processing.
 
@@ -1352,7 +1352,7 @@ The goal is to provide insight into the primary factors affecting the performanc
 
 The advantage of **bounding analysis** is that it highlight and quantify the critical influence of the system **bottleneck**, it is useful in system sizing and useful for system upgrades. The bottleneck is the resource within a system which has the greatest service demand $$D_{max}$$. It is important because it limits the possibile performance of the system. This will be the resource which has the highest utilization in the system.
 
-<figure><img src=".gitbook/assets/image (35).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (35).png" alt="" width="563"><figcaption></figcaption></figure>
 
 The asymptotic bounds are derived by considering the (asymptotically) extreme conditions of light and heavy loads (**optimistic**: **X upper bound** and **R lower bound**). We work under the assumption that the service demand of a customer at a center does not depend on how many other customers currently are in the system, or at which service centers they are located.
 
@@ -1362,7 +1362,7 @@ In **closed models** we consider X bounds first and then convert it into R bound
 
 In conclusion: $$\frac{N}{ND + Z} ≤ X(N) ≤ min\{1/D_{max}, \frac{N}{D+Z}\}$$ with $$N^* = \frac{D+Z}{D_{max}}$$.
 
-<figure><img src=".gitbook/assets/image (36).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/image (36).png" alt="" width="563"><figcaption></figcaption></figure>
 
 For R bounds we simply rewrite the previous equation considering $$X(N) = \frac{N}{R(N)+Z}$$ and we obtain $$max\{D, ND_{max}-Z\} ≤ R(N) ≤ ND$$.
 

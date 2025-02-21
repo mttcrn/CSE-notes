@@ -12,9 +12,9 @@ Here you can find the source code of each challange
 
 ## Web1: Bad WebApp
 
-The goal of the challenge is to retrive the password of a given user.&#x20;
+The goal of the challenge is to retrive the password of a given user.
 
-<figure><img src="../.gitbook/assets/image (94).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (94).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
 The web app has only "register" and "login" functionalities. By inspecting the source code I was able to find a SQLi vulnerability related to the login:
 
@@ -40,7 +40,7 @@ The web app has only "register" and "login" functionalities. By inspecting the s
 ```
 {% endcode %}
 
-As we can see at line 6 the query is directly executed without being sanitized first. Thank to this I was able to&#x20;
+As we can see at line 6 the query is directly executed without being sanitized first. Thank to this I was able to
 
 ## Web2: AI Will Kill Us All
 
@@ -48,9 +48,9 @@ The goal of the challenge was to retrieve the value of cookie '`dJrMX`' (this co
 
 Just by reading the goal I knew that I had to perform a XSS attack.
 
-<figure><img src="../.gitbook/assets/image (98).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (98).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
-By reading the source code I found the vulnerability in the text field of the homepage. The message is directly sent with a POST in the URL. So the attack is actually a reflected XSS.&#x20;
+By reading the source code I found the vulnerability in the text field of the homepage. The message is directly sent with a POST in the URL. So the attack is actually a reflected XSS.
 
 Taken into account the following constraints:
 
@@ -73,11 +73,11 @@ At this point I could see the value of key1 directly in the URL. The challenge w
 
 ## Web3: Daily Training
 
-The goal of the challenge was to retrieve the rewards of user `2242db8f-8552-4c46-b293-5380d772e494.`&#x20;
+The goal of the challenge was to retrieve the rewards of user `2242db8f-8552-4c46-b293-5380d772e494.`
 
-<figure><img src="../.gitbook/assets/image (101).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (101).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
-The web app has "sign-up" and "log-in" functionalities. In the source code I deducted that the website was not vulnerable to SQLi, but I noticed that there was a cookie-session associated with the username only.&#x20;
+The web app has "sign-up" and "log-in" functionalities. In the source code I deducted that the website was not vulnerable to SQLi, but I noticed that there was a cookie-session associated with the username only.
 
 So I created an account and signed in. I inspected the cookie with a debugger ([https://jwt.io/#debugger-io](https://jwt.io/#debugger-io)), and from the source code I took the secret. I was able to steal the session of the given user by modifying the cookie.
 
@@ -85,7 +85,7 @@ So I created an account and signed in. I inspected the cookie with a debugger ([
 
 The goal of the challenge was to render the flag of user '`Virgie`'. In this case the source code was not given.
 
-<figure><img src="../.gitbook/assets/image (93).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (93).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
 So by inspecting the HTML code I found a series of scripts, mostly used for the rendering, except for one of them called '`utils.js`':
 
@@ -106,7 +106,7 @@ This is the logic behind the request for rendering a different object. As we can
 
 > https://web4.chall.necst.it/loadModel?model={modelName}
 
-I tried to "play" with it, tring to make a path trasversal attack. I could see that by specifying a wrong modelName an error was raised: '`ERROR: file ./models/ModelName not found.`'. On the other hand, by writing a right name, a download of the file began.&#x20;
+I tried to "play" with it, tring to make a path trasversal attack. I could see that by specifying a wrong modelName an error was raised: '`ERROR: file ./models/ModelName not found.`'. On the other hand, by writing a right name, a download of the file began.
 
 So I managed to download the index.php page with the following URL '`https://web4.chall.necst.it/loadModel.php?model=../index.html`', and I noticed that was different from the one that I could see with the browser by only a couple of lines:
 
@@ -119,7 +119,7 @@ So I managed to download the index.php page with the following URL '`https://web
 
 As we can see there was another funcion that I could use, so I tried to "play" with it another time.
 
-With the following URL I was able to see all the directories '`https://web4.chall.necst.it/listModelOptions.php?dir=/`', and with some exploration I was finally able to reveal my secret in this way '`https://web4.chall.necst.it/listModelOptions.php?dir=/var/www/html/s3cr3ts/Virgie` '.&#x20;
+With the following URL I was able to see all the directories '`https://web4.chall.necst.it/listModelOptions.php?dir=/`', and with some exploration I was finally able to reveal my secret in this way '`https://web4.chall.necst.it/listModelOptions.php?dir=/var/www/html/s3cr3ts/Virgie` '.
 
 In this way I was able to retrive the name of the file that contained the secret (remember that I was exploring the directories). So the challenge was solved, I only needed to download that file with the function '`loadModel`'.
 
@@ -129,7 +129,7 @@ This was the final URL: '`https://web4.chall.necst.it/loadModel.php?model=../s3c
 
 The goal of the challenge was to found the name of the secret gnome (that is the flag), given the name of gnome '`Ericka`'.
 
-<figure><img src="../.gitbook/assets/image (97).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (97).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
 The web app has only a login function. When the login succeed we are redirected to a success page, if it fails to another one. At this point I was already thinking about a boolean blind SQLi, since we are not able to see the outcome of the query but only a true/false response.
 
@@ -185,9 +185,9 @@ string = re.sub(r'javascript:', 'javascript', string, flags=re.IGNORECASE)
 The first thing I noticed was that the word '`javascript:`' is replaced simply with '`javascript`': to escape this a simple '`::`' is necessary. \
 Another important thing is that the regular expression check only for blacklisted words that are inside the angular parenthesis: a simple '`\n`' is useful to escape this check.
 
-By reading the source code, I noticed that the field related to the comment was the one vulnerable to a stored XSS attack.&#x20;
+By reading the source code, I noticed that the field related to the comment was the one vulnerable to a stored XSS attack.
 
-<figure><img src="../.gitbook/assets/image (99).png" alt=""><figcaption><p>comment section</p></figcaption></figure>
+<figure><img src="..//assets/image (99).png" alt=""><figcaption><p>comment section</p></figcaption></figure>
 
 I used the request bin to check the result of the following script (the '`\n`' are important). The challenge was solved.
 
@@ -197,7 +197,7 @@ I used the request bin to check the result of the following script (the '`\n`' a
 
 The goal of the challenge was to found the name of the secret gnome (that is the flag), given the name of gnome '`Nathan`'.
 
-<figure><img src="../.gitbook/assets/image (95).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
+<figure><img src="..//assets/image (95).png" alt=""><figcaption><p>homepage</p></figcaption></figure>
 
 The challenge is the same as web5, just with a bigger blacklist. Taking into account the following constraints:
 

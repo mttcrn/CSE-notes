@@ -159,7 +159,7 @@ It is based on the **triangular operation**: for each pair of nodes i,j with $$i
 
 if $$d_{iu} + d_{uj} < d_{ij}$$ then $$d_{ij} = d_{iu} + d_{uj}$$
 
-![triangular operation](<.gitbook/assets/Untitled (2).png>)
+![triangular operation](</assets/Untitled (2).png>)
 
 Input: a directed graph $$G = (N, A)$$ with an $$n×n$$ cost matrix $$C = [c_{ij}]$$. Output: for each pair of nodes $$i,j ∈ N$$, the cost $$c_{ij}$$ of the shortest path form i to j.
 
@@ -192,7 +192,7 @@ It is an exact algorithm.
 
 A **directed graph** is **acyclic** (DAG) if it contains no circuits. It is possible to define a **topological order**, that is an order given to the nodes so that for each arc $$(i, j) ∈ A$$ we have that the index of i is less tan the index of j.
 
-<figure><img src=".gitbook/assets/Untitled 1 (2).png" alt="" width="222"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 1 (2).png" alt="" width="222"><figcaption></figcaption></figure>
 
 Given a DAG $$G = (N, A)$$ represented via the lists of predecessors $$δ^−(v)$$ and successors $$δ^−(v)$$ for each node v. Assign the smallest positive integer not yet assigned to a node $$v ∈ N$$ with $$δ^−(v) = Ø$$. Delete the node v with all its incident arcs, then repeat until there are no left nodes.
 
@@ -303,7 +303,7 @@ For maximum flow problems more efficient algorithms (in polynomial time) exists 
 
 Given an undirected bipartite graph $$G = (N, E)$$, a matching $$M ⊆ E$$ is a subset of non adjacent edges. Given a bipartite graph the problem of determine a matching with a maximum number of edges can be reduced to the problem of finding a feasible flow of maximum value.
 
-<figure><img src=".gitbook/assets/Untitled 2 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 2 (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Hard graph optimization problems
 
@@ -319,7 +319,7 @@ NP-hard computational problems can’t be solved by polynomial time algorithm (k
 
 A linear programming (LP) problem is an optimization problem min $$f(x)$$ s.t. $$x ∈ X ⊆ R^n$$, where the **objective function** $$f : X → R$$ is linear. $$x^* ∈ R^n$$ is an **optimal solution** if $$f(x^*) ≤ f(x), ∀x ∈ X$$.
 
-![Untitled](.gitbook/assets/Untitled.png)
+![Untitled](/assets/Untitled.png)
 
 Assumptions of LP models:
 
@@ -329,11 +329,11 @@ Assumptions of LP models:
 
 ### Equivalent forms
 
-<figure><img src=".gitbook/assets/Untitled 1.png" alt="" width="508"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 1.png" alt="" width="508"><figcaption></figcaption></figure>
 
 The **standard** **form** has only equality constraints ($$Ax = b$$)and all non negative variables ($$x > 0$$). Simple **transformation rules** allow to pass from one form to the other:
 
-<figure><img src=".gitbook/assets/Untitled 2.png" alt="" width="545"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 2.png" alt="" width="545"><figcaption></figcaption></figure>
 
 ### Geometry of LP
 
@@ -363,7 +363,7 @@ Geometrically: An interior point $$x ∈ P$$ cannot be an optimal solution → t
 
 Types of linear programs:
 
-<figure><img src=".gitbook/assets/Untitled 4.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 4.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Basic feasible solutions
 
@@ -381,7 +381,7 @@ Algebraic characterization of the vertices: Consider any $$P = \{x ∈ R^n : Ax 
 
 A basis of a matrix A is a subset of m columns of A that are linearly independent and form an m x m non singular matrix B.
 
-<figure><img src=".gitbook/assets/Untitled 5.png" alt="" width="551"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 5.png" alt="" width="551"><figcaption></figcaption></figure>
 
 By construction $$(x_B^T, x_N^T)$$ together satisfy $$Ax = b$$.
 
@@ -399,13 +399,13 @@ Idea: examine a sequence of BFSs with **non-increasing objective function values
 
 At each iteration, move from a BFS to a “neighboring” basic feasible solution. Generate a **path** (sequence of adjacent vertices) along the edges of the polyhedron of the feasible solutions until an optimal vertex is reached.
 
-<figure><img src=".gitbook/assets/Untitled 6.png" alt="" width="149"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 6.png" alt="" width="149"><figcaption></figcaption></figure>
 
 #### Optimality test (determine if a current vertex is optimal)
 
 Given a LP $$min\{ c^Tx : Ax = b, x≥0\}$$ and a feasible basis B of A, then $$Ax = B$$ can be rewritten as $$Bx_B + Nx_N = B \Rightarrow x_B = B^{-1}(b-Nx_N)$$ with $$B^{-1}b \ge 0$$.
 
-<figure><img src=".gitbook/assets/Untitled 7.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 7.png" alt="" width="563"><figcaption></figcaption></figure>
 
 The vector of reduced costs w.r.t. the basis B (for BFSs) is $$c^T = c^T - c^T_B B^{-1}A = [\overbrace{c^T_B - c^T_B b^{-1}B}^{0^T}, \overbrace{c^T_N - c^T_BB^{-1}N}^{c^T_N}]$$
 
@@ -443,9 +443,9 @@ Given a basis B, the system $$Ax = B \Leftrightarrow \sum^n_{j = 1}{a_{ij}x_j = 
 
 #### “Tableau” representation
 
-<figure><img src=".gitbook/assets/Untitled 8.png" alt="" width="485"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 8.png" alt="" width="485"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Untitled 9.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 9.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% code overflow="wrap" %}
 ```c
@@ -483,7 +483,7 @@ In presence of degenerate BFSs, a basis change may not decrease the objective fu
 
 Phase I: Determine an initial basic feasible solution.
 
-<figure><img src=".gitbook/assets/Untitled 10.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 10.png" alt="" width="563"><figcaption></figcaption></figure>
 
 * Express the basic variables $$y_i$$ w.r.t. the non basic ones $$x_i$$.
 * Write the objective function w.r.t the non basic variables $$x_i$$ and draw the initial tableau. Apply the simplex algorithm till the reduced costs for the non-basic variables are all non-negative.
@@ -496,11 +496,11 @@ Phase II: Then starting from the obtained bases in phase I, apply the simplex al
 
 To any minimization LP it is possible to associate a closely related maximization LP based on the same parameters, and viceversa. The original problem is called **primal** (**P**) the resulting one is called **dual** (**D**).
 
-<figure><img src=".gitbook/assets/Untitled 11.png" alt="" width="266"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 11.png" alt="" width="266"><figcaption></figcaption></figure>
 
 General strategy: linearly combine the constraints with non negative multiplicative factors (i-th the one multiplied by $$y_i ≥ 0$$).
 
-<figure><img src=".gitbook/assets/Untitled 12.png" alt="" width="437"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 12.png" alt="" width="437"><figcaption></figcaption></figure>
 
 #### Weak duality theorem
 
@@ -512,7 +512,7 @@ As a consequence, if x is a feasible solution of (P) and y is a feasible solutio
 
 If $$X = \{x ∈ R^n : Ax≥ b, x≥0\} \ne 0$$ and $$min\{c^tx : x∈X\}$$ is finite, there exist $$x^* ∈ X$$ and $$y^*∈Y$$ (optimal solutions) such that $$c^Tx^* = b^Ty^*$$.
 
-<figure><img src=".gitbook/assets/Untitled 13.png" alt="" width="542"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 13.png" alt="" width="542"><figcaption></figcaption></figure>
 
 #### Optimality conditions
 
@@ -532,17 +532,17 @@ Given an ILP, the equal LP is the **linear** (continuous) **relaxation** of the 
 
 #### Knapsack problem
 
-![binary version is NP-hard](<.gitbook/assets/Untitled (1).png>)
+![binary version is NP-hard](</assets/Untitled (1).png>)
 
 #### Assignment problem
 
-<figure><img src=".gitbook/assets/Untitled 1 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 1 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Transportation problem
 
-<figure><img src=".gitbook/assets/Untitled 2 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 2 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Untitled 3 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 3 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 The assignment problem is a particular case of the transportation one. property of both: optimal solution of the linear relaxation ≡ optimal solution of the ILP.
 
@@ -550,9 +550,9 @@ If in a transportation problem $$p_i$$, $$d_{ij}$$, $$q_{ij}$$ are integer, all 
 
 #### Scheduling problem
 
-<figure><img src=".gitbook/assets/Untitled 4 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 4 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Untitled 5 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 5 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ILP formulation can be extended to the case where each job j must be processed on a subset of the m machines according to a different order.
 
@@ -568,9 +568,9 @@ Idea: reduce the solution of a difficult problem to that of a sequence of simple
 Two main components: **branching** and **bounding**. \
 It is applicable to both discrete and continuous optimization problem.
 
-<figure><img src=".gitbook/assets/Untitled 6 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 6 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Untitled 7 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 7 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Particular case for ILP min $$\{c^Tx : Ax = b, x>0\text{ integer}\}$$
 
@@ -629,7 +629,7 @@ The Gomory cut w.r.t. the fractional basic variable $$x_{B[r]}$$ is: $$\sum_{j�
 * It is violated by the optimal fractional solution $$x^*_{LP}$$ of the linear relaxation: since ( $$b’_r - \lfloor b’_r \rfloor) > 0$$ and $$x_j = 0$$, $$∀j$$ s.t. $$x_j$$ non basic.
 * It is satisfied by all integer feasible solutions:
 
-<figure><img src=".gitbook/assets/Untitled 9 (2).png" alt="" width="541"><figcaption></figcaption></figure>
+<figure><img src="/assets/Untitled 9 (2).png" alt="" width="541"><figcaption></figcaption></figure>
 
 The “**integer**” **form** $$x_{B[r]} + \sum_{j∈N}{a_{rj}x_j} \le \lfloor b'r \rfloor$$ _and the “**fractional**” **form**_ $$\sum{j∈N}{a_{rj}- \lfloor a_{rj} \rfloor x_j} \ge (b'_r - \lfloor b'_r \rfloor)$$ of the cutting plane are equivalent.
 

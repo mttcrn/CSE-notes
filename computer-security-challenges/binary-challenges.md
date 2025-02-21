@@ -6,7 +6,7 @@ The goal of all challenges is to read the content of file flag.txt, that needs u
 
 The vulnerability to exploit is a buffer overflow. The idea is to overwrite the return address with the address of function win.
 
-In order to get the exact position of the return address I used the function cyclic from pwntools. \
+In order to get the exact position of the return address I used the function cyclic from pwntools. 
 The address of win can be found in gdb with the command:
 
 ```
@@ -52,7 +52,7 @@ for i in range(start, end + 1):
 
 </code></pre>
 
-&#x20;Now I have everything to craft the exploit with python:
+have everything to craft the exploit with python:
 
 <pre data-overflow="wrap"><code>#to enter in create_art and exploit the string format vulnerability
 <strong>start = "2\n" 
@@ -78,17 +78,17 @@ print(start + win + exp + cat + end)
 
 ## Mission2: Muda
 
-The vulnerability is a buffer overflow. We have a buffer of 256bit, that is checked for the presence of "0x0b" or "0x05" (respectively execve and open).&#x20;
+The vulnerability is a buffer overflow. We have a buffer of 256bit, that is checked for the presence of "0x0b" or "0x05" (respectively execve and open).
 
-The idea is to use a shellcode that open a privileged shell that does not use the previous commands.&#x20;
+The idea is to use a shellcode that open a privileged shell that does not use the previous commands.
 
 ## Mission3: ret2thefuture
 
-## Mission4: Darkroom&#x20;
+## Mission4: Darkroom
 
-It is a reverse engineering challenge: the source code is not provided.&#x20;
+It is a reverse engineering challenge: the source code is not provided.
 
-## Mission5: 90s&#x20;
+## Mission5: 90s
 
 ## Mission6: Endianness Problem
 
