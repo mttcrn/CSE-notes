@@ -26,8 +26,8 @@ y = \begin{cases}
 $$
 
 where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights assigned to each input features, $b$ is the bias term, and $y$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
-<figure><img src="assets/ceptron.png" alt="" width="375"><figcaption></figcaption></figure>
-According to the **Hebbian learning theory**: *"the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target"*. 
+<figure><img src="assets/perceptron.png" alt="" width="375"><figcaption></figcaption></figure>
+According to the **Hebbian learning theory**: "the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 $$
 \begin{cases}
