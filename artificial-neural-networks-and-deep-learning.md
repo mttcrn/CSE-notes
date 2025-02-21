@@ -7,7 +7,7 @@ Machine Learning is a category of research and algorithms focused on finding pat
 
 "A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)
 
--  **Supervised learning**: given the desired outputs $t_1,..., t_N$ learn to produce the correct output given a new set of input.
+- **Supervised learning**: given the desired outputs $t_1,..., t_N$ learn to produce the correct output given a new set of input.
 - **Unsupervised learning**: exploit regularities in the data D to build a representation to be used for reasoning or prediction.
 - **Reinforcement learning**: producing actions $a_1, ..., a_N$ which affects the environment, and receiving rewards $r_1, ..., r_N$, it learns to act in order to maximize rewards in the long term.
 
@@ -46,9 +46,9 @@ The **perceptron** is a linear classifier. It makes decisions by finding a linea
 It does not work if the dataset is not linearly separable: the solution is to implement non-linear boundaries or use an alternative input representation.
 
 The perceptron is a **non-linear** function of a linear combination (input are combined linearly, but then the activation function is applied which is non-linear). The non-linearity is important since:
-* Non-linear models can approximate a wider range of functions (than linear models), including complex relationships in data.
-* Real-world phenomena are generally non-linear.
-* Non-linear activation functions allow for stacking of layers in deep NN.
+- Non-linear models can approximate a wider range of functions (than linear models), including complex relationships in data.
+- Real-world phenomena are generally non-linear.
+- Non-linear activation functions allow for stacking of layers in deep NN.
 ### Multi Layer Perceptrons (MLPs) - Feedforward Neural Networks (FFNN)
 Deep feedforward networks (also called feedforward NN or MLPs) are the core of DL models.
 They are represented by a directed acyclic graph describing how the functions are composed together. The depth of the model is determined by the number of layers in the chain.
@@ -64,15 +64,14 @@ and the values of weights.
 In regression the output spans the whole $\mathbb{R}$ domain: we use a linear activation function for the output neuron.
 
 In classification with two classes, we chose according to their coding:
-
-* $\{\Omega_0 = -1, \Omega_1 = 1\}$: tanh output activation.
-* $\{\Omega_0 = 0, \Omega_1 = 1\}$: sigmoid output activation since it can be interpreted as class posterior probability.
+- $\{\Omega_0 = -1, \Omega_1 = 1\}$: tanh output activation.
+- $\{\Omega_0 = 0, \Omega_1 = 1\}$: sigmoid output activation since it can be interpreted as class posterior probability.
 
 When dealing with multiple classes (K) use as many neuron as classes: classes are coded with the one hot encoding $\{\Omega_0 = [0\ 0\ 1], \Omega_1 = [0\ 1\ 0], \Omega_2 = [1\ 0\ 0\ ] \}$ and output neurons use a softmax unit $y_k = {exp(z_k) \over \sum_k exp(z_k)}$ where $z_k = \sum_j w_{kj}h_j(\sum_j ^I w_{ji}x_i)$.
 
 For all hidden neurons we use sigmoid or tanh.
 ### Universal Approximation theorem
-_“A single hidden layer feedforward neural network with S shaped activation functions (sigmoid or tanh) can approximate any measurable function to any desired degree of accuracy on a compact set”.
+“A single hidden layer feedforward neural network with S shaped activation functions (sigmoid or tanh) can approximate any measurable function to any desired degree of accuracy on a compact set”.
 
 Regardless the function we are learning, a single layer can represent it. In the worst case, an exponential number of hidden units may be required. The layer may have to be unfeasibly large and may fail to learn and generalize.
 ### Gradient Descent (or Back Propagation)
