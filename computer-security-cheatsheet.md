@@ -6,7 +6,7 @@ A perfect cipher implementation. They key is pre-shared, used to encrypt a messa
 
 Perfect cipher are not vulnerable to bruteforce because of the minimal property.
 ### Block cipher
-<figure><img src="assets/image (125).png" alt="" width="368"><figcaption></figcaption></figure>
+![[block_cipher.png]]
 Assuming that the key is fixed, plaintext blocks with the same value will be encrypted to cypertext blocks with the same value. Under the assumption that the attacker only eavesdrops on the cypertext, if the attacker knows the position of a zero-filled plaintext block, she/he will be able to decrypt all the messages (the key is can be easily leaked). This can be fixed by adding a nonce to k that is increased at each block. So confidentiality is ensured.
 
 The hash function is employed as a CSPRNG and has the only purpose to ensure confidentiality.
