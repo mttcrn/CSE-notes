@@ -145,7 +145,7 @@ $$
 We have to minimize the **binary cross entropy**. In multiclass classification problem we use the **categorical cross entropy**.
 
 Error functions (like the ones just defined) define the task to be solved. They are defined using knowledge/assumptions on the data distribution, exploiting background knowledge on the task and the model or by trial and error.
-### Perceptron Learning Algorithm
+%%### Perceptron Learning Algorithm
 Let's consider the hyperplane (affine set) $L \in \mathbb{R}^2$ $L: w_0 + w^Tx = 0$.
 Any two points $x_1 , x_2$ on $L \in \mathbb{R}^2$ have $w^T (x_1 - x_2) = 0$.
 The versor normal to $L \in \mathbb{R}^2$ is then $w^* = {w \over ||w||}$.
@@ -156,7 +156,7 @@ The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the 
 ![algebra](algebra.png)
 
 It can be shown that the error function the Hebbian rule is minimizing is the distance of misclassified points from the decision boundary.
-Let's code the perceptron output as +1/-1: If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.
+Let's code the perceptron output as +1/-1: If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.%%
 * For an output with -1 we have the opposite.
 
 The goal becomes minimizing:
