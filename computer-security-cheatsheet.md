@@ -6,7 +6,8 @@ A perfect cipher implementation. They key is pre-shared, used to encrypt a messa
 
 Perfect cipher are not vulnerable to bruteforce because of the minimal property.
 ### Block cipher
-![[block_cipher.png]]
+![block_chiper](block_cipher.png)
+
 Assuming that the key is fixed, plaintext blocks with the same value will be encrypted to cypertext blocks with the same value. Under the assumption that the attacker only eavesdrops on the cypertext, if the attacker knows the position of a zero-filled plaintext block, she/he will be able to decrypt all the messages (the key is can be easily leaked). This can be fixed by adding a nonce to k that is increased at each block. So confidentiality is ensured.
 
 The hash function is employed as a CSPRNG and has the only purpose to ensure confidentiality.
@@ -155,6 +156,6 @@ Advantages: signature-based methods are ineffective, static analysis may be inef
 Bonus: it is possible to mix polymorphism and metamorphism to gain both the advantages (after decryption the malware rewrite itself).
 
 ### Anti-virus and Anti-malware
-* Signature-based detection (basic strategy): database of byte-level or instruction-level signatures that match known malware. Wildcards or regular expression can be used.
-* Heuristics: code execution in last section, incorrect header size, suspicious code section name, patched import address table.
-* Behavioral detection: detect signs of known malware or "common behaviors"
+- Signature-based detection (basic strategy): database of byte-level or instruction-level signatures that match known malware. Wildcards or regular expression can be used.
+- Heuristics: code execution in last section, incorrect header size, suspicious code section name, patched import address table.
+- Behavioral detection: detect signs of known malware or "common behaviors"
