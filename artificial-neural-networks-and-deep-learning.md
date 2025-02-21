@@ -250,7 +250,8 @@ Batch normalization has shown to:
 - Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
 - Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
 ### More about gradient descent: Nesterov Accelerated gradient
-<figure><img src="assets/Screenshot 2024-10-09 144458.png" alt="" width="563"><figcaption><p>Idea: make a jump as momentum, then adjust.</p></figcaption></figure>
+<figure><img src="assets/Screenshot 2024-10-09 144458.png" alt="" width="563"></figure>
+Idea: make a jump as momentum, then adjust.
 ### Adaptive Learning Rates
 Neurons in each layer learn differently: gradient magnitudes very across layers, early layer get "vanishing gradients". Ideally, we should use separate adaptive learning rates.
 ## Image Classification
