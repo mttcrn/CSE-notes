@@ -110,20 +110,34 @@ In mini-batch GD we need as many steps (iterations) as the number of data divide
 Weights update can be done in parallel, locally, and it requires only two passes. We apply the chain rule (derivative of composition of functions) to the back propagation formula.
 ### Maximum Likelihood Estimation
 Let's observes samples $x_1, ..., x_N$ from a Gaussian distribution with known variance $\sigma ^2$. We want to find the Maximum Likelihood Estimator for $\mu$.
-Given the likelihood $$L(\mu) = p(x_1, .., x_N | \mu, \sigma^2) = \prod_{n=1} ^ N p(x_n | \mu, \sigma^2) = \prod^N_{n=1} {1 \over \sqrt{2 \pi} \sigma} e^{- {(x - \mu)^2 \over 2 \sigma^2}}$$we take the logarithm obtaining $$l(\mu) = N \cdot log{1 \over \sqrt{2 \pi} \sigma} - {1 \over 2 \sigma ^2} \sum ^N_n (x_n - \mu)^2$$we work out the derivative in order to find the minimum:
+Given the likelihood 
+$$
+L(\mu) = p(x_1, .., x_N | \mu, \sigma^2) = \prod_{n=1} ^ N p(x_n | \mu, \sigma^2) = \prod^N_{n=1} {1 \over \sqrt{2 \pi} \sigma} e^{- {(x - \mu)^2 \over 2 \sigma^2}}
+$$
+we take the logarithm obtaining 
+$$
+l(\mu) = N \cdot log{1 \over \sqrt{2 \pi} \sigma} - {1 \over 2 \sigma ^2} \sum ^N_n (x_n - \mu)^2
+$$
+we work out the derivative in order to find the minimum:
 $$
 \mu^{MLE} = {1 \over N} \sum_n^N x_n
 $$
 Let's apply this to NN.
 
-For regression the goal is to approximate a target function $$t = g(x_n | w) + \epsilon_n$$with $\epsilon_n \sim N(0, \sigma^2)$ having N observation: $$t_n \sim N(g(x_n |w), \sigma ^2)$$
+For regression the goal is to approximate a target function $t = g(x_n | w) + \epsilon_n$ with 
+$epsilon_n \sim N(0, \sigma^2)$ having N observation: 
+$$ 
+t_n \sim N(g(x_n |w), \sigma ^2)
+$$
 We write the MLE for the data and look for the weights which maximize the log-likelihood:
 $$
 argmin_w \sum_n^N (t_n - g(x_n | w))^2
 $$
 We have to minimize the **sum of squared errors** (SSE). In general, we use the **mean of squared errors** (MSE).
 
-For classification the goal is to approximate a posterior probability $t$ having $N$ observation: $$g(x_n|w) = p(t_n|x_n)$$with $t_n \in \{0, 1\}$ so that $t_n \sim Be(g(x_n|w))$. 
+For classification the goal is to approximate a posterior probability $t$ having $N$ observation: $$
+g(x_n|w) = p(t_n|x_n)
+$$with $t_n \in \{0, 1\}$ so that $t_n \sim Be(g(x_n|w))$. 
 We write the MLE for the data and look for the weights which maximize the log-likelihood:
 $$
 argmin_w - \sum_n^N t_n log\  g(x_n|w) + (1- t_n)log(1-g(x_n|w))
@@ -136,13 +150,15 @@ Let's consider the hyperplane (affine set) $L \in \mathbb{R}^2$ $L: w_0 + w^Tx =
 Any two points $x_1 , x_2$ on $L \in \mathbb{R}^2$ have $w^T (x_1 - x_2) = 0$.
 The versor normal to $L \in \mathbb{R}^2$ is then $w^* = {w \over ||w||}$.
 For any point $x_0$ in $L \in \mathbb{R}^2$ we have $w^Tx_0 = -w_0$.
-The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by $$w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)$$The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. 
+The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by 
+$$
+w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)
+$$The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. 
 
 ![algebra](algebra.png)
 
 It can be shown that the error function the Hebbian rule is minimizing is the distance of misclassified points from the decision boundary.
-Let's code the perceptron output as +1/-1:
-* If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.
+Let's code the perceptron output as +1/-1: If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.
 * For an output with -1 we have the opposite.
 
 The goal becomes minimizing:
@@ -157,7 +173,8 @@ Too simple models underfit the data, while too complex model overfit the data an
 
 A way to measure generalization is not trough training error/loss: the classifier has been learning from that data, so any estimate on that data will be optimistic. New data will probably not be exactly the same as training data.\
 We need to test on an independent test set that can come from a new dataset, by splitting the initial data or by performing random sub sampling (with replacement) of the dataset.
-<figure><img src="assets/Screenshot 2024-10-02 095227.png" alt="" width="563"><figcaption></figcaption></figure>
+
+![[splitting.png]]
 - Training dataset: the available data.
 - Training set: the data used to learn model parameters.
 - Test set: the data used to perform the final model assessment.
@@ -179,13 +196,16 @@ Overfitting networks show a monotone training error trend (on average with SDG) 
 - Train on the training set.
 - Perform cross-validation on the hold out set.
 - Stop train when validation error increases: it is an online estimate of the generalization error.
-- Choose the model with best validation error (save best model).
-<figure><img src="assets/Screenshot 2024-10-02 101259.png" alt="" width="375"><figcaption></figcaption></figure>
+- Choose the model with best validation error (save best model). ![[Screenshot 2024-10-02 101259.png]]
+
 Model selection and evaluation happens at different levels: at parameters level, when we learn the weights for a NN, and/or at hyperparameters level, when we choose the number of layers or hidden neurons for a given layer. At some point, adding layers or hidden neurons only adds overfitting.
 ### Weight decay: limiting overfitting by weights regularization
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters apriori distribution.
 In general, small weights improve generalization of NN: $P(w) \sim N(0, \sigma^2_w)$ it means assuming that on average the weights are close to zero.
-<figure><img src="assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption><p>Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".</p></figcaption></figure>
+
+![[Screenshot 2024-10-02 104652.png]]
+Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".
+
 To select the proper $\gamma$ we can use hyperparameter tuning tools, or cross-validation:
 - Split data in training and validation sets.
 - Minimize for different values of $\gamma$:  $$E_{\gamma}^{TRAIN} = \sum_{n=1}^{N_{TRAIN}} (t_n - g(x_n | w))^2 + \gamma \sum_{q=1}^Q (w_q)^2$$
