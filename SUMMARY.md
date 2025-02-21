@@ -7,8 +7,8 @@
 
 ## Cyber Security topics
 
-* [Computer Security cheatsheet](computer-security-cheatsheet.md)
-* [Digital Forensics & Cybercrime](digital-forensics-and-cybercrime.md)
+* [Computer Security cheatsheet](cyber-security-topics/computer-security-cheatsheet.md)
+* [Digital Forensics & Cybercrime](cyber-security-topics/digital-forensics-and-cybercrime.md)
 
 ## Computer Security challenges
 
@@ -17,5 +17,5 @@
 
 ## AI topics
 
-* [Artificial Neural Networks and Deep Learning](artificial-neural-networks-and-deep-learning.md)
-- [Natural Language Processing](natural-language-processing.md)
+* [Artificial Neural Networks and Deep Learning](ai-topics/artificial-neural-networks-and-deep-learning.md)
+- [Natural Language Processing](ai-topics/natural-language-processing.md)
