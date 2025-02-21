@@ -92,5 +92,6 @@ RExp provide a powerful language for writing rules to extract content from text 
 - Limitations: extraction rules must (usually) be written by hand, some false positives are usually present due to insufficiency of syntactic structure, often many false negatives due to the fact that rule is not general enough, hard to integrate knowledge of context around extracted entity.
 
 ![[Pasted image 20250221105723.png]]
+<figure><img src="../Pasted image 20250221105723.png " alt="" width="375"><figcaption></figcaption></figure>
 
 ![[../.gitbook/assets/Untitled (2).png]]
