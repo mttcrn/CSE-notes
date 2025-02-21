@@ -3,14 +3,13 @@
 ## Introduction: ML and DL
 Machine Learning is a category of research and algorithms focused on finding patterns in data and using those patterns to make predictions. ML falls within the AI umbrella, which in turn intersects with the broader field of knowledge discovery and data mining.
 
-![[Screenshot 2025-01-19 153413 (1).png]]
+![[AI_world.png]]
 
-<figure><img src="assets/Screenshot 2025-01-19 153413 (1).png" alt="" width="375"><figcaption></figcaption></figure>
-_"A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)_
+"A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)
 
-* **Supervised learning**: given the desired outputs $t_1,..., t_N$ learn to produce the correct output given a new set of input.
-* **Unsupervised learning**: exploit regularities in the data D to build a representation to be used for reasoning or prediction.
-* **Reinforcement learning**: producing actions $a_1, ..., a_N$ which affects the environment, and receiving rewards $r_1, ..., r_N$, it learns to act in order to maximize rewards in the long term.
+-  **Supervised learning**: given the desired outputs $t_1,..., t_N$ learn to produce the correct output given a new set of input.
+- **Unsupervised learning**: exploit regularities in the data D to build a representation to be used for reasoning or prediction.
+- **Reinforcement learning**: producing actions $a_1, ..., a_N$ which affects the environment, and receiving rewards $r_1, ..., r_N$, it learns to act in order to maximize rewards in the long term.
 
 Deep Learning is about learning data representation directly from raw data. DL is particularly effective in tasks like image recognition, speech recognition, and pattern recognition.
 During the last years, DL was enabled by the availability of large-scale datasets and the advances in hardware (ex. GPUs) to process vast amounts of data.
@@ -29,7 +28,9 @@ y = \begin{cases}
 $$
 
 where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights assigned to each input features, $b$ is the bias term, and $y$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
-<figure><img src="assets/perceptron.png" alt="" width="375"><figcaption></figcaption></figure>
+
+![[perceptron.png]]
+
 According to the **Hebbian learning theory**: "the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 $$
@@ -49,13 +50,14 @@ The perceptron is a **non-linear** function of a linear combination (input are c
 ### Multi Layer Perceptrons (MLPs) - Feedforward Neural Networks (FFNN)
 Deep feedforward networks (also called feedforward NN or MLPs) are the core of DL models.
 They are represented by a directed acyclic graph describing how the functions are composed together. The depth of the model is determined by the number of layers in the chain.
-<figure><img src="assets/FFNN (1).png" alt="" width="563"><figcaption><p>non-linear model characterized by the number of neurons, activation functions, <br>and the values of weights</p></figcaption></figure>
-* Activation functions must be differentiable to train it.
 
-<figure><img src="assets/activation_function.png" alt="" width="563"><figcaption></figcaption></figure>
+![[FFNN_base_model.png]]
+A simple non-linear model characterized by the number of neurons, activation functions,
+and the values of weights.
 
-* Layers are connected through weights $W^{(l)} = \{w_{ji}^{(l)}\}$. 
-* The output of a neuron depends only on the previous layers $h^{(l)} = \{h_j^{(l)}(h^{(l-1)}, W^{(l)})\}$.
+- Activation functions must be differentiable to train it.![[activation_function.png]]
+- Layers are connected through weights $W^{(l)} = \{w_{ji}^{(l)}\}$. 
+- The output of a neuron depends only on the previous layers $h^{(l)} = \{h_j^{(l)}(h^{(l-1)}, W^{(l)})\}$.
 
 In regression the output spans the whole $\mathbb{R}$ domain: we use a linear activation function for the output neuron.
 
@@ -97,7 +99,7 @@ w^{k+1} = w^k - \eta {\partial E(w) \over \partial w}\bigg|_{w^k} - \alpha {\par
 $$
 
 Since using all the data points (batch) might be unpractical, so we use variations of the GD:
-<figure><img src="assets/GD_var.png" alt="" width="563"><figcaption></figcaption></figure>
+![[GD_var.png]]
 In batch GD we use one batch and one epoch. 
 In SDG we need as many steps (iterations) as the number of data points since we fix one data point at a time. SDG has higher variance during loss minimization than batch GD. 
 In mini-batch GD we need as many steps (iterations) as the number of data divided by the batch size.
@@ -131,8 +133,7 @@ Let's consider the hyperplane (affine set) $L \in \mathbb{R}^2$ $L: w_0 + w^Tx =
 Any two points $x_1 , x_2$ on $L \in \mathbb{R}^2$ have $w^T (x_1 - x_2) = 0$.
 The versor normal to $L \in \mathbb{R}^2$ is then $w^* = {w \over ||w||}$.
 For any point $x_0$ in $L \in \mathbb{R}^2$ we have $w^Tx_0 = -w_0$.
-The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by $$w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)$$The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$.
-<figure><img src="assets/algebra.png" alt="" width="437"><figcaption></figcaption></figure>
+The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by $$w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)$$The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. ![[algebra.png]]
 It can be shown that the error function the Hebbian rule is minimizing is the distance of misclassified points from the decision boundary.
 Let's code the perceptron output as +1/-1:
 * If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.
