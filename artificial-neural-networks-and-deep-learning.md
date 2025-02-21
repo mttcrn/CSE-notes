@@ -2,6 +2,9 @@
 
 ## Introduction: ML and DL
 Machine Learning is a category of research and algorithms focused on finding patterns in data and using those patterns to make predictions. ML falls within the AI umbrella, which in turn intersects with the broader field of knowledge discovery and data mining.
+
+![[Screenshot 2025-01-19 153413 (1).png]]
+
 <figure><img src="assets/Screenshot 2025-01-19 153413 (1).png" alt="" width="375"><figcaption></figcaption></figure>
 _"A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)_
 
