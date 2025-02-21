@@ -4,9 +4,7 @@
 
 Machine Learning is a category of research and algorithms focused on finding patterns in data and using those patterns to make predictions. ML falls within the AI umbrella, which in turn intersects with the broader field of knowledge discovery and data mining.
 
-<figure><img src=".gitbook/assets/Screenshot 2025-01-19 153413 (1).png" alt="" width="375"><figcaption></figcaption></figure>
-
-
+<figure><img src="assets/Screenshot 2025-01-19 153413 (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 _"A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)_
 
@@ -34,11 +32,11 @@ y = \begin{cases}
 \end{cases}
 $$
 
-where $$x_1, ..., x_n$$ are the input features, $$w_1, ..., w_n$$ are the weights assigned to each input features, $$b$$ is the bias term, and $$y$$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
+where $$x_1, ..., x_n$$ are the input features, $$w_1, ..., w_n$$ are the weights assigned to each input features, $$b$$ is the bias term, and $y$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
 
-<figure><img src=".gitbook/assets/perceptron.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="assets/perceptron.png" alt="" width="375"><figcaption></figcaption></figure>
 
-According to the **Hebbian learning** **theory**: _"the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target"._ \
+According to the **Hebbian learning** **theory**: _"the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 
 $$
@@ -48,7 +46,7 @@ w_i ^ {k+1} = w_i^k + \Delta w_i^k \\
 \end{cases}
 $$
 
-where $$\eta$$ is the learning rate, $$x_i ^k$$ is the $$i^{th}$$ input of a neuron A at time k and $$t^k$$ is the desired output of neuron B at time k.\
+where $\eta$ is the learning rate, $x_i ^k$ is the $$i^{th}$$ input of a neuron A at time k and $$t^k$$ is the desired output of neuron B at time k.\
 Starting from a random initialization, the weights are fixed one sample at a time (online), and only if the sample is not correctly predicted.
 
 The **perceptron** is a linear classifier. It makes decisions by finding a linear boundary (a hyperplane) that separates different classes in the feature space: it computes a weighted sum of the input features and applies a threshold (often a step function) to determine the class label.\
