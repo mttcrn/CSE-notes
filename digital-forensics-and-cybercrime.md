@@ -1,23 +1,8 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: true
-  tableOfContents:
-    visible: true
-  outline:
-    visible: true
-  pagination:
-    visible: false
----
-
 # Digital Forensics & Cybercrime
 
 ## Cybercrime
 
-Risk is a statistical and economical evaluation of the exposure to damage because of the presence of vulnerabilities and threats. $$Risk = Asset \times Vulenarbilities \times Threats$$\
-Asset and vulnerabilities are the controllable variables while threat is independent (it is the driver of risks, without threats there is NO risk). &#x20;
+Risk is a statistical and economical evaluation of the exposure to damage because of the presence of vulnerabilities and threats. $$Risk = Asset \times Vulenarbilities \times Threats$$Asset and vulnerabilities are the controllable variables while threat is independent (it is the driver of risks, without threats there is NO risk). 
 
 ### Threat landscape
 
@@ -33,11 +18,11 @@ Asset and vulnerabilities are the controllable variables while threat is indepen
 | External | criminals (€€€)              | a variety of attackers (€)                      |
 
 In general the external-generic threat is easy to predict according to what makes the company valuable. It is the most common: criminals want to be effective (reproducibility and scalability) so they don’t want to focus on specific targets.\
-On the other hand, non-financial attacks or internal ones are difficult to predict.&#x20;
+On the other hand, non-financial attacks or internal ones are difficult to predict.
 
 Internal threats can be countered by contracts and separation of duties.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>internal threats</p></figcaption></figure>
+<figure><img src="assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>internal threats</p></figcaption></figure>
 
 ### Financially-oriented attacks
 
@@ -50,7 +35,7 @@ A **ransomware** is a malware which encrypts a device and asks for ransom to dec
 2. The C\&C server generates public and private key pair, then sends the public key to the ransomware.
 3. The ransomware encrypts the symmetric key using the public key.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="349"><figcaption></figcaption></figure>
+<figure><img src="assets/image (1) (1) (1) (1) (1).png" alt="" width="349"><figcaption></figcaption></figure>
 
 The only way to recover data is by using the private key that is stored in the C\&C server. A mitigation against it are backups.
 
@@ -68,7 +53,7 @@ Cybercrime has its own ecosystem, which exists only because some activities are 
 * Clients, that use the malware.
 * Money mules, that launder the money made through malware sales (in common with traditional crime actors). They have to break the **traceability**: the idea is to detaches the crime from the victim in small pieces that may not be crimes.
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 ## Cryptocurrencies: abuses and forensics
 
@@ -88,15 +73,15 @@ A bitcoin public address is an alphanumeric string from 26 to 35 characters. It 
 
 ### Bitcoin transaction lifecycle
 
-<figure><img src=".gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 A transaction contains the hash of previous transaction of that account, hashed with the receiver public key and signed with the sender public key.\
-Blocks are a way to validate transactions that occur on the network.&#x20;
+Blocks are a way to validate transactions that occur on the network.
 
-<figure><img src=".gitbook/assets/image (4) (1).png" alt="" width="514"><figcaption></figcaption></figure>
+<figure><img src="assets/image (4) (1).png" alt="" width="514"><figcaption></figcaption></figure>
 
 Miners competes to generate a new valid block by solving a complex mathematical problem by bruteforce: the solver is then rewarded a fixed number of BTC. If simultaneous solutions are found, the chain is forked (the network will converge over time). This mechanism is called **Proof-of-Work**.\
-The protocol ensures that the difficulty of finding the next block increases/decreases in relation to the number of miners competing.&#x20;
+The protocol ensures that the difficulty of finding the next block increases/decreases in relation to the number of miners competing.
 
 Transactions to be included in blocks are chosen based on the amount of fee provided: the lower the fee, the longer for the transaction to be completed. \
 Moreover, a transaction is confirmed when it belongs to a block at least 6/7 blocks away from the end of the chain (so the network converges). The longer the path, the more computation was expended building it. This is an extremely costly solution: bitcoin is not really helpful for small transactions.
@@ -112,13 +97,13 @@ If a transaction has multiple inputs, it is very likely that the inputs are all 
 
 ## Fraud Analysis and Detection
 
-<figure><img src=".gitbook/assets/image (5).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="assets/image (5).png" alt="" width="375"><figcaption></figcaption></figure>
 
 A fraud is **wrongful** or **criminal deception** intended to result in **financial** or **personal gain**. Fraud is a social phenomenon, that is:
 
 * Uncommon: since only a minority of cases concerns fraud.
 * Well-considered and imperceptibly concealed: fraudsters try to remain **unnoticed** and covered (do not behave different from non-frauders). They hide by well-considering and **planning** how to precisely commit fraud. Frauds are not impulsive and unplanned.
-* Time-evolving: fraudsters adapt and refine their methods to remain undetected, their techniques evolve in time, along with better ahead fraud-detection mechanism (cat\&mouse game). Fraud-detection systems improve and learn by example.&#x20;
+* Time-evolving: fraudsters adapt and refine their methods to remain undetected, their techniques evolve in time, along with better ahead fraud-detection mechanism (cat\&mouse game). Fraud-detection systems improve and learn by example.
 * Carefully organized: fraudsters do not operate independently, fraud involve complex and organized structures.
 
 All these characteristics makes difficult to:
@@ -129,7 +114,7 @@ All these characteristics makes difficult to:
 To detect fraud, the context should be taken into account. \
 The basic driver for people to commit fraud is the **potential gain or benefit**. A fraud-detection and prevention mechanism aims at reducing the opportunity driver. It aims at **making the fraud not convenient** for the attackers.
 
-<figure><img src=".gitbook/assets/image (7).png" alt="" width="225"><figcaption><p>Basic conceptual model: presents the factors that explains the drivers for an individual to commit fraud.</p></figcaption></figure>
+<figure><img src="assets/image (7).png" alt="" width="225"><figcaption><p>Basic conceptual model: presents the factors that explains the drivers for an individual to commit fraud.</p></figcaption></figure>
 
 Another possibile fraud vector is **social engineering**: it uses **influence, manipulation** and **persuasion** to **deceive people** by convincing them that the social engineer is someone he is not. As a result, the social engineer is able to take advantage of people to obtain information with or without the use of technology. This may include obtaining information, gaining access, or getting the victim to do certain actions. \
 Obtaining information from a human is easier than performing an attack to an information system. People are the largest vulnerability in any security chain. No technology in the world can prevent social engineering.
@@ -159,7 +144,7 @@ Fraud-detection and prevention mechanism aim at reducing losses due to fraud. Fr
 * **Fraud detection**: recognize or **discover** fraudulent activities after they have happened (ex-post approach).
 * **Fraud prevention**: **avoid** or reduce fraud that will happen (ex-ante approach).
 
-<figure><img src=".gitbook/assets/image (8).png" alt="" width="375"><figcaption><p>They are complimentary, but not independent. When fraudsters adapt to a detection mechanism, it will also impact prevention and vice-versa.</p></figcaption></figure>
+<figure><img src="assets/image (8).png" alt="" width="375"><figcaption><p>They are complimentary, but not independent. When fraudsters adapt to a detection mechanism, it will also impact prevention and vice-versa.</p></figcaption></figure>
 
 Fraud detection approach compute a score (fraud risk level) for each transaction in order to retrieve the most likely fraudulent action. The fraud risk level is provided, then an actual human will investigate the transactions flagged as positive. The more information he has, the better will be his work.
 
@@ -199,7 +184,7 @@ Disadvantages of rule-based engine:
 
 * Expensive to build: it requires manual input by the fraud experts.
 * Difficult to maintain and manage: updated are needed in order to keep the rule base effective, every single case require human follow-up and investigation.
-* New fraud patterns are not automatically signaled: fraud is a dynamic phenomenon, fraudsters can learn the rules and circumvent them, but the rules are static.&#x20;
+* New fraud patterns are not automatically signaled: fraud is a dynamic phenomenon, fraudsters can learn the rules and circumvent them, but the rules are static.
 
 So, rule based engine must continuously monitored, improved, and updated to remain effective.
 
@@ -249,7 +234,7 @@ There is a need for new techniques that are able to detect and address stealthy 
 *   **Supervised learning** or **predictive** analytics techniques. \
     The objective is to learn from historical observations to **retrieve patterns** that allow **differentiating** normal and fraudulent **behavior**. It aim at finding tracks that fraudsters cannot hide: “**known alarms**”. It can be applied to **prediction**, **detection** and **estimation** of the amount of fraud.
 
-    Limitations: They need historical examples to learn from (labeled). For this reason data source quality is crucial and data scarcity is a problem. They have a low detection power against different and new fraud types (not detected so far and not included in the historical DB). It can lead to lots of false negatives.&#x20;
+    Limitations: They need historical examples to learn from (labeled). For this reason data source quality is crucial and data scarcity is a problem. They have a low detection power against different and new fraud types (not detected so far and not included in the historical DB). It can lead to lots of false negatives.
 
 **Active learning systems** use both methods in developing a powerful fraud-detection and prevention system. In this way we focus on different aspects of fraud.\
 Trough **graph/network analysis** we are able to extend the abilities of the fraud-detection systems by learning and detecting characteristics of fraudulent behavior in a network of linked entities. Including an **extra source of information** in the analysis contributes in uncovering particular patterns indicating fraud.
@@ -258,13 +243,13 @@ In developing a fraud detection system we generally start with an expert-based r
 
 ### Fraud management cycle
 
-<figure><img src=".gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 * **Fraud detection**: applying detection models on new, unseen observations and assigning a fraud risk to every observation.
 * **Fraud investigation**: a human expert is required to investigate flagged cases given the involved subtlety and complexity.
 * **Fraud confirmation**: determining true fraud label, possibly involving field research.
 * **Fraud prevention**: preventing fraud to be committed in future.
-* **Feedback loop**: newly detected cases should be added to the DB of historical fraud cases, which is used to learn or induce the detection model. It automatize the process.&#x20;
+* **Feedback loop**: newly detected cases should be added to the DB of historical fraud cases, which is used to learn or induce the detection model. It automatize the process.
 
 A **regular update** of the model is recommendable given the **dynamic nature of fraud**. The **frequency of re-training** or **updating the detection model** depends on several factors:
 
@@ -280,7 +265,7 @@ An alternative technique is **reinforcement learning**, which works by **continu
 
 It is the sequence of operations that we have to perform to put in place a data-driven approach.
 
-<figure><img src=".gitbook/assets/image (13).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="assets/image (13).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Data are the key ingredient so data selection has an important impact on the analytical models: data are gathered and then cleaned by getting rid of all inconsistencies, such as missing values and duplicate data. Additional transformation are performed when needed: eliminations, alphanumeric to numeric coding, geographical aggregation, and so on.
 
@@ -367,13 +352,13 @@ We need to statistically test whether missing information is related to the targ
 
 **Outliers** are extreme observations that are very dissimilar to the rest of the population. It can be univariate (outlying on one dimension) or multivariate (on multiple dimension).
 
-For detecting univariate outliers we can use:&#x20;
+For detecting univariate outliers we can use:
 
-<figure><img src=".gitbook/assets/image (14).png" alt="" width="563"><figcaption><p>histograms.</p></figcaption></figure>
+<figure><img src="assets/image (14).png" alt="" width="563"><figcaption><p>histograms.</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (15).png" alt="" width="375"><figcaption><p>box plot: it represents three key quartiles of the data that are 1st quartile (25% of the observation have a lower value), the median (50% of the observation have a lower value), 3rd quartile (75% of the observation have a lower value).</p></figcaption></figure>
+<figure><img src="assets/image (15).png" alt="" width="375"><figcaption><p>box plot: it represents three key quartiles of the data that are 1st quartile (25% of the observation have a lower value), the median (50% of the observation have a lower value), 3rd quartile (75% of the observation have a lower value).</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (17).png" alt="" width="158"><figcaption><p>z-scores: measures how many standards deviations an observation lies away from the mean. It relies on the normal distribution. </p></figcaption></figure>
+<figure><img src="assets/image (17).png" alt="" width="158"><figcaption><p>z-scores: measures how many standards deviations an observation lies away from the mean. It relies on the normal distribution. </p></figcaption></figure>
 
 For multivariate outliers we can use: fitting regression lines and inspecting the observations with large residuals (error), clustering, or calculating the Mahalanobis distance.
 
@@ -396,7 +381,7 @@ Filters are a very handy variable selection mechanism. They allow a quick screen
 It is a technique used to reduce the dimensionality of data by forming new variables that are not correlated and are linear combination of the original ones. These new variables describe the main components dimensions that are present in the original data set. \
 The maximum number of new variables (principal components) is equal to number of original variables. \
 To explain all the information (variance) in the original data set, the full set of principal components is needed. The variance contained in the original variables can be summarized by a limited number of principal components. \
-Since some of these account for a very small fraction of variance of the original variables, they can be left out. At the end we have reduced the data set.&#x20;
+Since some of these account for a very small fraction of variance of the original variables, they can be left out. At the end we have reduced the data set.
 
 PCA biggest limitation is the reduced interpretability, since we are replacing the original variables with a (reduced) set of uncorrelated principal components. When interpretability is no concern, then PCA is a powerful data reduction tool that will yield a better model in terms of stability as well as predictive performance.
 
@@ -441,20 +426,20 @@ We have to carefully select the data for clustering (structured or unstructured)
 
 In fraud detection, anomalies are grouped into small, sparse clusters, based on similarity.
 
-<figure><img src=".gitbook/assets/image (18).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="assets/image (18).png" alt="" width="563"><figcaption></figcaption></figure>
 
 A **distance metric** is needed to **quantify similarity**. Various distance metrics have been introduced for both continuous and categorical data (Euclidean, Mahalanobis, Minkowski).
 
 * For continuous variables we use Euclidean metric or Pearson correlation (cosine measure).
 * For binary variables (categorical), we use Simple Matching Coefficient (SMC, calculates the number of identical matches between the variable values) or the Jaccard index (measures the similarity between both claims across those red flags that were raised at least once).
 
-<figure><img src=".gitbook/assets/image (19).png" alt="" width="563"><figcaption><p>types of clustering techniques</p></figcaption></figure>
+<figure><img src="assets/image (19).png" alt="" width="563"><figcaption><p>types of clustering techniques</p></figcaption></figure>
 
 #### Hierarchical clustering
 
-<figure><img src=".gitbook/assets/image (22).png" alt="" width="467"><figcaption></figcaption></figure>
+<figure><img src="assets/image (22).png" alt="" width="467"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (24).png" alt="" width="433"><figcaption><p>distances between clusters</p></figcaption></figure>
+<figure><img src="assets/image (24).png" alt="" width="433"><figcaption><p>distances between clusters</p></figcaption></figure>
 
 * **Single linkage**: in order to compute the distance you take the closest points between two clusters and you compute the distance w.r.t. to each other.
 * **Complete linkage**: distance between two most dissimilar points between two clusters.
@@ -467,7 +452,7 @@ In order to decide on the optimal number of clusters:
 * **Dendogram**: tree-like diagram that records the sequences of merges. Vertical (or horizontal) scale gives the distance between two clusters amalgamated. Cut the dendogram at the desired level to find the optimal clustering.
 * **Screen plot**: plot the distance at which clusters are merged. The elbow point then indicates the optimal clustering.
 
-<figure><img src=".gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 Final considerations on hierarchical clustering:
 
@@ -495,27 +480,27 @@ Final considerations on hierarchical clustering:
     The weight vector of the BMT and its neighbors in the grid are then adapted using the following learning rule: $$w_i (t + 1) = w_i(t) + h_{ci}(t)[x(t) - w_i(t)]$$ where t represents the time index during training and $$h_{ci}(t)$$ defines the neighborhood of the BMU c.\
     The neighborhood function $$h_{ci}(t)$$ is non-increasing function of the time and the distance from the BMU. \
     The decreasing learning rate and radius will give a stable map after a certain amount of training: the neurons will then move more and more toward the input observations and interesting segments will emerge. The training is stopped when the BMUs remain stable or after a fixed number of iterations.\
-    SOMs can be visualized by means of:&#x20;
+    SOMs can be visualized by means of:
 
     * A **U** (**unified distance**) **matrix** superimposes a height Z dimension on top of each neuron visualizing the average distance between the neuron and its neighbors. Dark/light colors indicate a large distance and can be interpreted as cluster boundaries.
     * A **component plane** visualizes the weights between each specific input variable and its output neurons. It provides a visual overview of the relative contribution of each input attribute to the output neurons.
 
     SOMs are useful for clustering high-dimensional data sets because of the visualization facilities. Since there is no objective function to minimize, it is harder to compare various SOM solutions against each other. Unlike k-means clustering, a SOM does not force the number of clusters to be equal to the number of output neurons.
 
-<figure><img src=".gitbook/assets/image (25).png" alt="" width="481"><figcaption></figcaption></figure>
+<figure><img src="assets/image (25).png" alt="" width="481"><figcaption></figcaption></figure>
 
 In many domains, the expert have prior knowledge that can be incorporated to guide the clustering so that the process will be faster and with the desired properties. This is done trough constraints.\
-Each time an observation is (re)assigned, the constraint is verified and the (re)assignment halted in case a violation occur.&#x20;
+Each time an observation is (re)assigned, the constraint is verified and the (re)assignment halted in case a violation occur.
 
-In evaluating a clustering solution there exists no universal criterion. We can use:&#x20;
+In evaluating a clustering solution there exists no universal criterion. We can use:
 
 * **Statistical perspective**: using the sum of squared errors (SSE) when comparing two clustering solutions, the one with the lowest SSE is chosen. $$SSE = \sum^K_{i = 1}\sum_{x \in C_i}dist^2(x, m_i)$$.
-* **Explore data** and **graphically compare cluster distributions** across all variables on a cluster-by-cluster basis.&#x20;
+* **Explore data** and **graphically compare cluster distributions** across all variables on a cluster-by-cluster basis.
 * **One-class SVM** (Support Vector Machines): maximize the distance between a hyperplane and the origin, in this way we separate the majority of the observation from the origin. Normal observation will lie above the hyperplane, while outliers will be closer to the origin.
 
 ### Supervised Learning for Fraud Detection
 
-It assumes the **availability of historical labelled data**, from which it can identify known fraudulent patterns.&#x20;
+It assumes the **availability of historical labelled data**, from which it can identify known fraudulent patterns.
 
 We need to determine a **target fraud indicator**, which is usually hard to do. One can never be fully sure that a certain transaction is fraudulent, and target label are typically not noise-free.
 
@@ -527,30 +512,30 @@ It can be of two types:
 #### Linear regression
 
 The general formula is $$Y = \beta_0 + \beta_1X_1 + ... + \beta_nX_n$$ where Y is the target variable, $$X_1, .., X_n$$ are the explanatory variables and β parameters measures the impact on the target variable Y of each of the individual explanatory variables (weights).\
-&#x20;β parameters can be estimated by minimizing a squared error function (ex. OLS, ordinary least squares).
+β parameters can be estimated by minimizing a squared error function (ex. OLS, ordinary least squares).
 
 The goal is to find the best fit line w.r.t. the available data, that can accurately predict the output for the continuous dependent variable with the help of the independent variable.\
-When estimating using OLS, two problems may arises: the error/targets are not normally distributed and there are no guarantees that the target is between 0 and 1.&#x20;
+When estimating using OLS, two problems may arises: the error/targets are not normally distributed and there are no guarantees that the target is between 0 and 1.
 
 #### **Logistic regression**
 
 It is a combination of the linear regression with the bounding function so that the outcome is bounded between 0 and 1. \
 To do so, we pass the weighted sum of inputs through an **activation function** that can map values in between 0 and 1: it is called **sigmoid function** so the curve obtained is called sigmoid curve or S-curve. \
-β parameters are estimated using the maximum likelihood optimization.&#x20;
+β parameters are estimated using the maximum likelihood optimization.
 
-It estimates a linear decision boundary to separate both classes (fraudulent/legitimate). It can be used for both classification and regression.&#x20;
+It estimates a linear decision boundary to separate both classes (fraudulent/legitimate). It can be used for both classification and regression.
 
-<figure><img src=".gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="assets/image (27).png" alt=""><figcaption></figcaption></figure>
 
 Linear and logistic regression are used to select the variable by using the p-value, that is the probability of getting a more extreme value than the one observed. \
-A low (high) p-value represents an (in) significant variable. The p-value can be compared against a significance level.&#x20;
+A low (high) p-value represents an (in) significant variable. The p-value can be compared against a significance level.
 
 A variable is selected based on:
 
 * **Statistical significance**.
 * **Interpretability**: the sign of the regression coefficient indicate the direction of the relationship between a predictor variable and the response variable. A positive (negative) sign indicates that as the predictor variable (de)increases, the response also (de)increases.
 * **Operational** **efficiency**: amount of resources that are needed for the collection and pre-processing of a variable.
-* **Legal** **issues**: some variables cannot be used because of privacy.&#x20;
+* **Legal** **issues**: some variables cannot be used because of privacy.
 
 In summary:
 
@@ -577,11 +562,11 @@ Various algorithms must be implemented:
 * **Stopping decision**: when to stop adding nodes to the tree.\
   If the tree continues to split, it will have one leaf node per observation: overfitting.\
   To avoid this we split data in training sample (make splitting decision) and validation sample (independent, used to monitor the mis-classification error). The error keeps decreasing as the splits becomes more and more specific. At some point the error will increase since the splits become too specific. Where the validation curve reaches its minimum, the procedure should be stopped.
-* **Assignment decision**: what class to assign to a leaf node.&#x20;
+* **Assignment decision**: what class to assign to a leaf node.
 
 Decision trees are used for:
 
-* **Variable selection:** variables that occur at the top of the tree are more predictive.&#x20;
+* **Variable selection:** variables that occur at the top of the tree are more predictive.
 * **Evaluating** and interpreting **clustering** solution.  White-box supervised techniques can be used to explain the solution of (unsupervised) black-box models.
 
 Advantages:
@@ -601,12 +586,12 @@ Neural networks can model very **complex patterns** and decision boundaries in t
 The activation functions may differ per neuron, they are typically fixed for each layer.\
 The processing element (neuron) perform two operations:
 
-1. It takes the input and multiplies them with the weights (including intercepts  β zero, which is the bias term).&#x20;
+1. It takes the input and multiplies them with the weights (including intercepts  β zero, which is the bias term).
 2. Puts this into a nonlinear transformation function (logistic regression),
 
-**MultiLayer Perceptron** (MLP) is made of a input layer, an hidden layer (**feature extractor**) that combine the inputs into features that are then subsequently given to the output layer to make the prediction.&#x20;
+**MultiLayer Perceptron** (MLP) is made of a input layer, an hidden layer (**feature extractor**) that combine the inputs into features that are then subsequently given to the output layer to make the prediction.
 
-In the fraud analytics setting, complex patterns rarely occur. It is recommended to use a neural network with one hidden layer (universal approximator, capable of approximating any function to any desired degree of accuracy on a compact interval).&#x20;
+In the fraud analytics setting, complex patterns rarely occur. It is recommended to use a neural network with one hidden layer (universal approximator, capable of approximating any function to any desired degree of accuracy on a compact interval).
 
 The optimization is more complex: an iterative algorithm is used to optimize a cost-function (continuous target variable - mean squared error cost function, binary target variable - maximum likelihood cost function).\
 The procedure starts from a set of random weights, which are then iteratively adjusted to the patterns in the data using an optimization algorithm (ex. back propagation).
@@ -628,12 +613,12 @@ It is applied as high-performance analytical tools in settings where interpretab
 Variable selection (vertical lines) is supported by the **Hinton diagram** that visualizes the weight between the inputs and the hidden neurons as squares: the size of the square is proportional to the size of the weight, the color of the square represents the sign of the weight (black = negative, white = positive).\
 The diagram can be used in number of hidden layer selection (horizontal lines).
 
-<figure><img src=".gitbook/assets/image (28).png" alt="" width="316"><figcaption><p>We can remove the variables whose weights are closest to zero (ex. income). We must re-estimate the NN with the variable removed (starting from the previous weights). We continue until a stopping criterion is met. </p></figcaption></figure>
+<figure><img src="assets/image (28).png" alt="" width="316"><figcaption><p>We can remove the variables whose weights are closest to zero (ex. income). We must re-estimate the NN with the variable removed (starting from the previous weights). We continue until a stopping criterion is met. </p></figcaption></figure>
 
 Another method is **performance-driven** (**backward**) **selection**:
 
-1. Build a neural network with all N variables.&#x20;
-2. Remove each variable in turn and re-estimate the network. This will give N networks each having N – 1 variables.&#x20;
+1. Build a neural network with all N variables.
+2. Remove each variable in turn and re-estimate the network. This will give N networks each having N – 1 variables.
 3. Remove the variable whose absence gives the best performing network (in terms of misclassification error, MSE).
 4. Repeat this procedure until the performance decreases significantly (stopping criterion).
 
@@ -656,15 +641,15 @@ They deal with the following shortcomings of NN:
 * Effort needed tune the number of hidden neurons (optimization problem).
 * Objective function is non-convex (multiple local minima).
 
-It is based on linear programming (objective function, constraint) whose main limitation is that it can estimate multiple optimal solutions: extra objective is added to the analysis to overcome this.&#x20;
+It is based on linear programming (objective function, constraint) whose main limitation is that it can estimate multiple optimal solutions: extra objective is added to the analysis to overcome this.
 
 It is based on support vectors (training points that lie on one hyperplane).\
-It is a convex optimization problem: no local minima are present but only one global minimum.&#x20;
+It is a convex optimization problem: no local minima are present but only one global minimum.
 
-The SVMs can be extended with error terms $$e_k$$ that allow misclassification.&#x20;
+The SVMs can be extended with error terms $$e_k$$ that allow misclassification.
 
 It is not interpretable (black-box, as NN): variable selection can be performed using the backward procedure. It will reduce the variables but not provide any additional insight.\
-SVMs can be represented as NN: we can apply rule extraction approaches (decompositional or pedagogical approach) or a two stage model.&#x20;
+SVMs can be represented as NN: we can apply rule extraction approaches (decompositional or pedagogical approach) or a two stage model.
 
 ### Ensemble methods
 
@@ -687,11 +672,11 @@ It is commonly used with decision trees:
   It is a combination of decision tree with bootstrapping.\
   Each single tree that is selected to form a forest must be random as much as possibile. \
   The higher the diversity of the base classifiers the higher the performance.\
-  They rank among the best performing models. They can deal with data sets having only a few observations, but with lots of variables.&#x20;
+  They rank among the best performing models. They can deal with data sets having only a few observations, but with lots of variables.
 
 ### Evaluating a Fraud Detection Model
 
-When evaluating predictive models, two key decisions need to be made:&#x20;
+When evaluating predictive models, two key decisions need to be made:
 
 *   How to split up the data set:\
     If we have large dataset we can split it into **training set** (70%) and **test set** (30%). They must be totally independent.\
@@ -709,14 +694,14 @@ When evaluating predictive models, two key decisions need to be made:&#x20;
 
     * **Confusion matrix**
 
-    <figure><img src=".gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
+    <figure><img src="assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
 
     * **Classification accuracy**: the percentage of correctly classified observations. $$(TP + TN)/(TP + FP + FN + TN)$$
     * **Classification error**: misclassification rate. $$(FP + FN) /  (TP+FP+FN+TN)$$
     * **Sensitivity** or **hit rate**: how many of the fraudsters are correctly labeled as a fraudster. $$TP /  (TP+FN)$$
     * **Specificity:** how many of the non-fraudsters are correctly labeled by the model as non-fraudster. For a perfect model it is 1. $$TN /  (FP+TN)$$
     * **Precision**: how many of the predicted fraudsters are actually fraudsters.\
-      &#x20;$$TP / (TP+FP)$$
+      $$TP / (TP+FP)$$
 
     All these performance metrics depends from:
 * **Receiver operating characteristics** (**ROC**) **curve**: plots the sensitivity versus specificity, \
@@ -732,7 +717,7 @@ In order to overcome this problem, it is possible to:
 
 * Increasing the time horizon for prediction.
 * Sampling every fraud twice or more (**oversampling**).
-* Remove some non-frauds to make the distribution less skew (**undersampling**).&#x20;
+* Remove some non-frauds to make the distribution less skew (**undersampling**).
 
 Under and oversampling can also be combined. It usually result in better classifier than oversampling. This methods must be applied only on the training set. \
 To find the optimal number of under/oversampling is subjected to trial and error. It is recommended to stay as close as possible to the original class distribution to avoid unnecessary bias.
@@ -743,7 +728,7 @@ Another possibile technique is **SMOTE** (**synthetic minority oversampling tech
 
 ## Introduction to digital forensics
 
-Digital forensics is the application of scientific analysis method to digital data, computer systems, and network data to reconstruct evidence.&#x20;
+Digital forensics is the application of scientific analysis method to digital data, computer systems, and network data to reconstruct evidence.
 
 A digital forensics investigation takes place in 4 phases:
 
@@ -807,7 +792,7 @@ However, hashes are not a dogma: if there is no hash, it does not mean that the 
 Computing hashes does not say anything about what happened before the hashing took place: a proper procedure has to be adopted. \
 To be useful, hashes must be either **sealed in writing** (stored somewhere else from where the evidence is stored, ex. on a signed report), or **encrypted** to form a digital signature.
 
-HW used for acquisition:&#x20;
+HW used for acquisition:
 
 * Removable HD enclosures or connectors with different plugs.
 * Write blocker.
@@ -820,7 +805,7 @@ SW used for acquisition: essentially Linux OS that have an **extensive native fi
 
 1. Disconnect the media from the original system (if possibile).
 2. Connect the source media to analysis station, if possibile with a **write blocker**.
-3. Compute the hash of the source.&#x20;
+3. Compute the hash of the source.
 4. Copy the source.
 5. Compute the hashes of the source and the clone.
 6. Compare the three hashes.
@@ -830,14 +815,14 @@ It could be good to compute also MD5 (not really used) and SHA-1 (almost depreca
 
 Main challenges/limitations:
 
-* **Time**: a typical HHD today has a capacity of 1TB with an average speed of 80MB/s. It means that we can expect to wait several hours to complete a copy (or to run a hash). However, some SW may automate part of the procedure (compute the source hash while copying, in parallel).&#x20;
+* **Time**: a typical HHD today has a capacity of 1TB with an average speed of 80MB/s. It means that we can expect to wait several hours to complete a copy (or to run a hash). However, some SW may automate part of the procedure (compute the source hash while copying, in parallel).
 * **Size**: dealing with today's capacity in storage is complex, in particular for large-scale investigations. Using external media slows down operations. Sometimes, moving images across a network can be useful. That is why NAS or SAN are commonly used.
 * **Encryption**: there is an increasing use of encryption in regular PCs. The problem is that even if provided with the key, performing acquisition in a repeatable way is challenging.
 
 ### Alternative procedures
 
 * **Booting from live distribution**\
-  If we need to work directly on the machine (system with weird HW controllers or physical cases, RAID devices, specific investigation constraint) we can live-boot the system under assignment using a Linux distribution targeted to forensics analysis. Ordinary distributions may mount (swap partitions). Once we boot, we can use the previous method to clone the drives from the inside.&#x20;
+  If we need to work directly on the machine (system with weird HW controllers or physical cases, RAID devices, specific investigation constraint) we can live-boot the system under assignment using a Linux distribution targeted to forensics analysis. Ordinary distributions may mount (swap partitions). Once we boot, we can use the previous method to clone the drives from the inside.
 *   **Target power on**\
     If we cannot turn the power off (ex. critical services) or we can but it is better not to do it (ex. live analysis of an intruder), since our actions will modify the state of the computer, we may work in volatility order:
 
@@ -862,7 +847,7 @@ In using Linux has a host, and Windows as a guest, we are able to work the image
 It is not always possibile to use Samba: if Windows must see the file system (ex. file recovery tool, unallocated space analysis) we can mount the image as a read-only loop device under Linux, and/or use the "non-persistent" mode of VMWare.
 
 We have to take into account that everything that we do must be scientific: it must be repeatable and validable (another expert must be able to perform the same analysis by hand, at least in theory).\
-So analysis SW needs to be open sources and possibly free.&#x20;
+So analysis SW needs to be open sources and possibly free.
 
 #### Recovery of deleted data
 
@@ -875,7 +860,7 @@ The OS is "lazy" and optimizations cause data persistence and locality. When we 
 
 In a HHD the **slack space** (padding between end of a file and next cluster) contains data about files that have been deleted (less than 4 sectors, 4KB).
 
-<figure><img src=".gitbook/assets/slakc.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="assets/slakc.png" alt="" width="563"><figcaption></figcaption></figure>
 
 File carving can be used to recover data from a hard disk where the metadata was removed or otherwise damaged.\
 Since sectors are one after the other, there is an high probability that a file is stored continuously. So, even if we do not have metadata anymore, we can scan the entire drive as a single bitstream in order to locate headers & footers of interesting file types: anything in between, if not to large, is a candidate file (file recovering through **carving**). \
@@ -886,14 +871,14 @@ This is not normally the case because of **fragmentation** (no really common in 
 Anti-forensics techniques aim to create confusion in the analyst, to lead them off track, or to defeat tools and techniques used.
 
 * **Transient antiforensic**: can be defeated if detected. It interfere with **identification** since data is hidden and not deleted.
-  * **File system insertion and subversion technologies**: data are placed where there is no reason to look for (in the FS metadata or in a partition table). Data recovery SW will ignore these files, but carving will still work.&#x20;
+  * **File system insertion and subversion technologies**: data are placed where there is no reason to look for (in the FS metadata or in a partition table). Data recovery SW will ignore these files, but carving will still work.
   * **Log analysis**: typically log analysis is done with regular expression, if attackers perform log injection, they can try to make the script fail or even exploit them.
   * **Partition table tricks**: if partitions are not correctly aligned using a partition restore tool may not be useful, multiple partitions may not be supported by forensics tools or by generating enough partitions the tool will crash.
 * **Definitive antiforensic**: destroying evidence, or making it impossibile to acquire. It interfere with **acquisition**.
   * **Timeline tampering**: it is possibile to modify events by making them appear separated, or close, or moving them completely out of scope. Once destroyed or modified, such data cannot be retrieved. The modification is not visible per se. \
     Analysis tools can display a timeline based on MAC(E) values: Modified, Accessed, Changed, (Entry Changed).
   * **Countering file recovering**: since file recovery uses data remains, it only takes secure deletion, wiping unallocated space, encryption or VM usage to make it useless.
-  * **Fileless attacks**: the attack does not write anything on the disk, then when the machine is shut down the evidence is lost.&#x20;
+  * **Fileless attacks**: the attack does not write anything on the disk, then when the machine is shut down the evidence is lost.
 
 ## SSD forensics
 
@@ -905,22 +890,22 @@ The **FTL** (flash transition layer) is a HW/SW combination that sits between AT
   Trimming is needed since for each write a blank must be done but blanking is time consuming.\
   In some weird cases, trimming is not done “correctly” so you could recover some files.
 * Erasing patterns: certain SSD controllers may exhibit unexpected trimming patterns (ex. in stripes).
-* **Garbage collector**: it triggers in almost 3 minutes. It is similar to trimming but performed without the indication of the OS. It has obvious consequences on forensics.&#x20;
+* **Garbage collector**: it triggers in almost 3 minutes. It is similar to trimming but performed without the indication of the OS. It has obvious consequences on forensics.
 * **Data compression**: transparently employed by some SSDs to use less physical blocks and reduce wear.
 * **Data encryption/obfuscation**.
 * Bad block handling.
-* **Wear leveling**: spread consumption of cells as evenly as possibile across the drive. From black-box point of view, if **write amplification** does not happen or is completely masked, there is no difference. No drives showed write amplification from an external point of view.&#x20;
+* **Wear leveling**: spread consumption of cells as evenly as possibile across the drive. From black-box point of view, if **write amplification** does not happen or is completely masked, there is no difference. No drives showed write amplification from an external point of view.
 
 In HHDs we can physically address a sector from the OS an read it. In SSDs the FTL translates logical block addresses (LBAs) as requested by the OS into the respective physical block address (PBA) on memory chips. The underlying mapping is transparent and can be modified by the FTL at any time.\
 The FTL may move data around or blank data (delete it) even if the OS is not running (for efficiency reasons).\
-This is not good for forensics approaches, since they rely on the ability of the OS to access the raw data on the disk.&#x20;
+This is not good for forensics approaches, since they rely on the ability of the OS to access the raw data on the disk.
 
 We cannot bypass FTL via SW. In theory we can directly read the memory chips (0s and 1s), but then they need to be interpreted. In any case it is:
 
 * Extremely time and money consuming process (needs custom HW and reverse engineer FTL implementation).
-* Non-repeatable, and may leads to alteration or destruction of the evidence.&#x20;
+* Non-repeatable, and may leads to alteration or destruction of the evidence.
 * Very brittle process depending on firmware and HW.
-* Information not public and actually heavily protected by intellectual properties of vendors.&#x20;
+* Information not public and actually heavily protected by intellectual properties of vendors.
 
 Since the drive keeps changing even when connected to a write blocker, we cannot perform carving nor slack space recovering.
 
@@ -935,15 +920,15 @@ Evaluation and presentation are moments when we have to interacts with people wi
 * Lawyers own the choice of defense strategy:\
   They may ask for the expert's counsel, but the expert must yield to them.
 * Lawyers own the relationship with the client:\
-  Experts should never tarnish this relationship. If you are unable to do this, you need to resign.&#x20;
+  Experts should never tarnish this relationship. If you are unable to do this, you need to resign.
 * Lawyers (and customer) pay your bill, but do not dictate what you write or say:\
-  You should always write and say only that of which you are personally convinced. You may be asked to omit a finding, as long as this omission is not the same as lying.&#x20;
+  You should always write and say only that of which you are personally convinced. You may be asked to omit a finding, as long as this omission is not the same as lying.
 
 On the other hand:
 
 * The **expert** assist one of the parts in the judgment.
-* This is not the same as "helping someone escape law": this is the part where law is applied.&#x20;
-* "**Process truth**" is not the same as historical truth. The purpose of a process is not establish the truth, but the process truth.&#x20;
+* This is not the same as "helping someone escape law": this is the part where law is applied.
+* "**Process truth**" is not the same as historical truth. The purpose of a process is not establish the truth, but the process truth.
 
 We have then **prosecutors**/**police**:
 
@@ -978,7 +963,7 @@ The presentation must:
 * All technical terminology must be explained, if necessary in a footnote.
 * You need to be **simple** without being **simplistic** and without giving the reader the impression that you are simplifying things for them.
 * Do not show excessive deference to the judge/jury.
-* Do not use weak arguments if you have more solid ones.&#x20;
+* Do not use weak arguments if you have more solid ones.
 
 A report can be modeled as a scientific paper or report: **introduction**, **facts**, **discussion** & **analysis** (each block with a small introduction saying what you want to explain and a summary conclusion), **final conclusion** (leave out any doubtful statement). \
 Structure it like an obstacle course.
@@ -988,7 +973,7 @@ In most jurisdictions, the expert witness provides a sworn testimony and can com
 
 Usually digital forensics experts are called by their side and thus proceed to friendly direct examination. In Italy, judges can asks questions of their own.
 
-Cross examination is done by the counterpart, it is less friendly and sometimes downright hostile.&#x20;
+Cross examination is done by the counterpart, it is less friendly and sometimes downright hostile.
 
 ## Cloud Forensics
 
@@ -1010,15 +995,15 @@ When deallocating, space is gone forever, meaning that there is no deallocated s
 
 The real cloud issue is that some data exists only as result of **transaction**, and **visualization** may be different from data (ex. dynamic web pages).
 
-Other issues regards **attribution** due to DNS resolution, connectivity and provider identification, geolocation of hoster. We need to take multiple acquisition of the web page to know what is fixed and what change over time. Moreover, many web pages are personalized w.r.t. the user at dynamic time. We also have to specify everything that we did during acquisition.&#x20;
+Other issues regards **attribution** due to DNS resolution, connectivity and provider identification, geolocation of hoster. We need to take multiple acquisition of the web page to know what is fixed and what change over time. Moreover, many web pages are personalized w.r.t. the user at dynamic time. We also have to specify everything that we did during acquisition.
 
-It is hard to guarantee **integrity**: the only way is to ask the provider to get data directly from the database but, in some cases, it is impossibile due to end-to-end encryption.&#x20;
+It is hard to guarantee **integrity**: the only way is to ask the provider to get data directly from the database but, in some cases, it is impossibile due to end-to-end encryption.
 
 ### Legal issues
 
 From a legal standpoint, the **location** of the **data** (ex. datacenter) is important: how data can be used or stored depends on its geolocation.
 
-* Some judiciary acts require a physical location.&#x20;
+* Some judiciary acts require a physical location.
 * Criminal investigation/prosecution are based on physical location.
 * Applicable law depends on physical location.
 
@@ -1046,12 +1031,12 @@ Requirements for a cloud service provider to offer "forensics friendly" services
 
 We can use cloud services to enable forensics: large scale data storage, large computing infrastructures (analysis of large amount of data takes a lot of time) and reuse of computing concepts.\
 In general, we need to control the evidence (chain of custody) and the use of cloud can generate privacy issues. \
-Moreover, trans-national operations are challenging from a legal perspective.&#x20;
+Moreover, trans-national operations are challenging from a legal perspective.
 
 ## Mobile Forensics
 
 In legal terms, mobile forensics is the utilization of scientific methodologies to recover data stored in a cellular device. It is the science of recovering digital evidence from a mobile device under forensically conditions using accepted methods. \
-Mobile devices are smartphone, tablet, feature phone, GPS device, but also wearable IoT, virtual reality devices, drones, and many other more.&#x20;
+Mobile devices are smartphone, tablet, feature phone, GPS device, but also wearable IoT, virtual reality devices, drones, and many other more.
 
 The main components of a smartphone are:
 
@@ -1063,7 +1048,7 @@ The main components of a smartphone are:
 * **Synced devices**: all information stored into synced devices (ex. wearable IoT) can be retrieved through the smartphone.
 
 In the pre-smartphone era, mobile devices lacked robust **encryption** mechanism, leaving user data vulnerable to unauthorized access. Even Android and iOS were not using encryption at the beginning. \
-Today encryption has become a standard feature in all devices. Modern smartphones employ various encryption techniques to protect sensitive information stored on the device.&#x20;
+Today encryption has become a standard feature in all devices. Modern smartphones employ various encryption techniques to protect sensitive information stored on the device.
 
 Encryption is the process of encoding all user data on a device using symmetric encryption keys. Once a device is encrypted, all user-created data is automatically encrypted before committing it to disk and all reads automatically decrypt data before returning it to the calling process. \
 **Android** has two methods for device encryption:
@@ -1076,30 +1061,30 @@ Encryption is the process of encoding all user data on a device using symmetric 
     An FBE device has two storage locations available to the applications:
 
     * **Credential encrypted** (**CE**): file is only available after the user has unlocked the device.
-    * **Device encrypted** (**DE**): file is only available both during direct boot mode and after the user has unlocked the device.&#x20;
+    * **Device encrypted** (**DE**): file is only available both during direct boot mode and after the user has unlocked the device.
 
-    <figure><img src=".gitbook/assets/image (10).png" alt="" width="472"><figcaption></figcaption></figure>
+    <figure><img src="assets/image (10).png" alt="" width="472"><figcaption></figcaption></figure>
 
 
 
 Apple uses a technology called **data protection** to protect data stored in flash storage on the devices that feature an apple SoC (system on a chip). A device can respond to common events while at the same time providing a high level of encryption for user data. Third-party app receive this protection automatically. \
-It is implemented by constructing and managing a hierarchy of keys and builds on the HW encryption technologies. It is controlled on a per-file basis by assigning each file to a class at creation time. Accessibility is determined according to whether the class keys have been unlocked. Each class uses different policies to determine when the data is accessibile.&#x20;
+It is implemented by constructing and managing a hierarchy of keys and builds on the HW encryption technologies. It is controlled on a per-file basis by assigning each file to a class at creation time. Accessibility is determined according to whether the class keys have been unlocked. Each class uses different policies to determine when the data is accessibile.
 
 The mobile forensics process is done trough:
 
 * **Intake**: receive device as evidence for examination.
 * **Identification**: identify device specifications and capabilities.
 * **Preparation**: prepare methods and tools to be used.
-* **Isolation**: protect the evidence by preventing remote data destruction, isolating the device from cellular network, bluetooth and WiFi.&#x20;
+* **Isolation**: protect the evidence by preventing remote data destruction, isolating the device from cellular network, bluetooth and WiFi.
 * **Processing**: conduct the forensics acquisition.
 * **Verification**: validate the acquisition and findings.
 * **Documenting/reporting**: keeps notes about findings and process.
 * **Presentation**: prepare exhibits and present findings.
-* **Archiving**: keep a copy of the data in a safe place, in common formats for the future.&#x20;
+* **Archiving**: keep a copy of the data in a safe place, in common formats for the future.
 
 ### Device identification
 
-First of all, we have to asses the device state: passcode know/unknown, turned on/off. The device must be isolated with the use of a Faraday bag.&#x20;
+First of all, we have to asses the device state: passcode know/unknown, turned on/off. The device must be isolated with the use of a Faraday bag.
 
 The device is identified trough the model number, IMEI and serial number.
 
@@ -1116,15 +1101,15 @@ To extract data from a device, you need to communicate with it typically via USB
 
 ### Device analysis
 
-<figure><img src=".gitbook/assets/image (11).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="assets/image (11).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Validation and Reporting
 
 * Set the expectations for your report.
 * Highlight evidence relevant to the investigation.
-* Explain your findings, know and understand what you are reporting.&#x20;
+* Explain your findings, know and understand what you are reporting.
 * Provide opinions only when required or legally permitted, if appropriate.
-* Make sure to validate the report.&#x20;
+* Make sure to validate the report.
 * Take and keep notes to be prepared for testifying in court sometimes years after your investigation.
 
 ## Exam questions
@@ -1135,7 +1120,7 @@ To extract data from a device, you need to communicate with it typically via USB
 
 <summary>Describe what is a write blocker.</summary>
 
-It is a device used to ensure that the OS does not write on an external disk (ex. HDDs, USB sticks) while acquiring it. It is an important tool in forensics acquisition, since it allow to read the disk without tampering it.&#x20;
+It is a device used to ensure that the OS does not write on an external disk (ex. HDDs, USB sticks) while acquiring it. It is an important tool in forensics acquisition, since it allow to read the disk without tampering it.
 
 </details>
 
@@ -1145,7 +1130,7 @@ It is a device used to ensure that the OS does not write on an external disk (ex
 
 1. First of all the disk is attached to the device that will be performing the cloning operation (generally a Linux OS machine) with the use of a write blocker. An hash of the disk data is made, before any operation.
 2. Then the disk is cloned bit-by-bit and other two hashes are made: one of the disk and one of the clone.
-3. At the end the 3 hashes are compared: if they are the same no tampering was made during the acquisition.&#x20;
+3. At the end the 3 hashes are compared: if they are the same no tampering was made during the acquisition.
 
 </details>
 
@@ -1153,7 +1138,7 @@ It is a device used to ensure that the OS does not write on an external disk (ex
 
 <summary>Describe an example of a case in which a write blocker may prove not useful.</summary>
 
-When the device cannot be turned off, the write blocker cannot be attached, so we must use other approaches in order to no tamper with the evidence.&#x20;
+When the device cannot be turned off, the write blocker cannot be attached, so we must use other approaches in order to no tamper with the evidence.
 
 In SSDs the write blocker may not work as intended as the FTL will still works (even if the OS is not running) and it will perform operations that change how the data are stored on the disk (ex. trimming, garbage collector, wear leveling).
 
@@ -1174,7 +1159,7 @@ Anti-forensics describe all those techniques aim at interfering with the digital
 There are two types of anti-forensics techniques:
 
 * Transient anti-forensics: interfere with analysis (identification) since data is hidden and not deleted. They can be defeated if detected.\
-  Some examples are putting data into places where they do not belong to (in the FS metadata or in a partition table), using custom weird partitions (to make forensics tool unusable, lot of partitions can make the tool fail), make log injection (since log analyzer tools uses regular expression, by making log injection it may be possibile to exploit the tool itself).&#x20;
+  Some examples are putting data into places where they do not belong to (in the FS metadata or in a partition table), using custom weird partitions (to make forensics tool unusable, lot of partitions can make the tool fail), make log injection (since log analyzer tools uses regular expression, by making log injection it may be possibile to exploit the tool itself).
 * Definitive anti-forensics: interfere with acquisition since data are deleted. In general, it is irreversible. Some examples are timeline tampering (in order to make events uncorrelated or correlated to each other and mislead the analyst), countering file recovery (secure delete files, VM usage, wiping out unallocated space), fileless attacks (attacks that do not write anything on disk, leaving no footprint).
 
 </details>
@@ -1183,13 +1168,13 @@ There are two types of anti-forensics techniques:
 
 <summary>Explain how it is often possible to recover deleted data, touching on the concepts of file allocation and deallocation, metadata persistence, file carving and slack space.</summary>
 
-When data is created, some space into the disk is allocated and metadata are created aswell and stored in the FS (containing information useful for the OS to locate data such as filenames, timestamps, file sizes, and more).&#x20;
+When data is created, some space into the disk is allocated and metadata are created aswell and stored in the FS (containing information useful for the OS to locate data such as filenames, timestamps, file sizes, and more).
 
-When a data is deleted its relative file entry in the FS is flagged as deleted but the actual data is not deallocated. Up to this time we are still able to retrieve data and metadata, as it has not been deleted yet. Then at random some time, the FS entry may be removed (until this happens we can still find metadata about the file) or the space is over-written with other data (until this happens we are still able to recover the file since it is still present).&#x20;
+When a data is deleted its relative file entry in the FS is flagged as deleted but the actual data is not deallocated. Up to this time we are still able to retrieve data and metadata, as it has not been deleted yet. Then at random some time, the FS entry may be removed (until this happens we can still find metadata about the file) or the space is over-written with other data (until this happens we are still able to recover the file since it is still present).
 
 When a file is deleted, some or all of its metadata can persist in the file system. Knowing about the old position of the data, we can exploit the slack space, that may contains partial data, to recover the file.
 
-We may recover data trough carving: we identify successive headers, anything in between two headers, if not too large, is a candidate file.&#x20;
+We may recover data trough carving: we identify successive headers, anything in between two headers, if not too large, is a candidate file.
 
 </details>
 
@@ -1199,8 +1184,8 @@ We may recover data trough carving: we identify successive headers, anything in 
 
 An anti-fraud strategy is based on two main components:
 
-* Fraud detection: aim at detecting frauds after they have happened, so it is an ex-post approach. The main objective is to discourage fraudsters and make fraud difficult. A fraud score is computed for each transaction, and then an expert is called to analyze each one of the flagged as fraudulent.&#x20;
-* Fraud prevention: aim at preventing frauds, so it is an ex-ante approach. It is generally based on multi-factor authentication.&#x20;
+* Fraud detection: aim at detecting frauds after they have happened, so it is an ex-post approach. The main objective is to discourage fraudsters and make fraud difficult. A fraud score is computed for each transaction, and then an expert is called to analyze each one of the flagged as fraudulent.
+* Fraud prevention: aim at preventing frauds, so it is an ex-ante approach. It is generally based on multi-factor authentication.
 
 They are complimentary, but not independent. If a fraud adapts to a detection mechanism, it will also impact prevention and vice-versa.
 
@@ -1211,13 +1196,13 @@ They are complimentary, but not independent. If a fraud adapts to a detection me
 <summary>By considering the scenario described above, explain which type of techniques and/or system you would deploy, providing a brief explanation of how they work, the order of deployment, and their advantages and disadvantages.</summary>
 
 I would start with a rule-based approach, since we do not have historical data. It require the expert input, who has to generate a set of rules based on its knowledge. \
-Its main disadvantage is that is not automatically updated so it require continuously the expert input. For this reason it is difficult to maintain and it is not operationally efficient.&#x20;
+Its main disadvantage is that is not automatically updated so it require continuously the expert input. For this reason it is difficult to maintain and it is not operationally efficient.
 
-At the same time, we can develop an unsupervised learning model. In this way we would be able to detect newer fraud mechanism, and we can collect historical labelled data. The main disadvantage is that it can lead to lot of false positive, need extensive validation and it is prone to deception. In order to be able to deploy the model, a norm should be defined, which is not trivial, since there is no universal indicator on what is fraud and what is not.&#x20;
+At the same time, we can develop an unsupervised learning model. In this way we would be able to detect newer fraud mechanism, and we can collect historical labelled data. The main disadvantage is that it can lead to lot of false positive, need extensive validation and it is prone to deception. In order to be able to deploy the model, a norm should be defined, which is not trivial, since there is no universal indicator on what is fraud and what is not.
 
-After we have collected enough historical labelled data, we can develop a supervised learning model to make it work in parallel with the other two before mentioned. This model will not be able to identify newer mechanism, and may lead to lot of false negatives.&#x20;
+After we have collected enough historical labelled data, we can develop a supervised learning model to make it work in parallel with the other two before mentioned. This model will not be able to identify newer mechanism, and may lead to lot of false negatives.
 
-In this way, having different models to work together, we are able to mitigate each one drawbacks.&#x20;
+In this way, having different models to work together, we are able to mitigate each one drawbacks.
 
 </details>
 
@@ -1227,7 +1212,7 @@ In this way, having different models to work together, we are able to mitigate e
 
 ![](<.gitbook/assets/image (3).png>)
 
-I would apply a clustering technique, in order to retrieve automatically suspicious cases, that I will analyze better.&#x20;
+I would apply a clustering technique, in order to retrieve automatically suspicious cases, that I will analyze better.
 
 I can see that there are several outliers, so K-means is not a suitable choice since it is sensitive to outliers. I would deploy a hierarchical technique, since it is less sensitive to outliers and does not need to specify the number of clusters.
 
@@ -1246,8 +1231,8 @@ It is a malware that once infected a computer it encrypts all data and ask the v
 It works in 3 steps:
 
 1. The C\&C generate a pair of private-public keys, then sends the public key to the ransomware.
-2. The ransomware encrypts the data with a symmetric algorithm and encrypt the symmetric key with the public key.&#x20;
-3. Once the ransom is paid the data are recovered with the private key. Since the private key reside in the C\&C server, it is impossible to recover the data without paying&#x20;
+2. The ransomware encrypts the data with a symmetric algorithm and encrypt the symmetric key with the public key.
+3. Once the ransom is paid the data are recovered with the private key. Since the private key reside in the C\&C server, it is impossible to recover the data without paying
 
 A mitigations against it are backups.
 
@@ -1261,8 +1246,8 @@ The cybercrime ecosystem is very complex. In this case we can consider:
 
 * Ransomware developers: that develop the malicious code.
 * Testers: that test the malware against common antiviruses, to ensure that it is not easily detected.
-* Enablers: that provide the infrastructure to spread the malware (ex. botnets or bulletproof hosting) but also C\&C servers in order to generate and store the public-private key pair.&#x20;
-* Money mules: that launder the money in order to break the traceability, in exchange for a percentage.&#x20;
+* Enablers: that provide the infrastructure to spread the malware (ex. botnets or bulletproof hosting) but also C\&C servers in order to generate and store the public-private key pair.
+* Money mules: that launder the money in order to break the traceability, in exchange for a percentage.
 * Sellers: that sold kits of various kind as well as stolen accounts/identity used for money laundering.
 
 </details>
@@ -1275,10 +1260,10 @@ Cryptocurrencies are de-centralized currency, since it eliminates the need of a 
 
 The key point that make cryptocurrencies useful in the ransomware phenomenon is its pseudo-anonymity: each user may have different public addresses, which are not bind to their true identity, in this way the attackers can easily ask for the ransom without revealing their identity.
 
-Cryptocurrencies ensure fast and irreversible payments, which are crucial in fraudulent activities: in fact, even if investigated, there is no way of moving back the money to the owner, which can be done in regular bank account.&#x20;
+Cryptocurrencies ensure fast and irreversible payments, which are crucial in fraudulent activities: in fact, even if investigated, there is no way of moving back the money to the owner, which can be done in regular bank account.
 
 Every user can have an arbitrarily large number of identities, that are not linked to personal information of the owner, this ensures that payments from different victims appear unrelated and preventing the victims from collaborating.\
-Moreover, a general lack of regularization has motivated the use of cryptocurrencies in cybercrimes.&#x20;
+Moreover, a general lack of regularization has motivated the use of cryptocurrencies in cybercrimes.
 
 </details>
 
@@ -1288,7 +1273,7 @@ Moreover, a general lack of regularization has motivated the use of cryptocurren
 
 The FTL (flash transition layer) is a combination of SW/HW that manage some functionalities of the SSDs, such as:
 
-* The translation the logical block address (asked by the OS) into the respective physical block address.&#x20;
+* The translation the logical block address (asked by the OS) into the respective physical block address.
 * Garbage collector, trimming and wear leveling mechanism: to ensure that all block are used almost the same.
 * Write caching.
 * Data compression/obfuscation.
@@ -1317,9 +1302,9 @@ The FTL works even without the OS running (for efficiency reasons): data is cons
 
 <summary>What are the main challenges in forensics acquisition of a web page, and what are the approaches and countermeasures that can be adopted to solve or mitigate them?</summary>
 
-The main challenge in the acquisition of a web page is its dynamicity: each user may visualize a different web page according to its preferences or previous interactions (ex. cookies), thus the acquisition may not be accurate and generally is not repeatable. Normal acquisition procedures are not suitable (ex. deleted data retrieval): it must be treated as a running computer.  As consequence, every operation that is performed must be recorded somewhere, since it can change the data itself.&#x20;
+The main challenge in the acquisition of a web page is its dynamicity: each user may visualize a different web page according to its preferences or previous interactions (ex. cookies), thus the acquisition may not be accurate and generally is not repeatable. Normal acquisition procedures are not suitable (ex. deleted data retrieval): it must be treated as a running computer.  As consequence, every operation that is performed must be recorded somewhere, since it can change the data itself.
 
-Data locality is also an important issue: according to the geolocation of the server that host the web page the laws that applies to such data may change, making the acquisition even more complex.&#x20;
+Data locality is also an important issue: according to the geolocation of the server that host the web page the laws that applies to such data may change, making the acquisition even more complex.
 
 Another challenge is data attribution due to DNS resolution, spoofing at IP level or usage of stepping stones.
 
@@ -1337,8 +1322,8 @@ The fraud management cycle is made up different steps:
   Typically expert-based models or data-driven fraud models are used.
 * Fraud investigation: an expert has to go through all flagged cases and mark them as true.
 * Fraud confirmation: each flagged case must be investigated, involving further research if necessary.
-* Automated feedback: all new detected cases must be added to the DB of historical samples to make the detection better.&#x20;
-* Fraud prevention: in order to prevent future cases.&#x20;
+* Automated feedback: all new detected cases must be added to the DB of historical samples to make the detection better.
+* Fraud prevention: in order to prevent future cases.
 
 </details>
 
@@ -1362,7 +1347,7 @@ A better solution is to use both models at the same time by deploying an active 
 
 ![](<.gitbook/assets/image (1) (1) (1).png>)
 
-As an expert I would first focus on the flagged cases and try to extract all information that are relevant in those cases. In this example we can notice that the timestamp of the flagged cases is at night, while the other transactions are made during the day. Another noticeable feature is that UserID 4 can be likely related to a fraud since he/she made a small transaction followed by a big one. UserID 2 is showing a strange behaviour aswell, by making multiple small transaction in the same day.&#x20;
+As an expert I would first focus on the flagged cases and try to extract all information that are relevant in those cases. In this example we can notice that the timestamp of the flagged cases is at night, while the other transactions are made during the day. Another noticeable feature is that UserID 4 can be likely related to a fraud since he/she made a small transaction followed by a big one. UserID 2 is showing a strange behaviour aswell, by making multiple small transaction in the same day.
 
 Secondly, an intra-account anomalies detection could be done by making a break-point analysis (a time window is defined, then data are splitted into two parts and compared, if anomalies are detected it is flagged) and a inter-account detection by using peer group analysis (each account is linked to a group of peers and its behaviour is analyze w.r.t. other peers, if it is anomalous it is flagged as suspicious). \
 I would apply them to both UserID 2 an 4: the results may yields other interesting insights and help in better decide whether the transactions are actually fraudulent.
@@ -1383,7 +1368,7 @@ Falsifiable and repeatable.
 
 <summary>Describe the two characteristics.</summary>
 
-According to Galileo, scientific means repeatable, so that anyone will be able to repeat the exact same experiment and get the exact same results (at least in theory) or by the presented result get to the same outcome.&#x20;
+According to Galileo, scientific means repeatable, so that anyone will be able to repeat the exact same experiment and get the exact same results (at least in theory) or by the presented result get to the same outcome.
 
 According to Karl Popper each scientific experiment must be falsifiable, which means that it can be turned around and proved false.
 
@@ -1400,7 +1385,7 @@ We can say that something is "scientific" if:
 2. It can be or has been tested.
 3. Its potential or known error rate is acceptable.
 4. It is supported by a paper that had been peer-rewiewed.
-5. It has not been developed for a particular litigation. &#x20;
+5. It has not been developed for a particular litigation. 
 
 It is used in most of the federal courts in USA. It has almost replaced the Frye standard, which only require point 1.
 
@@ -1412,7 +1397,7 @@ It is used in most of the federal courts in USA. It has almost replaced the Frye
 
 In general we must use a live Linux distribution when we have to work directly on the machine, because of system with weird hardware controllers or physical cases, RAID devices or specific investigation constraint. It is needed also when we need to capture volatile data or when we cannot shutdown the system (as it would make irreversible/harmful actions on the data of interest).
 
-Generally, we live-boot the system using a Linux distribution targeted to forensics analysis since it provide an extensive native file system which supports accessing drives/partitions without mounting them, as opposed to ordinary distributions which may mount (swap partitions).&#x20;
+Generally, we live-boot the system using a Linux distribution targeted to forensics analysis since it provide an extensive native file system which supports accessing drives/partitions without mounting them, as opposed to ordinary distributions which may mount (swap partitions).
 
 </details>
 
@@ -1420,13 +1405,13 @@ Generally, we live-boot the system using a Linux distribution targeted to forens
 
 <summary>Explain the acquisition using a live Linux distribution procedure.</summary>
 
-Once we boot, we can use standard method to clone the drives from the inside.&#x20;
+Once we boot, we can use standard method to clone the drives from the inside.
 
-We must work in volatile order: dump of memory, logs (network and processes data) and in the disks acquisition.&#x20;
+We must work in volatile order: dump of memory, logs (network and processes data) and in the disks acquisition.
 
 To clone the disk bit-a-bit we have to mount it in read-only mode, compute the hash at each step (in order to be able to check if during the acquisition we have tampered with the evidence) and records all operations performed, as they can change the state of the disk.
 
-In general, all executed activities must be documented before sealing evidence, since each command may alter the state. &#x20;
+In general, all executed activities must be documented before sealing evidence, since each command may alter the state. 
 
 </details>
 
@@ -1436,7 +1421,7 @@ In general, all executed activities must be documented before sealing evidence, 
 
 The chain of custody is the procedure to collect and protect the evidence from the crime scene to the court room. It aim to establish and preserve the integrity and authenticity of the evidence, ensuring that it can be reliably used in legal proceedings.
 
-In digital forensics cases, it mostly refer to the fact that digital evidence is brittle: it is easy to tamper with it, and this is not always evident.&#x20;
+In digital forensics cases, it mostly refer to the fact that digital evidence is brittle: it is easy to tamper with it, and this is not always evident.
 
 It is a concept of USA legal proceedings.
 
@@ -1449,10 +1434,10 @@ It is a concept of USA legal proceedings.
 The roles that can be identified, from the cybercrime ecosystem, in a ransomware operation are:
 
 * Developers: who develop the malware. They can be identified from the malware sample, since they can be linked to other similar sources: it can be common that developers leave a signature on their work, or may reuse pieces of code.
-* Testers: that test the malware against common anti viruses.&#x20;
-* Infrastructure providers: in order to deploy the ransomware. They rent/sell the needed infrastructure such as botnets or bulletproof hosting. In particular, they provide a C\&C server which is in charge of creating and storing private-public key pair. Since the ransomware need to communicate with the C\&C, there may be a traffic log that can be used to link the infrastructure to a specific group of criminals.&#x20;
-* Exploit kits: designed to exploit systems and software vulnerabilities resulting in the download of the ransomware.&#x20;
-* Money mules: are in charge of laundering the money that comes from the ransom. An address must be provided to collect the ransom, and this can be retrieved from the sample. There are different techniques to get to the identity (or a partial one) of the final destination of the ransom, starting from that address.&#x20;
+* Testers: that test the malware against common anti viruses.
+* Infrastructure providers: in order to deploy the ransomware. They rent/sell the needed infrastructure such as botnets or bulletproof hosting. In particular, they provide a C\&C server which is in charge of creating and storing private-public key pair. Since the ransomware need to communicate with the C\&C, there may be a traffic log that can be used to link the infrastructure to a specific group of criminals.
+* Exploit kits: designed to exploit systems and software vulnerabilities resulting in the download of the ransomware.
+* Money mules: are in charge of laundering the money that comes from the ransom. An address must be provided to collect the ransom, and this can be retrieved from the sample. There are different techniques to get to the identity (or a partial one) of the final destination of the ransom, starting from that address.
 
 </details>
 
@@ -1460,11 +1445,11 @@ The roles that can be identified, from the cybercrime ecosystem, in a ransomware
 
 <summary>A company with more than ten years of experience in the fraud detection domain (i.e. they have ten years of labelled data and a team of expert analysts) has hired you as "chief anti-fraud officer". After analyzing the previous solutions developed by the company, you discover that they are mainly based on expert-based static rules and supervised black-box approaches such as neural networks. Describe the advantages and disadvantages of expert-based static rules systems.</summary>
 
-The main disadvantage of expert-based detection is that a continuous input from an expert is needed since all flagged cases must be analyzed by hand and the rules must be updated accordingly: so it is not only expensive to build, but also to maintain. Moreover, it is not able to detect novel frauds pattern or complex ones.&#x20;
+The main disadvantage of expert-based detection is that a continuous input from an expert is needed since all flagged cases must be analyzed by hand and the rules must be updated accordingly: so it is not only expensive to build, but also to maintain. Moreover, it is not able to detect novel frauds pattern or complex ones.
 
 The main advantage is that it does not require an historical database of labelled data.
 
-On the other hand, NN may be able to identify more complex patterns but being a black-box approach it may not be clear why a transaction is flagged as fraudulent or not. &#x20;
+On the other hand, NN may be able to identify more complex patterns but being a black-box approach it may not be clear why a transaction is flagged as fraudulent or not. 
 
 </details>
 
@@ -1497,7 +1482,7 @@ Several techniques may be used to solve this problem, aiming at "opening" the mo
 
 <summary>You suspected that a new fraudulent pattern has emerged in the last few years, but the company's solutions didn't detect it. Please describe which category of techniques can be deployed to detect such unseen patterns, highlighting advantages and disadvantages.</summary>
 
-To detect newer fraudulent pattern an unsupervised learning model must be deployed.&#x20;
+To detect newer fraudulent pattern an unsupervised learning model must be deployed.
 
 The main disadvantage is that it can lead to lot of false positive, so the expert has to go trough lot of flagged cases that may not be fraudulent at all. Moreover it is prone to deception (camouflage-like fraud strategies). For this reason it is not a replacement, but it is complimentary to expert rule-based fraud detection system.
 
@@ -1511,7 +1496,7 @@ The key characteristics of a fraud analytics model are:
 
 * Statistical accuracy: detection power and correctness of the statistical model in flagging suspicious cases. We need to make sure that the model generalizes well and is not over-fitted to the historical data set.
 * Interpretability: when a deeper understanding of the detected frauds is required, a fraud-detection model must be interpretable. It depends on the technique used: white box models are more interpretable than black-box ones (trade-off between interpretability and accuracy).
-* Operational efficiency: time and effort that is required to the entire process of deploying the system (collecting data, process them, build the model, estimate the results and optimize the model). A cost-benefit analysis must be made.&#x20;
+* Operational efficiency: time and effort that is required to the entire process of deploying the system (collecting data, process them, build the model, estimate the results and optimize the model). A cost-benefit analysis must be made.
 * Regulatory compliance: A fraud-detection model should be in line and comply with all applicable regulation and legislation, internal or external, that applies to the development and application of a model.
 
 </details>
@@ -1522,13 +1507,13 @@ The key characteristics of a fraud analytics model are:
 
 First of all, during the pre-processing phase it is important to "clean" the data: removing inconsistencies between unit measures, remove duplicates if needed, group data by geographical info and so on.
 
-We have to take particular care of missing values: they can be eliminated, replaced or kept depending on the particular application. We can make some statistical test to check if missing information is related to the target variable or no: if yes, then we can adopt the keep strategy and make a special category for it.&#x20;
+We have to take particular care of missing values: they can be eliminated, replaced or kept depending on the particular application. We can make some statistical test to check if missing information is related to the target variable or no: if yes, then we can adopt the keep strategy and make a special category for it.
 
 Then, since data in the fraud domain are very skew (in general < 1% cases are fraudulent), I would apply some techniques to balance the number of fraudulent cases. The SMOTE approach is a good choice (since it generally works better than under/over sampling), it will generate synthetic data from the ones that we already have. During this step we must be careful in not introducing bias, so we should stay close to the original distribution.
 
-After the pre-processing of the data is complete, I would deploy first an unsupervised learning model, in order to create a DB of historical labelled data. The main advantage is that it is able to detect newer fraudulent patterns, but it may generate lot of false positive and it is prone do deception (camouflage-like strategies).&#x20;
+After the pre-processing of the data is complete, I would deploy first an unsupervised learning model, in order to create a DB of historical labelled data. The main advantage is that it is able to detect newer fraudulent patterns, but it may generate lot of false positive and it is prone do deception (camouflage-like strategies).
 
-Then, once we have enough labelled data, we can deploy a supervised learning model: it will not detect newer frauds pattern but it has a more accurate detection of known pattern.&#x20;
+Then, once we have enough labelled data, we can deploy a supervised learning model: it will not detect newer frauds pattern but it has a more accurate detection of known pattern.
 
 In the end, it is possible to integrate both models in an active system creating a hybrid system that combines the benefits of both detection techniques.
 
@@ -1577,7 +1562,7 @@ It occurs because files rarely use all allocated cluster space, leaving leftover
 
 <summary>What is file carving?</summary>
 
-File carving is a technique used to recover data from unallocated disk space without relying on FS metadata. It works by scanning the disk as a bitstream, identifying a pair of header and footer and analyze what is placed in between: if not too long it can be a candidate file.&#x20;
+File carving is a technique used to recover data from unallocated disk space without relying on FS metadata. It works by scanning the disk as a bitstream, identifying a pair of header and footer and analyze what is placed in between: if not too long it can be a candidate file.
 
 </details>
 
@@ -1593,6 +1578,6 @@ Yes, file carving can be used to recover the information in the slack space. Tro
 
 <summary>What makes the fraud detection an imbalanced class?</summary>
 
-Data about frauds are often very skew: <1% are fraudulent cases. Fraud detection is an unbalanced class since the distribution of fraudulent and non-fraudulent cases is not equal, we have lot of non-fraudulent cases that can impact the ability of a detection model to works correctly since it tend to favor the majority class.&#x20;
+Data about frauds are often very skew: <1% are fraudulent cases. Fraud detection is an unbalanced class since the distribution of fraudulent and non-fraudulent cases is not equal, we have lot of non-fraudulent cases that can impact the ability of a detection model to works correctly since it tend to favor the majority class.
 
 </details>

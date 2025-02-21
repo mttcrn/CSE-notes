@@ -35,9 +35,7 @@ while Q != empty do
 			Q <- Q U {v};
 ```
 
-### Subgraphs and trees
-
-A tree is a connected and acyclic subgraph of G. It is called **spanning tree** of G if it contains all nodes of G.
+### Subgraphssrc="assets/ a connected and acyclic subgraph of G. It is called **spanning tree** of G if it contains all nodes of G.
 
 Properties:
 
