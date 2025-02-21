@@ -30,11 +30,9 @@ where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights as
 According to the **Hebbian learning theory**: "the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 $$
-\begin{cases}
-w_i ^ {k+1} = w_i^k + \Delta w_i^k \\
-\Delta w_i ^k = \eta \cdot x_i ^k \cdot t^k
-\end{cases}
+w_i ^ {k+1} = w_i^k + \Delta w_i^k 
 $$
+$$\Delta w_i ^k = \eta \cdot x_i ^k \cdot t^k$$
 where $\eta$ is the learning rate, $x_i ^k$ is the $i^{th}$ input of a neuron A at time k and $t^k$ is the desired output of neuron B at time k.
 Starting from a random initialization, the weights are fixed one sample at a time (online), and only if the sample is not correctly predicted.
 
@@ -48,7 +46,7 @@ The perceptron is a **non-linear** function of a linear combination (input are c
 ### Multi Layer Perceptrons (MLPs) - Feedforward Neural Networks (FFNN)
 Deep feedforward networks (also called feedforward NN or MLPs) are the core of DL models.
 They are represented by a directed acyclic graph describing how the functions are composed together. The depth of the model is determined by the number of layers in the chain.
-<figure><img src="assets/ts/FFNN (1).png" alt="" width="563"><figcaption><p>non-linear model characterized by the number of neurons, activation functions, <br>and the values of weights</p></figcaption></figure>
+<figure><img src="assets/FFNN (1).png" alt="" width="563"><figcaption><p>non-linear model characterized by the number of neurons, activation functions, <br>and the values of weights</p></figcaption></figure>
 * Activation functions must be differentiable to train it.
 
 <figure><img src="assets/activation_function.png" alt="" width="563"><figcaption></figcaption></figure>
@@ -150,31 +148,30 @@ Too simple models underfit the data, while too complex model overfit the data an
 A way to measure generalization is not trough training error/loss: the classifier has been learning from that data, so any estimate on that data will be optimistic. New data will probably not be exactly the same as training data.\
 We need to test on an independent test set that can come from a new dataset, by splitting the initial data or by performing random sub sampling (with replacement) of the dataset.
 <figure><img src="assets/Screenshot 2024-10-02 095227.png" alt="" width="563"><figcaption></figcaption></figure>
-* Training dataset: the available data.
-* Training set: the data used to learn model parameters.
-* Test set: the data used to perform the final model assessment.
-* Validation set: the data used to perform model selection.
-* Training data: used to train the model (fitting + selection).
-* Validation data: used to assess the model quality (selection + assessment).
+- Training dataset: the available data.
+- Training set: the data used to learn model parameters.
+- Test set: the data used to perform the final model assessment.
+- Validation set: the data used to perform model selection.
+- Training data: used to train the model (fitting + selection).
+- Validation data: used to assess the model quality (selection + assessment).
 #### Cross-validation
 Cross-validation is the use of the training dataset to both train the model (parameter fitting + model selection) and estimate its error on new data.
 
-* When lots of data are available use a Hold Out set and perform validation: hold out error might be biased by the specific split.
-* When we have few data available use Leave-One-Out Cross-Validation (LOOCV): it is unbiased but unfeasible with lots of data.
-* K-fold Cross-Validation is a good trade-off (sometime better than LOOCV).
+ - When lots of data are available use a Hold Out set and perform validation: hold out error might be biased by the specific split.
+ - When we have few data available use Leave-One-Out Cross-Validation (LOOCV): it is unbiased but unfeasible with lots of data.
+ - K-fold Cross-Validation is a good trade-off (sometime better than LOOCV).
 
 Be aware of the number of model you get and how much it cost it to train.
 ## Preventing Neural Network Overfitting
 ### Early stopping: limiting overfitting by cross-validation
 Overfitting networks show a monotone training error trend (on average with SDG) as the number of gradient descent iterations k, but they lose generalization at some point. Early stopping with cross validation works in the following way:
-* Hold out some data.
-* Train on the training set.
-* Perform cross-validation on the hold out set.
-* Stop train when validation error increases: it is an online estimate of the generalization error.
-* Choose the model with best validation error (save best model).
+- Hold out some data.
+- Train on the training set.
+- Perform cross-validation on the hold out set.
+- Stop train when validation error increases: it is an online estimate of the generalization error.
+- Choose the model with best validation error (save best model).
 <figure><img src="assets/Screenshot 2024-10-02 101259.png" alt="" width="375"><figcaption></figcaption></figure>
 Model selection and evaluation happens at different levels: at parameters level, when we learn the weights for a NN, and/or at hyperparameters level, when we choose the number of layers or hidden neurons for a given layer. At some point, adding layers or hidden neurons only adds overfitting.
-
 ### Weight decay: limiting overfitting by weights regularization
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters apriori distribution.
 In general, small weights improve generalization of NN: $P(w) \sim N(0, \sigma^2_w)$ it means assuming that on average the weights are close to zero.
@@ -195,26 +192,30 @@ Activation functions such as Sigmoid or Tanh saturate: the gradient is close to 
 <figure><img src="assets/sigmoid_tanh.png" alt=""><figcaption><p>The derivatives are bounded between [0, 1] causing vanishing gradient problem.</p></figcaption></figure>
 To overcome this problem we can use the Rectified Linear Unit (**ReLU**) activation function: $$g(a) = ReLu(a) = max(0,a)$$$$g'(a) = 1_{a >0}$$
 It has several advantages:
-* Faster SDG convergence (6x more than sigmoid/tanh).
-* Sparse activation (only part of hidden units are activated),
-* Efficient gradient propagation (no vanishing or exploding gradient problems) and efficient computation (just thresholding at zero).
-* Scale invariant: $max(0, a) = a \ max(0,x)$.
+- Faster SDG convergence (6x more than sigmoid/tanh).
+- Sparse activation (only part of hidden units are activated),
+- Efficient gradient propagation (no vanishing or exploding gradient problems) and efficient computation (just thresholding at zero).
+- Scale invariant: $max(0, a) = a \ max(0,x)$.
 
 It has potential disadvantages:
-* Non differentiable at zero: however it is differentiable everywhere else.
-* Non-zero centered output.
-* Unbounded: it could potentially blow up.
-* Dying neurons: ReLU neurons can sometimes be pushed into states in which they become inactive for essentially all inputs. No gradients flow backward trough the neuron, and so the neuron becomes stuck and dies. Decreased model capacity happens with high learning rates.
+- Non differentiable at zero: however it is differentiable everywhere else.
+- Non-zero centered output.
+- Unbounded: it could potentially blow up.
+- Dying neurons: ReLU neurons can sometimes be pushed into states in which they become inactive for essentially all inputs. No gradients flow backward trough the neuron, and so the neuron becomes stuck and dies. Decreased model capacity happens with high learning rates.
 
 Some variants of the ReLU are:
-* Leaky ReLU: fix for the "dying ReLU" problem by adding a steepness if $$x \le 0$$
+- Leaky ReLU: fix for the "dying ReLU" problem by adding a steepness if $x \le 0$:
 $$
-x \ \ \ \ if \ x\ge 0 \\ 0,01x \ \ \ otherwise
+x \ \ \ \ if \ x\ge 0
 $$
-* ELU: try to make the mean activation closed to zero which speeds up learning. Alpha is tuned by hand.
 $$
-x \ \ \ \ if \ x\ge 0 \\ \alpha (e^x -1) \ \ \ otherwise
+\\ 0,01x \ \ \ otherwise
 $$
+- ELU: try to make the mean activation closed to zero which speeds up learning. Alpha is tuned by hand.
+$$
+x \ \ \ \ if \ x\ge 0
+$$
+$$\alpha (e^x -1) \ \ \ otherwise$$
 ### Weights initialization
 The final result of the gradient descent is affected by weight initialization. We have to avoid zero (identical updated, all weights will learn in the same way, no learning will happen), or big numbers (if unlucky it might take very long to converge, may lead to overfitting or cause varnishing gradient).
 We can take $$w \sim N(0, \sigma^2 = 0,01)$$ that is good for small networks, but it might be a problem for deeper NN.
@@ -244,10 +245,10 @@ Batch normalization (BN) normalizes the pre-activation (input to the activation 
 It is placed after FC or conv layers, and before non-linear activation functions.
 <figure><img src="assets/Screenshot 2025-01-19 171319.png" alt="" width="305"><figcaption><p>normalization is a linear operation, so it can be back-propagated.<br>scale and shift is a linear transformation used so that the network can learn how much normalization needs.</p></figcaption></figure>
 Batch normalization has shown to:
-* Improve gradient flow trough the network.
-* Allow using higher learning rates (faster learning).
-* Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
-* Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
+- Improve gradient flow trough the network.
+- Allow using higher learning rates (faster learning).
+- Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
+- Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
 ### More about gradient descent: Nesterov Accelerated gradient
 <figure><img src="assets/Screenshot 2024-10-09 144458.png" alt="" width="563"><figcaption><p>Idea: make a jump as momentum, then adjust.</p></figcaption></figure>
 ### Adaptive Learning Rates
@@ -329,12 +330,11 @@ In $\mathbb{R}^2$ these would be $f([x_1, x_2]) = w_1 x_1 + w_2 x_2 + b$. Then, 
 <figure><img src="assets/Screenshot 2025-01-20 102319.png" alt="" width="400"><figcaption></figcaption></figure>
 The classification score is then computed as the correlation between each input image and the "template" of the corresponding class.
 ## Challenges of image recognition
-* Dimensionality: images are very high-dimensional image data as the whole batch and the corresponding activation must be stored in memory during training,
-* Label ambiguity: a label might not uniquely identify the image.
-* Transformations: there are many transformations that change the image dramatically, while not its label.
-* Inter-class variability: images in the same class might be dramatically different.
-* Perceptual similarity: perceptual similarity in images is not related to pixel-similarity.
-
+- Dimensionality: images are very high-dimensional image data as the whole batch and the corresponding activation must be stored in memory during training,
+- Label ambiguity: a label might not uniquely identify the image.
+- Transformations: there are many transformations that change the image dramatically, while not its label.
+- Inter-class variability: images in the same class might be dramatically different.
+- Perceptual similarity: perceptual similarity in images is not related to pixel-similarity.
 #### K-NearestNeighboor
 Assign to each test image, the most frequent label among the K-closest images in the training set. Setting the parameter K and the distance measure is an issue.
 
@@ -345,8 +345,8 @@ However, it is computationally demanding at test time, when $TR$ and $d$ are lar
 Images cannot be directly fed to a classifier: we need some intermediate steps to extract meaningful information and reduce data-dimension. A feature extraction mechanism is placed between the data source and the CNN.
 The better our features, the better the classifier.
 A hand-crafted feature extraction can be implemented:
-* PROS: exploit apriori/expert information, better interpretability, features can be adjusted to improve performance, limited amount of training data needed, more relevance can be given to some features.
-* CONS: requires a lot of design/programming efforts, not viable in many visual representation, risk of overfitting, not very general and "portable".
+- PROS: exploit apriori/expert information, better interpretability, features can be adjusted to improve performance, limited amount of training data needed, more relevance can be given to some features.
+- CONS: requires a lot of design/programming efforts, not viable in many visual representation, risk of overfitting, not very general and "portable".
 #### Typical architecture of a CNN
 The image get convoluted against many filters. When progressing along the network, the "number of images" or the "number of channels in the image" increases, while the image size decreases. Once the image gets to a vector, it is fed to a traditional NN.\
 CNN are typically made of convolutional layers, nonlinearities (activation functions) and pooling layers (subsampling/maxpooling).
@@ -368,7 +368,7 @@ $$
 
 where $(r, c)$ denote a spatial location in the output activation $a$, while $l$ is the channel, and $N_F$ is the number of filters.
 
-Filters (or kernels) must match the number of channels as the input, to process all the values from the input layer. The same filter is used through the whole spatial extent of the input (weights sharing). \
+Filters (or kernels) must match the number of channels as the input, to process all the values from the input layer. The same filter is used through the whole spatial extent of the input (weights sharing).
 The output of a convolutional layer is called volume or activation map. Each filter produces one activation map, and stacking these maps across filters forms the output volume.
 
 The filter is identified by a spatial neighborhood U having size $h_r \cdot h_c$ and the same number of channels C as the input activations. The parameters are the weights plus one bias per filter. The overall number of parameters is $(h_r \cdot h_c \cdot C) \cdot N_F + N_F$.
@@ -379,14 +379,12 @@ They introduce non-linearity in the network, otherwise the CNN might be equivale
 ### Pooling layers
 They reduce the spatial size of the volume. They operate independently on every depth slice of the input and resizes it spatially, often using the MAX operation.
 <figure><img src="assets/Screenshot 2025-01-20 113131.png" alt="" width="450"><figcaption></figcaption></figure>
-Typically, the stride is assumed equal to the pooling size (where not specified maxpooling has a stride 2x2 and reduces the image size to 25%).\
+Typically, the stride is assumed equal to the pooling size (where not specified maxpooling has a stride 2x2 and reduces the image size to 25%).
 It is also possible to use a different stride. It is possible to adopt stride = 1, which does not reduce the spatial size, but just perform pooling on each pixel (it makes sense with non linear pooling).
 ### Dense layers
 In a dense layer each output neuron is connected to each input neuron: dense layers discard spatial relationships, focusing only on feature combinations.
 They can contribute to overfitting as they have FC neurons, resulting in a large number of trainable parameters. This high parameter count increases the model's capacity to memorize the training data instead of generalizing to unseen data.
-
 <figure><img src="assets/Screenshot 2025-01-20 113537.png" alt="" width="563"><figcaption><p>FEN (feature extraction network) structure.<br>The output is a FC layer which has the same size as the number of classes, and provides a score for the input image to belong to each class.</p></figcaption></figure>
-
 #### Dense layer vs. Convolutional layer
 Since convolution is a linear operation, if we unroll the input image to a vector then we can consider the convolution weights as the weights of a dense layer. So both convolution and dense layer can be described as a linear operator.
 
@@ -396,11 +394,10 @@ In convolutional layer the matrix is sparse, since only a few input neurons cont
 
 Any convolutional layer can be implemented by a FC layer performing exactly the same computations.
 The weight matrix would be:
-
-* A large matrix with \#rows equal to \#output neurons and \#cols equal to \#input neurons.
-* That is mostly zero except for certain blocks where the local connectivity takes place.
-* The weights in many blocks are equal due to parameter sharing.
-  Underlying assumption: if one feature is useful to compute at dome spatial position $(x, y)$, then it should also be useful to compute at a different position $(x', y')$. So in a CNN, all the neurons in the same slice of a feature map use the same weights and bias.
+- A large matrix with rows equal to output neurons and cols equal to input neurons.
+- That is mostly zero except for certain blocks where the local connectivity takes place.
+- The weights in many blocks are equal due to parameter sharing.
+- Underlying assumption: if one feature is useful to compute at dome spatial position $(x, y)$, then it should also be useful to compute at a different position $(x', y')$. So in a CNN, all the neurons in the same slice of a feature map use the same weights and bias.
 
 The opposite is also true: a FC layer can be implemented with a convolutional layer.
 ### Receptive fields
@@ -423,8 +420,8 @@ Augmented versions should preserve the input label (so we have to select the cor
 
 Augmented copies $\{A_l (I)\}_l$ of an image $I$ lives in a vicinity of $I$, and have the same label as the image. Transformations are expert-driven.
 Mixup is a domain-agnostic data augmentation technique:
-* No need to know which (label-preserving) transformation to use.
-* Mixup trains a NN on visual samples that are convex combinations of pairs of examples and their labels.
+- No need to know which (label-preserving) transformation to use.
+- Mixup trains a NN on visual samples that are convex combinations of pairs of examples and their labels.
 
 It extends the training distribution by incorporating the prior knowledge that linear interpolations of feature vectors should lead to linear interpolations of the associated target.
 
@@ -497,13 +494,13 @@ Since fully connected layers are prone to overfitting (many parameters) then the
 
 In general, GAP can be used with more/fewer classes than channels provided an hidden layer to adjust feature dimension. The number of feature maps has to correspond to the number of output classes.
 #### Advantage of GAP layers
-* No parameters to optimize, lighter network less prone to overfitting.
-* Classification is performed by a softmax layer at the end of the GAP.
-* More interpretability, creates a direct connection between layers and classes outputs.
-* It acts as a structural regularizer.
-* Increases robustness to spatial transformation of the input images.
+- No parameters to optimize, lighter network less prone to overfitting.
+- Classification is performed by a softmax layer at the end of the GAP.
+- More interpretability, creates a direct connection between layers and classes outputs.
+- It acts as a structural regularizer.
+- Increases robustness to spatial transformation of the input images.
   Features extracted by the conv part of the network are invariant to SHIFT of the input images. The MLP after the flattening is not invariant to shifts (since different input neurons are connected by different weights). So, a CNN trained on centered images might not be able to correctly classify shifted ones. The GAP solves this problem since the two images lead to the same or very similar features.
-* The network can be used to classify images of different sizes.
+- The network can be used to classify images of different sizes.
 
 Global pooling layers perform a global operation on each channel, along the spatial component, and out of each channel it keep a single value. Pooling operations can be the avg (GAP) or the max (GMP).
 <figure><img src="assets/Screenshot 2025-01-21 103103.png" alt="" width="563"><figcaption><p>Simple NiNs achive state-of-art performance on "small" datasets and GAP effectively reduces overfitting w.r.t. FC. </p></figcaption></figure>
@@ -535,21 +532,20 @@ The intuition is that deeper models are harder to optimize than shallower models
 Therefore, deeper networks should be in principle as good as the shallow ones.
 
 Adding an identity shortcut connection:
-* Helps in mitigating the vanishing gradient problem and enables deeper architectures.
-* Does not add any parameter or significant computational overhead.
-* In case the network layers till the connection were optimal, the weights to be learned goes to zero and information is propagated by the identity.
-* The network can still be trained through back-propagation.
+- Helps in mitigating the vanishing gradient problem and enables deeper architectures.
+- Does not add any parameter or significant computational overhead.
+- In case the network layers till the connection were optimal, the weights to be learned goes to zero and information is propagated by the identity.
+- The network can still be trained through back-propagation.
 <figure><img src="assets/Screenshot 2025-01-21 105630.png" alt="" width="304"><figcaption><p>Identitiy shortcut connection.<br>Residual connection.</p></figcaption></figure>
 It force the network to learn a different task in each block.
-
-* $\mathcal{F}(x)$ is the residual, which turns to be easier to train in deep networks.
-* Weights in between skip connections can be used to learn the residual to improve the solution that can be achieved by a shallow network.
-* Since $x$ and $\mathcal{F}(x)$ must have the same size, the convolutional layers in between are to preserve dimension in space-wise and depth-wise.
+- \mathcal{F}(x)$ is the residual, which turns to be easier to train in deep networks.
+- Weights in between skip connections can be used to learn the residual to improve the solution that can be achieved by a shallow network.
+- Since $x$ and $\mathcal{F}(x)$ must have the same size, the convolutional layers in between are to preserve dimension in space-wise and depth-wise.
 
 The motivations behind adding this identity mapping are that:
-* It is easier for the following layers to learn features on top of the input value.
-* In practice, the layers between an identity mapping would otherwise fail at learning the identity function to transfer the input to the output.
-* The performance achieved by ResNet suggest that most of the deep layers have to be close to the identity.
+- It is easier for the following layers to learn features on top of the input value.
+- In practice, the layers between an identity mapping would otherwise fail at learning the identity function to transfer the input to the output.
+- The performance achieved by ResNet suggest that most of the deep layers have to be close to the identity.
 
 The ResNet is a stack of 152 layers of the residual connection module. It alternates some spatial pooling by convolution with stride 2 and doubling the number of filters. \
 At the beginning there is a convolutional layer. At the end there is a GAP and a final softmax.
@@ -561,9 +557,7 @@ Designed to reduce the number of parameters and of operations, to embed networks
 Separable convolution was introduced, which is made of two steps:
 1. Depth-wise: it does not mix channels, it is like a 2D conv on each channels of input activation $F$.
 2. Point-wise: it combines the output of dept-wise conv by N filters that are 1x1. It does not perform spatial conv anymore.
-
 ### Wide ResNet
-
 Use wider residual blocks ($F \times k$  filters instead of $F$ filters in each layer). Increasing width instead of depth is more computationally efficient (parallelizable).
 ### ResNeXt
 Widen the ResNet module by adding multiple pathways in parallel. Similar to inception module where the activation maps are being processed in parallel. Different from inception module, all the paths share the same topology.
@@ -586,8 +580,8 @@ Segmentation does NOT separate different instances belonging to the same class, 
 To this purpose, a training set that have been (manually) annotated is given. It is made of pairs $(I, GT)$, where $GT$ is a pixel-wise annotate images over the categories $\Lambda$ and $I$ is the input image.
 ### Semantic segmentation FCNN
 Semantic segmentation faces an inherent tension between semantics and location: global information resolve what, while local information resolve where.
-* On the one hand, we need go "go deep" to extract high level information on the image.
-* On the other hand, we want to stay local not to loose spatial resolution in the predictions.
+- On the one hand, we need go "go deep" to extract high level information on the image.
+- On the other hand, we want to stay local not to loose spatial resolution in the predictions.
 
 Combining fine layers and coarse layers lets the model make local predictions that respect global structure.
 <figure><img src="assets/Screenshot 2024-11-16 173459.png" alt="" width="563"><figcaption><p>An architecture like this would probably be more suitable: the first half is the same of a classification network, while the second half is meant to upsample the predictions to cover each pixel in the image. <br>Increasing the image size is necessary to obtain sharp contours and spatially detailed class prediction.<br>encoder (downsampling) -> decoder (upsampling)</p></figcaption></figure>
@@ -612,14 +606,14 @@ However, since the FC is linear, it can be represented as convolution. This tran
 For each output class we obtain an image, having: lower resolution than the input image and class probabilities for the receptive field of each pixel (assuming softmax remains performed column-wise).
 #### From classification to segmentation
 Given a pre-trained CNN for classification we can "convolutionalized" it to extract the heat maps. The problem is that heat maps are very low resolution. To overcome this problem it is possible to:
-* Direct heat map upsampling: assign the predicted label in the heat map to the whole receptive field, however that would be a very coarse estimate.
-* Shift and stitch: assume there is a downsampling ratio $f$ between the size of input and of the output heat map.
+- Direct heat map upsampling: assign the predicted label in the heat map to the whole receptive field, however that would be a very coarse estimate.
+- Shift and stitch: assume there is a downsampling ratio $f$ between the size of input and of the output heat map.
   We compute the heat maps for all $f^2$ possible shifts of the input $(0 \le r, c \le f)$.
   We map the predictions from the $f^2$ heat maps to the image: each pixel in the heat map provides prediction of the central pixel of the receptive field.
   Interleave the heat maps to form an image as large as the input.
   In this way we exploit the whole depth of the network by using an efficient implementation. However, the upsampling method is very rigid.
   The same effect can be obtained by: remove strides in pooling layer (equivalent to computing the output of all the shifted versions at once), rarefy the filters of the following convolution layer by upsampling and zero padding, then repeat the same operation along each channel dimension and for each subsampling layer.
-* Learn upsampling in a FCNN.
+- Learn upsampling in a FCNN.
   Data-driven upsampling of the coarse outputs to pixel-dense outputs. These filters are initialized as bilinear upsampling filters.
   Linear upsampling of a factor $f$ can be implemented as a convolution against a filter with a fractional stride $1/f$. Upsampling filters can thus be learned during network training (provided a segmentation training set). These predictions are very coarse. Upsampling filters are learned with initialization equal to the bilinear interpolation.
 
@@ -638,8 +632,8 @@ Therefore, each region provides already a mini-batch estimate for computing grad
 Whole image FC training is identical to patch-wise training where each batch consists of all the receptive fields of the units below the loss for an image.
 
 Limitations of full-image training and solutions:
-* Minibatches in patch-wise training are assembled randomly. Image regions in full-image training are not. To make the estimated loss a bit stochastic we can adopt random masks.
-* It is not possibile to perform patch resampling to compensate for class imbalance. One should go for weighting the loss over different labels.
+- Minibatches in patch-wise training are assembled randomly. Image regions in full-image training are not. To make the estimated loss a bit stochastic we can adopt random masks.
+- It is not possibile to perform patch resampling to compensate for class imbalance. One should go for weighting the loss over different labels.
 ## Localization
 #### Preprocessing
 In general, normalization is useful in gradient-based optimizers.
@@ -653,7 +647,6 @@ PCA/whitening preprocessing are not commonly used with CNN. The most frequent is
 Normalization statistics are parameters of the ML model: any preprocessing statistics must be computed on training data, and applied to the validation/test data. First split in training, validation and test and then normalize the data.
 When using pre-trained model it is better to use the given pre-processing function.
 #### Batch Normalization [[#Artificial Neural Networks and Deep Learning#Batch Normalization|BN]]
-
 Consider a batch of activations $\{x_i\}$, this transformation $$x_i ' = {{x_i - E[x_i]}\over{\sqrt{var[x_i]}}}$$ (where mean and variance are computed from each batch and separately for each channel) bring the activations to unit variance and zero mean.
 <figure><img src="assets/Screenshot 2024-11-22 092028.png" alt="" width="492"><figcaption></figcaption></figure>
 BN adds a further parametric transformation: $y_{i, j} = \gamma_j x_i ' + \beta_j$ where parameters $\$$$\gamma$$ and $\beta$  (scale and shift) are learnable. We have a pair of parameters for each channel of the input activation. The expected value and variance are not trainable parameters.
@@ -663,8 +656,8 @@ Estimates of mean and variance are computed on each minibatch and need to be fix
 During testing, BN becomes a linear operator and it can be fused with the previous FC or conv layer. 
 In practice, networks that use BN are significantly more robust to bad initialization. Typically, BN is used in between FC layers of deep CNN, but sometimes also between conv layers.
 
-* Pros: it makes deep networks easier to train, improves gradient flow, allows higher learning rates (faster convergence), networks become more robust to initialization, acts as regularization during training, it has zero-overhead at test time so it can be fused with conv layer.
-* Watch out: it behaves differently during training and testing.
+- Pros: it makes deep networks easier to train, improves gradient flow, allows higher learning rates (faster convergence), networks become more robust to initialization, acts as regularization during training, it has zero-overhead at test time so it can be fused with conv layer.
+- Watch out: it behaves differently during training and testing.
 ### Localization problem
 The input image contains a single relevant object to be classified in a fixed set of categories. The tasks are to assign the object to a fixed class and locate the object in the image by its bounding box. It is a multi-task problem, as the two outputs have different nature.
 
@@ -684,7 +677,6 @@ In weak-supervised learning we obtain a model able to solve a task in $Y$, but u
 
 Weakly supervised localization perform $\mathcal{M} :  X \rightarrow \mathbb{R}^4$ without training images with annotated bounding box. The training set is typically annotated for classification, thus $TR \subset X \times \Lambda$ with image-label pairs $\{(I, l)\}$ with no localization information provided.
 #### Class Activation Maps (CAM)
-
 The advantages of GAP layer extend beyond simply acting as a structural regularizer that prevents overfitting. In fact, CNNs can retain a remarkable localization ability until the final layer. By a simple tweak, it is possibile to easily identify the discriminative image regions leading to a prediction.
 
 **Class activation mapping** (CAM) are used to identify which regions of an image are being used for discrimination. They are very easy to compute as they require: a classifier trained with a GAP layer, a FC layer after the GAP and a minor tweak to obtain saliency maps.
@@ -728,14 +720,14 @@ It assign to an input image $I \in \mathbb{R}^{R \times C \times 3}$ multiple la
 A training set of annotated images with labels and bounding boxes for each object is required. Each image requires a varying number of outputs.
 
 CNNs can be modified to return multiple classification output by:
-* Replace softmax activation in the output layer with sigmoid activation in each of the L neurons.
-* The $i_{th}$ neuron will predict the probability $p_i \in [0, 1]$ of class membership for the input in a non-exclusive manner. These probabilities do no sum to one, as an input image might belong to multiple categories.
-* The model must be trained with the binary cross-entropy loss function.
+- Replace softmax activation in the output layer with sigmoid activation in each of the L neurons.
+- The $i_{th}$ neuron will predict the probability $p_i \in [0, 1]$ of class membership for the input in a non-exclusive manner. These probabilities do no sum to one, as an input image might belong to multiple categories.
+- The model must be trained with the binary cross-entropy loss function.
 
 An approach similar to the sliding window for semantic segmentation can be used: since a pre-trained model is meant to process a fixed input size, we slide on the image a window of that size and classify each region. The background class has to be included for each region that does not correspond to an object.
 
-* Cons: it is very inefficient since it does not re-use features that are "shared" among overlapping crops, we have to choose the crop size, it is difficult to detect objects in different scales, a huge number of crops of different sizes should be considered.
-* Plus: no need of retraining the CNN.
+- Cons: it is very inefficient since it does not re-use features that are "shared" among overlapping crops, we have to choose the crop size, it is difficult to detect objects in different scales, a huge number of crops of different sizes should be considered.
+- Plus: no need of retraining the CNN.
 ### Region Proposal algorithm & Region-CNN
 The region proposal algorithms (and networks) are meant to identify bounding boxes that correspond to a candidate object in the image. The idea is to apply a region proposal algorithm and then classify  the image inside each proposal region using a CNN.
 R-CNN works as follows:
@@ -748,10 +740,10 @@ To quantitatively asses the network performance over each and every image in the
 <figure><img src="assets/Screenshot 2024-11-22 114005.png" alt="" width="563"><figcaption><p>It compares the detection results for an image against the annotation and given an indication of<br> "how happy we are with the predictions"</p></figcaption></figure>
 
 Limitations of R-CNN:
-* Ad-hoc training objectives and not an end-to-end training
-* Regions proposal are from a different algorithm (selective search, select rectangular regions in an image) which has not been optimized for the detection by CNN.
-* Training is slow and takes a lot of disk space to store features.
-* Inference (detection) is slow since the CNN has to be executed on each region proposal (no feature re-use).
+- Ad-hoc training objectives and not an end-to-end training
+- Regions proposal are from a different algorithm (selective search, select rectangular regions in an image) which has not been optimized for the detection by CNN.
+- Training is slow and takes a lot of disk space to store features.
+- Inference (detection) is slow since the CNN has to be executed on each region proposal (no feature re-use).
 #### Fast R-CNN
 1. The whole image is fed to a CNN that extract feature maps.
    Region proposal are identified from the image and projected into the feature maps. Regions are directly cropped from the feature maps, and not from the image. In this way we reuse convolutional computations.
@@ -770,12 +762,12 @@ RPN operates on the same feature maps used for classification, thus at the last 
 
 The goal of the RPN is to associate to each spatial location $k$ anchor boxes, that are ROI having different scales and ratios. For each anchor, it estimates $2k$ objectiveness scores, that is the probability for an anchor to contain an object, and $4k$ BB coordinates: in total $6k$ probabilities. Estimate are obtained by sigmoid activation. 
 Proposal are selected analyzing:
-* Non-maximum suppression based on the objectiveness score and the IoU considering corrected boxes.
-* Fixed threshold on the objectiveness score.
+- Non-maximum suppression based on the objectiveness score and the IoU considering corrected boxes.
+- Fixed threshold on the objectiveness score.
 <figure><img src="assets/Screenshot 2024-11-22 132840.png" alt="" width="563"><figcaption></figcaption></figure>
 Training involves 4 losses:
-* RPN: classify object/non object & regression coordinates
-* Detection head: final classification score and final BB coordinates.
+- RPN: classify object/non object & regression coordinates
+- Detection head: final classification score and final BB coordinates.
 
 During training, object/non object ground truth is defined by measuring the overlap with annotated BB. The loss include a term of final BB coordinates computed from detection head.
 
@@ -881,20 +873,19 @@ GANs do not look for an explicit density model $\phi_s$ describing the manifold 
 Instead of sampling from $\phi_s$, sample a seed from a known distribution $\phi_z$ (noise, defined apriori) and then feed this seed to a learned transformation that generates realistic samples, as if they were drawn from $\phi_s$.
 Use a NN to learn this transformation, which is going to be trained in an unsupervised manner (no label needed).
 
-The biggest challenge is to define a suitable loss for assessing whether the output is a realistic image or not. The GAN solution is to train a pair of NN addressing two different tasks that compete in a sort of two player (adversarial) game. These models are:
-
-* Generator $\mathcal{G}$ that produces realistic samples. It tries to fool the discriminator: if it succeeded it means that is a good generator. It is the model keep in the end. $\mathcal{G}$ has never seen an image of $S$.
-* Discriminator $\mathcal{D}$ that takes as input an image and assess whether it is real or generated by $\mathcal{G}$. The goal is to recognize all the images that are generated. In this way, the loss of $\mathcal{G}$ is given by$\mathcal{D}$. After a successful GAN training $\mathcal{D}$ is not able to distinguish fake images.
+The biggest challenge is to define a suitable loss for assessing whether the output is a realistic image or not. The GAN solution is to train a pair of NN addressing two different tasks that compete in a sort of two player (adversarial) game. 
+These models are:
+- Generator $\mathcal{G}$ that produces realistic samples. It tries to fool the discriminator: if it succeeded it means that is a good generator. It is the model keep in the end. $\mathcal{G}$ has never seen an image of $S$.
+- Discriminator $\mathcal{D}$ that takes as input an image and assess whether it is real or generated by $\mathcal{G}$. The goal is to recognize all the images that are generated. In this way, the loss of $\mathcal{G}$ is given by$\mathcal{D}$. After a successful GAN training $\mathcal{D}$ is not able to distinguish fake images.
 <figure><img src="assets/GANs.jpg" alt="" width="563"><figcaption></figcaption></figure>
 Both $\mathcal{D}$ and $\mathcal{G}$ are conveniently chosen as MLP or CNN.
 They take as input $\mathcal{D} = \mathcal{D}(s, \theta_d)$ and $\mathcal{G} = \mathcal{G}(z ,\theta_g)$ where $\theta_g$ and  $\theta_d$ are network parameters, $s \in \mathbb{R}^n$ is an input image (either real or generated) and $z \in \mathbb{R}^d$ is some random noise to be fed to the generator.
 They give as output $\mathcal{D}(\cdot, \theta_d) : \mathbb{R}^n \rightarrow [0, 1]$$ the posterior for the input to be a true image and $\mathcal{G}(\cdot, \theta_g) : \mathbb{R}^d \rightarrow \mathbb{R}^n$ the generated image.
 
 A good discriminator is such:
-
-* $\mathcal{D}(s, \theta_d)$ is maximum when $s \in S$ (true image from the $TR$).
-* $1 - \mathcal{D}(s, \theta_d)$ is maximum when $s$ was generated from $\mathcal{G}$.
-* $1 - \mathcal{D}(\mathcal{G}(z, \theta_g), \theta_d)$$ is maximum when$z \sim \phi_z$.
+- $\mathcal{D}(s, \theta_d)$ is maximum when $s \in S$ (true image from the $TR$).
+- $1 - \mathcal{D}(s, \theta_d)$ is maximum when $s$ was generated from $\mathcal{G}$.
+- $1 - \mathcal{D}(\mathcal{G}(z, \theta_g), \theta_d)$$ is maximum when$z \sim \phi_z$.
 
 Training $\mathcal{D}$ consist in maximizing the binary cross-entropy:
 <figure><img src="assets/Screenshot 2024-11-28 112441.png" alt="" width="375"><figcaption></figcaption></figure>
@@ -924,15 +915,15 @@ Its limitations is that it has little stability during training and there is no 
 So far we have considered only static datasets: the function computed by the model has no memory of the history of the input, so it means that the model is not influenced by the order of which the input is presented.
 Dynamic data has a "natural" order or sequence.
 We can use memoryless models:
-* Autoregressive models: predict the next input from previous ones using "delay taps" (input delayed by n-steps).
-* Linear models with fixed lag: predict the next output from previous inputs using "delay taps".
-* Feed forward NN: generalize autoregressive models using non linear hidden layers.
-* Feed forward NN with delay: predict the next output from previous inputs and previous outputs using "delay taps".
+- Autoregressive models: predict the next input from previous ones using "delay taps" (input delayed by n-steps).
+- Linear models with fixed lag: predict the next output from previous inputs using "delay taps".
+- Feed forward NN: generalize autoregressive models using non linear hidden layers.
+- Feed forward NN with delay: predict the next output from previous inputs and previous outputs using "delay taps".
 
 We can use models with memory (dynamical systems):
-* Generative models with a hidden state which cannot be observed directly.
+- Generative models with a hidden state which cannot be observed directly.
   The hidden state has some dynamics possibly affected by noise and produces the output. To compute the output we need to infer the hidden state. Input are treated as driving inputs.
-* Linear dynamical systems.
+- Linear dynamical systems.
   States are continuous with Gaussian uncertainty. Transformations are assumed to be linear. State can be estimated using Kalaman filtering.
 
 RNNs are models in which memory is implemented via **recurrent connections**, which allows to take into account the temporal order in which the data is presented. RNNs consist of a distributed hidden,  state to track temporal evolution and allows to store information efficiently, and a FFNN.
@@ -953,8 +944,8 @@ The **Constant Error Carousel** (CEC) is mechanism in LSTMs that allows informat
 The ability of LSTMs to maintain a constant error signal over long periods is achieved through the cell state, which can carry information across many time steps without being significantly altered.
 
 It can be used for doing inference in two ways:
-* Online (one word at time): at timestep in the input sequence correspond to a single timestep in the LSTM layer, the final state is used as feature representation for the entire sequence and is fed to a FFNN for prediction.
-* Batch (entire sentence at time): the LSTM layer outputs a sequence of hidden states, one for each timestep in the input sequence, which can be used to make predictions.
+- Online (one word at time): at timestep in the input sequence correspond to a single timestep in the LSTM layer, the final state is used as feature representation for the entire sequence and is fed to a FFNN for prediction.
+- Batch (entire sentence at time): the LSTM layer outputs a sequence of hidden states, one for each timestep in the input sequence, which can be used to make predictions.
 #### Gate Recurrent Unit (GRU)
 It combines the forget and input gates into a single "update gate". It also merges the cell state and hidden state, and makes some other changes.
 #### Multiple Layers and Bidirectional LSTM Networks
@@ -964,9 +955,9 @@ When initializing RNN we need to specify the initial state: it could be a fixed 
 ## Seq2Seq and Word Embedding
 ### Sequential data problems
 <figure><img src="assets/Screenshot 2024-12-07 163711.png" alt=""><figcaption></figcaption></figure>
-* Image captioning: input a single image and get a series or sequence of words as output which describe it. The image has a fixed size, but the output had varying length.
-* Sentiment Classification/Analysis: input a sequence of characters or words and classify it into positive or negative sentiment. Input has varying lengths while output is of a fixed type and size.
-* Language Translation: each language has its own semantics and it has varying lengths for the same sentence.
+- Image captioning: input a single image and get a series or sequence of words as output which describe it. The image has a fixed size, but the output had varying length.
+- Sentiment Classification/Analysis: input a sequence of characters or words and classify it into positive or negative sentiment. Input has varying lengths while output is of a fixed type and size.
+- Language Translation: each language has its own semantics and it has varying lengths for the same sentence.
 ### Conditional Language Models
 A language model represents the probability of a sentence (sequence):
 $$
@@ -986,8 +977,8 @@ Sequence-to-sequence models as encoder-decoder architectures:
 <figure><img src="assets/Screenshot 2024-12-07 170041.png" alt="" width="563"><figcaption></figcaption></figure>
 Once we have trained the mode (learning $\theta$$), we predict a sequence $y = y_1, .., y_n$$ given $x = x_1, .., x_m$ by selecting $$y' = \text{arg max}_y \prod^n_{t=1} P(y_t | y_{<t}, x_1, .., x_m, \theta)$$
 To compute the arg max over all possible sequence we can use:
-* Greedy decoding: at each step pick the most probable token but this does not guarantee to reach the best sequence and it does not allow to backtrack from errors in early stages of classification.
-* Beam search: keep track of several most probably hypotheses.
+- Greedy decoding: at each step pick the most probable token but this does not guarantee to reach the best sequence and it does not allow to backtrack from errors in early stages of classification.
+- Beam search: keep track of several most probably hypotheses.
 
 Given a training sample $<x,y>$ with input sequence $x = x_1, .., x_m$ and target sequence $y=y_1, .., y_n$, at time $t$ our model predicts $p_t = p(\cdot | y_1, .., y_{t-1}, x_1, .., x_m)$.
 Using a one-hot vector for $y_t$ we can use the cross-entropy as loss (since it is a classification problem):
@@ -1001,10 +992,10 @@ At training time, the decoder does not feed the output of each time step to the 
 At inference time the decoder feeds the output of each time step as input to the next one: as we do not have the ground truth from the dataset (correct labels) the decoder must rely on its own predictions to generate the output.
 <figure><img src="assets/Screenshot 2024-12-07 171826.png" alt="" width="563"><figcaption></figcaption></figure>
 Special characters:
-* \<PAD>: during training, examples are fed to the network in batches. The inputs in these batches need to be the same width so this is used to pad shorter inputs to the same width of the batch.
-* \<EOS>: needed for batching on the decoder side. It tells the decoder where a sentence ends, and it allows the decoder to indicate the same thing in its outputs as well.
-* \<UNK> : on real data, it can improve the resource efficiency to ignore words that do not show up often enough in your vocabulary by replace those with this character.
-* \<SOS>\\\<GO>: This is the input to the first time step of the decoder to let the decoder know when to start generating output.
+- \<PAD>: during training, examples are fed to the network in batches. The inputs in these batches need to be the same width so this is used to pad shorter inputs to the same width of the batch.
+- \<EOS>: needed for batching on the decoder side. It tells the decoder where a sentence ends, and it allows the decoder to indicate the same thing in its outputs as well.
+- \<UNK> : on real data, it can improve the resource efficiency to ignore words that do not show up often enough in your vocabulary by replace those with this character.
+- \<SOS>\\\<GO>: This is the input to the first time step of the decoder to let the decoder know when to start generating output.
 #### Dataset batch preparation
 1. Sample batch\_size pairs of (source\_sequence, target\_sequence).
 2. Append \<EOS> to the source\_sequence.
@@ -1036,8 +1027,8 @@ The training is performed using multi-class cross-entropy.
 It is similar to the Neural Net Language model but removes the hidden layers and shares projection layer. The context in input contain both current ant previous words. The output is still a probability of a word given a context, but is found considering both previous and successive context words.
 
 We can have two class of problems:
-* **Skip-gram** model: predicts the context given a target word by minimizing negative log likelihood of the context given the target sample (loss function).
-* **Continuous Bag of Word** model (**CBOW**): predicts the word given its context by minimizing the negative log likelihood of the word given its context.
+- **Skip-gram** model: predicts the context given a target word by minimizing negative log likelihood of the context given the target sample (loss function).
+- **Continuous Bag of Word** model (**CBOW**): predicts the word given its context by minimizing the negative log likelihood of the word given its context.
 
 Linear relationships in the embedding space arise naturally since the embedding are optimized to reflect semantic and syntactic relationships through word co-occurrences. So, we have a constant female-male difference vector, as well as country-capital (an so on).
 ### Attention Mechanism in seq2seq models
@@ -1045,27 +1036,27 @@ Fixed source representation in basic seq2seq models may become a representation 
 Attention mechanism let the model focus on different parts of the input: the idea is to look back when decoding a sequence, to have a insight from the past. Decoder uses attention to decide which source parts are more important.
 It computes a weighted sum of the encoder's outputs (hidden states) to dynamically create a context vector for each decoding step.
 Attention mechanism are differentiable, thus trainable.
-Attention scores can be computed in different ways:
-* Simple dot-product (no paramters).
-* Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It introduces a weighting matrix and thus it has the matrix parameters.
-* Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. It learns a FFNN and thus it has the parameters of the network.
+Attention scores can be computed in different ways: 
+- Simple dot-product (no paramters).
+- Bilinear function (aka "Luong attention"): multiply each state such that you learn the bilinear projection that will make the score important. It introduces a weighting matrix and thus it has the matrix parameters.
+- Multi-layer perceptron (aka "Bahdanau attention"): it concatenate current and previous state to apply a tanh to the combined weighted sum. It learns a FFNN and thus it has the parameters of the network.
 <figure><img src="assets/Screenshot 2024-12-17 155832.png" alt="" width="563"><figcaption><p>red: decoder information (skip signal)<br>green: encoder information (gate signal)</p></figcaption></figure>
 By using attention mechanism in seq2seq models, the whole input is evaluated at each step of the sequence generation: the input is a sort of context memory. On the other hand, seq2seq models without attention mechanism cancel the input once the encoding is completed.
 #### Chatbots generative response
 Chatbots can be defined along at least two dimensions: core algorithm and context handling.
-* Generative: encode the question into a context vector and generate the answer word by word using conditioned probability distribution over answer's vocabulary.
-  * Single turn: build the input vector by considering the incoming question. They may lose important information about the history of the conversation and generate irrelevant responses $\{(q_i, a_i)\}$.
-  * Multi-turn: the input vector is built by considering a multi-turn conversational context, containing also incoming question $\{([q_{i-2}; a_{i-2};q_{i-1};a_{i-1}], a_i)\}$.
-* Retrieval: rely on knowledge base of question-answer pairs. When a new question comes is, inference phase encodes it in a context vector and by using similarity measure retrieves the top-k neighbor knowledge base items.
+- Generative: encode the question into a context vector and generate the answer word by word using conditioned probability distribution over answer's vocabulary.
+	- Single turn: build the input vector by considering the incoming question. They may lose important information about the history of the conversation and generate irrelevant responses $\{(q_i, a_i)\}$.
+	- Multi-turn: the input vector is built by considering a multi-turn conversational context, containing also incoming question $\{([q_{i-2}; a_{i-2};q_{i-1};a_{i-1}], a_i)\}$.
+- Retrieval: rely on knowledge base of question-answer pairs. When a new question comes is, inference phase encodes it in a context vector and by using similarity measure retrieves the top-k neighbor knowledge base items.
 
 We can directly apply seq-to-seq models to the conversation between two agents.
 
 NLP community believed LSTMs with attention could yield SOTA performance on any task. But some limits were preventing this:
-* Performing inference (and training) is sequential in nature.
-* Parallelization at sample level is precluded by recurrence sequential nature.
-* Parallelization can happen only at level of batch.
-* Memory constraints limit batching across to many examples.
-* This becomes critical at longer sequence length.
+- Performing inference (and training) is sequential in nature.
+- Parallelization at sample level is precluded by recurrence sequential nature.
+- Parallelization can happen only at level of batch.
+- Memory constraints limit batching across to many examples.
+- This becomes critical at longer sequence length.
 
 Google proposes to speed up training by replacing RNN (sequential in nature) with attention mechanism (parallel in nature).
 <figure><img src="assets/Screenshot 2024-12-17 170047.png" alt="" width="446"><figcaption></figcaption></figure>
