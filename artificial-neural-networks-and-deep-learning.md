@@ -27,7 +27,7 @@ $$
 
 where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights assigned to each input features, $b$ is the bias term, and $y$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
 <figure><img src="assets/ceptron.png" alt="" width="375"><figcaption></figcaption></figure>
-According to the **Hebbian learning** **theory**: _"the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
+According to the **Hebbian learning theory**: *"the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target"*. 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
 $$
 \begin{cases}
@@ -174,13 +174,16 @@ Overfitting networks show a monotone training error trend (on average with SDG) 
 * Choose the model with best validation error (save best model).
 <figure><img src="assets/Screenshot 2024-10-02 101259.png" alt="" width="375"><figcaption></figcaption></figure>
 Model selection and evaluation happens at different levels: at parameters level, when we learn the weights for a NN, and/or at hyperparameters level, when we choose the number of layers or hidden neurons for a given layer. At some point, adding layers or hidden neurons only adds overfitting.
+
 ### Weight decay: limiting overfitting by weights regularization
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters apriori distribution.
 In general, small weights improve generalization of NN: $P(w) \sim N(0, \sigma^2_w)$ it means assuming that on average the weights are close to zero.
 <figure><img src="assets/Screenshot 2024-10-02 104652.png" alt="" width="375"><figcaption><p>Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".</p></figcaption></figure>
 To select the proper $\gamma$ we can use hyperparameter tuning tools, or cross-validation:
-* Split data in training and validation sets.
-* Minimize for different values of $\gamma$:  $$E_{\gamma}^{TRAIN} = \sum_{n=1}^{N_{TRAIN}} (t_n - g(x_n | w))^2 + \gamma \sum_{q=1}^Q (w_q)^2$$* Evaluate the model:  $$E_{\gamma^*}^{ VAL} = \sum_{n=1}^{N_{VAL}} (t_n - g(x_n | w))^2$$* Chose the $\gamma ^ ∗$ with the best validation error.
+- Split data in training and validation sets.
+- Minimize for different values of $\gamma$:  $$E_{\gamma}^{TRAIN} = \sum_{n=1}^{N_{TRAIN}} (t_n - g(x_n | w))^2 + \gamma \sum_{q=1}^Q (w_q)^2$$
+- Evaluate the model:  $$E_{\gamma^*}^{ VAL} = \sum_{n=1}^{N_{VAL}} (t_n - g(x_n | w))^2$$
+- Chose the $\gamma ^ ∗$ with the best validation error.
 * Put back all data together and minimize:  $$E_{\gamma^∗} = \sum_{n=1}^{N} (t_n - g(x_n | w))^2 + \gamma \sum_{q=1}^Q (w_q)^2$$
 ### Dropout: limiting overfitting by stochastic regularization
 By turning off randomly some neurons, the network is forced to learn redundant representations of data, preventing hidden units to rely on other units (co-adaptation) thus becoming more immune to random noise and training set peculiarities.
