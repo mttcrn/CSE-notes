@@ -6,7 +6,7 @@ A perfect cipher implementation. They key is pre-shared, used to encrypt a messa
 
 Perfect cipher are not vulnerable to bruteforce because of the minimal property.
 ### Block cipher
-![block_chiper](block_cipher.png)
+![](./assets/block_cipher.png)
 
 Assuming that the key is fixed, plaintext blocks with the same value will be encrypted to cypertext blocks with the same value. Under the assumption that the attacker only eavesdrops on the cypertext, if the attacker knows the position of a zero-filled plaintext block, she/he will be able to decrypt all the messages (the key is can be easily leaked). This can be fixed by adding a nonce to k that is increased at each block. So confidentiality is ensured.
 
@@ -37,7 +37,7 @@ PKI is a framework that manages the creation, distribution, management, and revo
 Each digital certificate must be verified before trusting.  This verification can be done both online (by fetching CRL) and offline (by using root CA) and the public key must be used. Both the validity period and the integrity must be checked.
 ### Digital signatures
 
-![[digital_signature.png]]
+![](./assets/digital_signature.png)
 
 Digital signatures provide strong evidence that data is bound to a specific user. No shared secret is needed to check. Proper signature cannot be repudiated by the user. 
 The message to be signed is first run through a hash function to produce a hash value (message digest). This hash value is a unique representation of the original message. Then it is encrypted using the signer's private key. This encrypted hash is the digital signature.
@@ -156,7 +156,6 @@ Different versions of the same malware are generated at each propagation, by rea
 Advantages: signature-based methods are ineffective, static analysis may be ineffective too.
 
 Bonus: it is possible to mix polymorphism and metamorphism to gain both the advantages (after decryption the malware rewrite itself).
-
 ### Anti-virus and Anti-malware
 - Signature-based detection (basic strategy): database of byte-level or instruction-level signatures that match known malware. Wildcards or regular expression can be used.
 - Heuristics: code execution in last section, incorrect header size, suspicious code section name, patched import address table.
