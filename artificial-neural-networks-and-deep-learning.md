@@ -3,7 +3,7 @@
 ## Introduction: ML and DL
 Machine Learning is a category of research and algorithms focused on finding patterns in data and using those patterns to make predictions. ML falls within the AI umbrella, which in turn intersects with the broader field of knowledge discovery and data mining.
 
-![AI_world](AI_world.png)
+![AI_world](./assets/AI_world.png)
 
 "A computer program is said to learn from experience E (data) w.r.t. some class of task T (regression, classification, ..) and a performance measure P (error, loss, ..), if its performance at task in T, as measured by P, improves because of experience E." (Tom Mitchell)
 
@@ -29,7 +29,7 @@ $$
 
 where $x_1, ..., x_n$ are the input features, $w_1, ..., w_n$ are the weights assigned to each input features, $b$ is the bias term, and $y$ is the output of the perceptron. It calculates the dot product of the weights and inputs, adds the bias term and then applies the activation function (which in this case is a step function). If the result is greater than zero the output is 1, if it is less or equal zero the output is -1.
 
-![perceptron](perceptron.png)
+![perceptron](./assets/perceptron.png)
 
 According to the **Hebbian learning theory**: "the strength of a synapse increases according to the simultaneous activation of the relative input and the desired target". 
 It states that if two neurons are active simultaneously, their connection is strengthened. The weight of the connection between A and B neurons is calculated using:
@@ -57,7 +57,7 @@ They are represented by a directed acyclic graph describing how the functions ar
 A simple non-linear model characterized by the number of neurons, activation functions,
 and the values of weights.
 
-- Activation functions must be differentiable to train it. ![activation_functions](activation_function.png)
+- Activation functions must be differentiable to train it. ![activation_functions](./assets/activation_function.png)
 - Layers are connected through weights $W^{(l)} = \{w_{ji}^{(l)}\}$. 
 - The output of a neuron depends only on the previous layers $h^{(l)} = \{h_j^{(l)}(h^{(l-1)}, W^{(l)})\}$.
 
@@ -101,7 +101,7 @@ $$
 
 Since using all the data points (batch) might be unpractical, so we use variations of the GD:
 
-![GD_var](GD_var.png)
+![GD_var](./assets/GD_var.png)
 
 In batch GD we use one batch and one epoch. 
 In SDG we need as many steps (iterations) as the number of data points since we fix one data point at a time. SDG has higher variance during loss minimization than batch GD. 
@@ -145,7 +145,7 @@ $$
 We have to minimize the **binary cross entropy**. In multiclass classification problem we use the **categorical cross entropy**.
 
 Error functions (like the ones just defined) define the task to be solved. They are defined using knowledge/assumptions on the data distribution, exploiting background knowledge on the task and the model or by trial and error.
-%%### Perceptron Learning Algorithm
+### Perceptron Learning Algorithm
 Let's consider the hyperplane (affine set) $L \in \mathbb{R}^2$ $L: w_0 + w^Tx = 0$.
 Any two points $x_1 , x_2$ on $L \in \mathbb{R}^2$ have $w^T (x_1 - x_2) = 0$.
 The versor normal to $L \in \mathbb{R}^2$ is then $w^* = {w \over ||w||}$.
@@ -153,10 +153,10 @@ For any point $x_0$ in $L \in \mathbb{R}^2$ we have $w^Tx_0 = -w_0$.
 The signed distance of any point $x$ from $L \in \mathbb{R}^2$ is defined by $w^{*T}(x - x_0) = {1 \over ||w||}(w^Tx + w_0)$.
 The idea is that $(w^Tx + x_0)$ is proportional to the distance of $x$ from the plane defined by $(w^Tx + w_0) = 0$. 
 
-![algebra](algebra.png)
+![algebra](./assets/algebra.png)
 
 It can be shown that the error function the Hebbian rule is minimizing is the distance of misclassified points from the decision boundary.
-Let's code the perceptron output as +1/-1: If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.%%
+Let's code the perceptron output as +1/-1: If an output which would be +1 is misclassified then $w^Tx + w_0 <0$.
 * For an output with -1 we have the opposite.
 
 The goal becomes minimizing:
@@ -172,7 +172,7 @@ Too simple models underfit the data, while too complex model overfit the data an
 A way to measure generalization is not trough training error/loss: the classifier has been learning from that data, so any estimate on that data will be optimistic. New data will probably not be exactly the same as training data.\
 We need to test on an independent test set that can come from a new dataset, by splitting the initial data or by performing random sub sampling (with replacement) of the dataset.
 
-![[splitting.png]]
+![[./assets/splitting.png]]
 - Training dataset: the available data.
 - Training set: the data used to learn model parameters.
 - Test set: the data used to perform the final model assessment.
@@ -194,14 +194,14 @@ Overfitting networks show a monotone training error trend (on average with SDG) 
 - Train on the training set.
 - Perform cross-validation on the hold out set.
 - Stop train when validation error increases: it is an online estimate of the generalization error.
-- Choose the model with best validation error (save best model). ![[cross-validation.png]]
+- Choose the model with best validation error (save best model). ![[./assets/cross-validation.png]]
 
 Model selection and evaluation happens at different levels: at parameters level, when we learn the weights for a NN, and/or at hyperparameters level, when we choose the number of layers or hidden neurons for a given layer. At some point, adding layers or hidden neurons only adds overfitting.
 ### Weight decay: limiting overfitting by weights regularization
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters apriori distribution.
 In general, small weights improve generalization of NN: $P(w) \sim N(0, \sigma^2_w)$ it means assuming that on average the weights are close to zero.
 
-![[regularization.png]]
+![[./assets/regularization.png]]
 Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".
 
 To select the proper $\gamma$ we can use hyperparameter tuning tools, or cross-validation:
@@ -218,7 +218,7 @@ It behaves as an ensemble method: it trains weaker classifiers on different mini
 ### Better activation functions
 Activation functions such as Sigmoid or Tanh saturate: the gradient is close to zero, or anyway less than 1. This is an issue in back-propagation, since it requires gradient multiplication and in this way learning in deep networks does not happen. It is the **varnishing gradient problem**.
 
-![[sigmoid_tanh.png]]
+![[./assets/sigmoid_tanh.png]]
 The derivatives are bounded between \[0, 1] causing vanishing gradient problem.
 
 To overcome this problem we can use the Rectified Linear Unit (**ReLU**) activation function: $$g(a) = ReLu(a) = max(0,a)$$$$g'(a) = 1_{a >0}$$
@@ -275,7 +275,7 @@ In a NN, we have to take into account:
 Batch normalization (BN) normalizes the pre-activation (input to the activation function) to have zero mean and unit variance for each mini-batch, then, it applies a learnable linear transformation to allow the model to scale and shift the normalized values.
 It is placed after FC or conv layers, and before non-linear activation functions.
 
-![[batch_normalization_alg.png]]
+![[./assets/batch_normalization_alg.png]]
 Normalization is a linear operation, so it can be back-propagated.
 scale and shift is a linear transformation used so that the network can learn how much normalization needs.
 
@@ -285,7 +285,7 @@ Batch normalization has shown to:
 - Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
 - Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
 ### More about gradient descent: Nesterov accelerated gradient
-![[Nesterov_accelerated_gradient.png]]
+![[./assets/Nesterov_accelerated_gradient.png]]
 Idea: make a jump as momentum, then adjust.
 ### Adaptive Learning Rates
 Neurons in each layer learn differently: gradient magnitudes very across layers, early layer get "vanishing gradients". Ideally, we should use separate adaptive learning rates.
@@ -301,7 +301,7 @@ Visual data are very redundant, thus compressible. However, this must be taken i
 These transformations mix all the pixel locally, "around" the neighborhood of a given pixel: $G(r, c) = T_U [I](r, c)$ where $I$ is the input image, $G$ is the output, $U$ is a neighborhood (region defining the output) and $T_U : \mathbb{R}^3 \rightarrow \mathbb{R}^3$ or $T_U : \mathbb{R}^3 \rightarrow \mathbb{R}$ is the spatial transform function. 
 The output at pixel $T_U [I](r, c)$ is defined by all the intensity values: $\{I(u, v), (u-r, v-c) \in U\}$.
 
-![[local_transformation.png]]
+![[./assets/local_transformation.png]]
 The dashed square represents all the intensity values, where (u, v) has to be interpreted as "displacement vector" w.r.t. the neighborhood center (r, c).
 Space invariant transformations are repeated for each pixel (do not depend on r, c).
 T can be either linear or nonlinear.
@@ -309,13 +309,13 @@ T can be either linear or nonlinear.
 Linearity implies that the output $T_U[I](r, c)$ is a linear combination of the pixels in $U$: $\sum _{(u, v) \in U} w_i(u, v) * I(r+u, c+v)$.
 We can consider weights as an image, or a filter h. The filter h entirely defines this operation. The filter weights can be associated to a matrix w. This operation is repeated for each pixel in the input.
 
-![[Screenshot 2024-10-15 094510.png]]
+![[filter.png]]
 ### Correlation
 The correlation among a filter $w = \{w_{ij}\}$ and an image is defined as:$$
 (I \otimes w)(r, c) = \sum_{u = -L}^L \sum_{v = -L}^L w(u, v) * I(r+u, c+v)
 $$where the filter h is of size $(2L +1) \times (2L + 1)$ contains the weights defined before as w. The filter w is also called kernel.
 
-![[correlation.png]]
+![[./assets/correlation.png]]
 
 The correlation  formula holds even when inputs are grayscale images:
 $$
@@ -335,7 +335,7 @@ It is equivalent to correlation up to a "flip" in the filter w.
 Assign to an input image $I \in \mathbb{R}^{R \times C \times 3}$ a label y from a fixed set of categories $\Lambda$. The classifier is a function $f_0$ such that $I \rightarrow f_0 (I) \in \Lambda$.
 Column-wise unfolding can be implemented: colors recall the color plane where images are from.
 
-![[column-wise_unfolding.png]]
+![[./assets/column-wise_unfolding.png]]
 
 An image classifier can be seen as a function that maps an image I to a confidence scores for each of the L class: $$\mathcal{K} : \mathbb{R}^d \rightarrow \mathbb{R}^L$$where $\mathcal{K}(I)$ is a L-dimensional vector and the $i_{th}$ component $s_i = [\mathcal{K}(I)]_i$ contains a score of how likely $I$ belongs to class $i$.
 A good classifier associates the largest score to the correct class.
@@ -371,7 +371,9 @@ This would not be the case if the network had hidden layer that would mix the ou
 
 Each image is interpreted as a point in $\mathbb{R}^d$. Each classifier is a weighted sum of pixels, which corresponds to a linear function in $\mathbb{R}^d$.
 In $\mathbb{R}^2$ these would be $f([x_1, x_2]) = w_1 x_1 + w_2 x_2 + b$. Then, points $[x_1, x_2]$ yielding $f([x_1, x_2]) = 0$ would be lines that separates positive from negative scores for each class. This region becomes an hyperplane in $\mathbb{R}^d$.
-<figure><img src="assets/Screenshot 2025-01-20 102319.png" alt="" width="400"><figcaption></figcaption></figure>
+
+![[linear_classification.png]]
+
 The classification score is then computed as the correlation between each input image and the "template" of the corresponding class.
 ## Challenges of image recognition
 - Dimensionality: images are very high-dimensional image data as the whole batch and the corresponding activation must be stored in memory during training,
@@ -395,10 +397,12 @@ A hand-crafted feature extraction can be implemented:
 The image get convoluted against many filters. When progressing along the network, the "number of images" or the "number of channels in the image" increases, while the image size decreases. Once the image gets to a vector, it is fed to a traditional NN.\
 CNN are typically made of convolutional layers, nonlinearities (activation functions) and pooling layers (subsampling/maxpooling).
 
-<figure><img src="assets/Screenshot 2024-10-21 085753.png" alt="" width="563"><figcaption><p>An image passing through a CNN is transformed in a sequence of volumes.<br>Each layer takes as input and returns a volume.</p></figcaption></figure>
+![[CNN_volumes.png]]
+An image passing through a CNN is transformed in a sequence of volumes.
+Each layer takes as input and returns a volume.
 
-<div align="center"><figure><img src="assets/Screenshot 2024-10-21 090038.png" alt="" width="563"><figcaption><p>The volumes (spatial dimension, height and width) reduces, while the depth (number of channel) increases.<br>Initially we have 3 channels (RGB), then for each pixel we take a small neighborhood and <br>it becomes a single number.</p></figcaption></figure></div>
-
+![[CNN_volumes(1).png]]
+The volumes (spatial dimension, height and width) reduces, while the depth (number of channel) increases. Initially we have 3 channels (RGB), then for each pixel we take a small neighborhood and it becomes a single number.
 ### Convolutional layers
 It mix all the input components, so that the output is a linear combination of all the values in a region of the input, considering all the channels. The parameters of the layers are called filters.
 
@@ -422,13 +426,17 @@ Strides reduces the spatial extent by "sliding" the filter over an input with a 
 They introduce non-linearity in the network, otherwise the CNN might be equivalent to a linear classifier. They are scalar functions and they operate on each single value of the volume. They DO NOT change the volume size.
 ### Pooling layers
 They reduce the spatial size of the volume. They operate independently on every depth slice of the input and resizes it spatially, often using the MAX operation.
-<figure><img src="assets/Screenshot 2025-01-20 113131.png" alt="" width="450"><figcaption></figcaption></figure>
+
+![[pooling.png]]
+
 Typically, the stride is assumed equal to the pooling size (where not specified maxpooling has a stride 2x2 and reduces the image size to 25%).
 It is also possible to use a different stride. It is possible to adopt stride = 1, which does not reduce the spatial size, but just perform pooling on each pixel (it makes sense with non linear pooling).
 ### Dense layers
 In a dense layer each output neuron is connected to each input neuron: dense layers discard spatial relationships, focusing only on feature combinations.
 They can contribute to overfitting as they have FC neurons, resulting in a large number of trainable parameters. This high parameter count increases the model's capacity to memorize the training data instead of generalizing to unseen data.
-<figure><img src="assets/Screenshot 2025-01-20 113537.png" alt="" width="563"><figcaption><p>FEN (feature extraction network) structure.<br>The output is a FC layer which has the same size as the number of classes, and provides a score for the input image to belong to each class.</p></figcaption></figure>
+
+![[FEN.png]]
+FEN (feature extraction network) structure. The output is a FC layer which has the same size as the number of classes, and provides a score for the input image to belong to each class.
 #### Dense layer vs. Convolutional layer
 Since convolution is a linear operation, if we unroll the input image to a vector then we can consider the convolution weights as the weights of a dense layer. So both convolution and dense layer can be described as a linear operator.
 
@@ -484,13 +492,13 @@ It is particularly useful for test images where the model is quite unsure but ex
 The element $C(i, j)$ corresponds to the percentage of elements belonging to class $i$ classified as elements of class $j$. The ideal matrix is the identity.
 ### Receiving operating characteristic (ROC)
 In binary classification, the CNN output is equivalent to a scalar since $CNN(I) = [p, 1-p]$ being $p$ the probability of $I$ to belong to the first class.
-Thus, we can write $CNN(I) = p$ and we can decide that $I$ belong to the first class when $p > \Gamma$$ and use $\Gamma \neq 0.5$ which is the standard (as we require a stronger evidence).
+Thus, we can write $CNN(I) = p$ and we can decide that $I$ belong to the first class when $p > \Gamma$ and use $\Gamma \neq 0.5$ which is the standard (as we require a stronger evidence).
 Changing $\Gamma$ established a trade off between FPR and TPR.
 
 Classification performance in case of binary classifiers can be also measured in terms of the ROC curve, which does not depend on the threshold setted for each class.
 The ideal detector would achieve $FPR = 0\%$ and $TPR = 100\%$. Thus, the closer to (0, 1) the better, the larger the area under the curve (AUC) the better.
 
-<figure><img src="assets/Roc_curve.svg.png" alt=""><figcaption></figcaption></figure>
+![[./assets/Roc_curve.svg.png]]
 
 ### Transfer Learning
 1. Take a powerful pre-trained NN (ex. ResNet, EfficientNet, MobileNet, ..).
@@ -502,14 +510,18 @@ The ideal detector would achieve $FPR = 0\%$ and $TPR = 100\%$. Thus, the closer
 In transfer learning, typically only the fully connected layers (or newly added layers) are trained, while the convolutional base remains frozen. It is a good option when little training data are provided and the pre-trained model is expected to match the problem easily.
 
 Fine-tuning involves training some or all of the conv layers in addition to the FC layers. A good option when enough training data are provided or when the pre-trained model is not expected to match the problem easily. Typically, lower learning rates are used than when training from scratches.
-<figure><img src="assets/Screenshot 2025-01-21 100832.png" alt="" width="439"><figcaption></figcaption></figure>
+
+![[fine_tuning.png]]
+
 ### Image retrieval from the latent space
-<figure><img src="assets/Screenshot 2024-11-04 083908.png" alt=""><figcaption><p>Features are good for image retrieval. <br>Take an input image and compute the latent vector associated, then find images having the closest latent representation. </p></figcaption></figure>
+![[image_retrival_latent_space.png]]
+Features are good for image retrieval.Take an input image and compute the latent vector associated, then find images having the closest latent representation.
 
 Latent space is the lower-dimensional representation of input data learned by a model. It captures the essential, high-level features or patterns of the data, discarding irrelevant or redundant details.
 ## Famous CNN architectures
 ### LeNet-5: first architecture
-<figure><img src="assets/Screenshot 2024-11-04 084515.png" alt="" width="563"><figcaption><p>Small input size, very simple task (text and images).</p></figcaption></figure>
+![[le-net5.png]]
+Small input size, very simple task (text and images).
 ### AlexNet
 A big LeNet-5 architecture (around 60 millions parameters): it is able to classify natural images and solve a real classification problem.
 It is made of 5 convolutional layers followed by a large multi-layer perceptron (which contains almost all parameters 94%). The first conv layer has 96 11x11 filters, with stride 4 (big filters).
@@ -522,7 +534,8 @@ To counteract overfitting, they introduced: RELU (also faster than tanh), 0.5 dr
 ### VGG16
 It is a deeper variant of the AlexNet convolutional structure. Smaller filters are used and the network is deeper. It has 138 million parameters split among conv layers (11%) and FC layers (89%).
 
-<figure><img src="assets/Screenshot 2024-11-04 085746.png" alt="" width="563"><figcaption><p>"Fix other parameters of the arch. and steadily increase the depth of the network by adding more conv. layers, which is feasible due to the use of very small (3x3) convolution filters in all layers"</p></figcaption></figure>
+![[vgg16.png]]
+"Fix other parameters of the arch. and steadily increase the depth of the network by adding more conv. layers, which is feasible due to the use of very small (3x3) convolution filters in all layers"
 
 The idea is to use multiple 3x3 convolution in a sequence to achieve large receptive fields: it leads to less parameters and more nonlinearities than using lager filters in a single layer.
 
@@ -530,10 +543,14 @@ It require high memory, about 100MB per image to be stored with all the activati
 ### Network in Network (NiN)
 It uses MLPconv layers (sequence of FC + RELU) instead of conv layers. It uses a stack of FC layers followed by RELU in a sliding manner on the entire image. This corresponds to MLP networks used convolutionally (still preserving sparsity and weight sharing).
 Each layer features a more powerful functional approximation than a conv layer.
-<figure><img src="assets/1_SPxyv6TZPlqFnM7LqZ6Dug.png" alt="" width="563"><figcaption></figcaption></figure>
+
+![[MLPconvlayer.png]]
+
 They also introduce global average pooling layers (GAP): instead of a FC layer at the end of the network, compute the average of each feature map.
 The GAP corresponds to a multiplication against a block diagonal, non-trainable, constant matrix (the input is flattened layer-wise in a vector).
-<figure><img src="assets/Screenshot 2025-01-21 102518.png" alt="" width="269"><figcaption></figcaption></figure>
+
+![[GAP.png]]
+
 Since fully connected layers are prone to overfitting (many parameters) then the GAP was introduced to remove those layers.
 
 In general, GAP can be used with more/fewer classes than channels provided an hidden layer to adjust feature dimension. The number of feature maps has to correspond to the number of output classes.
@@ -547,7 +564,9 @@ In general, GAP can be used with more/fewer classes than channels provided an hi
 - The network can be used to classify images of different sizes.
 
 Global pooling layers perform a global operation on each channel, along the spatial component, and out of each channel it keep a single value. Pooling operations can be the avg (GAP) or the max (GMP).
-<figure><img src="assets/Screenshot 2025-01-21 103103.png" alt="" width="563"><figcaption><p>Simple NiNs achive state-of-art performance on "small" datasets and GAP effectively reduces overfitting w.r.t. FC. </p></figcaption></figure>
+
+![[NiN.png]]
+Simple NiNs achieve state-of-art performance on "small" datasets and GAP effectively reduces overfitting w.r.t. FC. 
 ### InceptionNet and GoogleLeNet: multiple branches
 
 The most straightforward way of improving the performance of deep NN is by increasing their size (either in depth or width).
@@ -555,12 +574,15 @@ Bigger size typically means a larger number of parameters, which makes the enlar
 Moreover, image features might appear at different scales, and it is difficult to define the right filter size.
 
 Both GoogleLeNet and InceptionV1 are deep networks, with high computational efficiency. Only 5 million parameters and 22 layers of inception modules, which are sort of "local modules" where multiple convolutions are run in parallel.
-<figure><img src="assets/Screenshot 2025-01-21 105104.png" alt="" width="563"><figcaption><p>Inception moule.</p></figcaption></figure>
+
+![[inception_module.png]]
+
 The solution is to exploit multiple filter size at the same level and then merge by concatenation the output activation maps together: zero padding is used to preserve spatial size, the activation map grows much in dept, a large number of operations to be performed due to the large depth of the input of each conv block.
 
 Activation volumes are concatenated along the channel-dimension. All the blocks preserve the spatial dimension by zero-padding (conv filters) or by fractional stride (for maxpooling). Thus, outputs can be concatenated depth-wise.
 
-<figure><img src="assets/Screenshot 2025-01-21 105321.png" alt=""><figcaption><p>Inception module with dimension reductions.</p></figcaption></figure>
+![[inception_module_res.png]]
+Inception module with dimension reductions.
 
 The spatial extent is preserved, but the depth of the activation map is much expanded. This is very expensive to compute.
 To reduce the computational load of the network, the number of input channels of each conv layer is reduced thanks to 1x1 conv layers before the 3x3 and 5x5 convolutions. These 1x1 conv is referred as "bottleneck" layer.
@@ -579,10 +601,12 @@ Adding an identity shortcut connection:
 - Helps in mitigating the vanishing gradient problem and enables deeper architectures.
 - Does not add any parameter or significant computational overhead.
 - In case the network layers till the connection were optimal, the weights to be learned goes to zero and information is propagated by the identity.
-- The network can still be trained through back-propagation.
-<figure><img src="assets/Screenshot 2025-01-21 105630.png" alt="" width="304"><figcaption><p>Identitiy shortcut connection.<br>Residual connection.</p></figcaption></figure>
+- The network can still be trained through back-propagation. 
+
+![[residual.png]]
+
 It force the network to learn a different task in each block.
-- \mathcal{F}(x)$ is the residual, which turns to be easier to train in deep networks.
+- $\mathcal{F}(x)$ is the residual, which turns to be easier to train in deep networks.
 - Weights in between skip connections can be used to learn the residual to improve the solution that can be achieved by a shallow network.
 - Since $x$ and $\mathcal{F}(x)$ must have the same size, the convolutional layers in between are to preserve dimension in space-wise and depth-wise.
 
@@ -628,20 +652,25 @@ Semantic segmentation faces an inherent tension between semantics and location: 
 - On the other hand, we want to stay local not to loose spatial resolution in the predictions.
 
 Combining fine layers and coarse layers lets the model make local predictions that respect global structure.
-<figure><img src="assets/Screenshot 2024-11-16 173459.png" alt="" width="563"><figcaption><p>An architecture like this would probably be more suitable: the first half is the same of a classification network, while the second half is meant to upsample the predictions to cover each pixel in the image. <br>Increasing the image size is necessary to obtain sharp contours and spatially detailed class prediction.<br>encoder (downsampling) -> decoder (upsampling)</p></figcaption></figure>
+![[FCNN.png]]
+
+An architecture like this would probably be more suitable: the first half is the same of a classification network, while the second half is meant to upsample the predictions to cover each pixel in the image. Increasing the image size is necessary to obtain sharp contours and spatially detailed class prediction.
+
 Upsampling based on convolution gives more degrees of freedom, since the filters can be learned.
 
 Training is based on a weighted loss function: class-specific weights can be used to adjust the importance of each class to handle class imbalance or emphasizing certain classes that are more critical.
 
 Random masking involves randomly occluding (masking) parts of the input image or label map during training. This is typically done by setting random regions of the input image or label to zero (or another placeholder value). It mimics the effect of selectively removing some data during training, which introduces stochasticity into the learning process.
 #### Upsampling and Max Unpooling
-<figure><img src="assets/Screenshot 2025-01-21 115016.png" alt="" width="563"><figcaption></figcaption></figure>
+![[upsampling_unpooling.png]]
 #### Transpose convolution
-<figure><img src="assets/Transposed-Convolutional-1.png" alt="" width="563"><figcaption><p>Stride gives ratio between movement in output and input.<br>It can be replaced by Upsampling + Convolution.</p></figcaption></figure>
+![[T_conv.png]]
+Stride gives ratio between movement in output and input. It can be replaced by Upsampling + Convolution.
 #### U-Net
 Network formed by: a contracting and an extensive path. It has NO FC layers, everything is convolutional.
 It use a large number of feature channels in the upsampling part. It use excessive data-augmentation by applying elastic deformations to the training images.
-<figure><img src="assets/1_zYrwp34DslR_9wLHMVAITg.png" alt="" width="563"><figcaption><p>At each downsampling the number of feature maps is doubled.</p></figcaption></figure>
+![[U-net.png]]
+At each downsampling the number of feature maps is doubled.
 ### CNN: images with different size
 CNNs are meant to process input of a fixed size. The conv and subsampling layers operate in a sliding manner, so they can be applied to images of any size. The FC layer constrains the input to a fixed size. Thus CNN cannot compute class scores yet extract feature when fed with images with different size.
 
@@ -683,10 +712,11 @@ Limitations of full-image training and solutions:
 In general, normalization is useful in gradient-based optimizers.
 Normalization is meant to bring training data "around the origin" and possibly further rescale the data.
 In practice, optimization on pre-processed data is made easier and results are less sensitive to perturbations in the parameters.
-<figure><img src="assets/Screenshot 2024-11-22 091247.png" alt="" width="524"><figcaption></figcaption></figure>
 
-<figure><img src="assets/Screenshot 2024-11-22 091333.png" alt="" width="524"><figcaption><p>PCA/whitening preprocessing is generally performed after having "zero-centered" the data.</p></figcaption></figure>
-PCA/whitening preprocessing are not commonly used with CNN. The most frequent is zero-centering the data, and normalization.
+![[preprocessing.png]]
+![[preprocessing(1).png]]
+
+PCA/whitening preprocessing are generally performed after having "zero-centered" the data. They are not commonly used with CNN. The most frequent is zero-centering the data, and normalization.
 
 Normalization statistics are parameters of the ML model: any preprocessing statistics must be computed on training data, and applied to the validation/test data. First split in training, validation and test and then normalize the data.
 When using pre-trained model it is better to use the given pre-processing function.
@@ -727,7 +757,10 @@ The advantages of GAP layer extend beyond simply acting as a structural regulari
 
 Assuming that we have a CNN architecture trained, so at the end of the convolutional block we have $n$ feature maps $f_k (\cdot, \cdot)$ having resolution "similar" to the input image and a GAP layer that computes $n$ averages $F_k$.
 By adding a single FC layer after the GAP, we can compute $S_c$ for each class $c$ as the weighted sum of $\{F_k\}$, where weights are defined during training, and the class probability $P_c$.
-<figure><img src="assets/Screenshot 2024-11-22 104719.png" alt="" width="251"><figcaption><p>Thanks to the FC layer, the number of channels of the last conv layer can differ from the number of classes.</p></figcaption></figure>
+
+![[FC-layer.png]]
+Thanks to the FC layer, the number of channels of the last conv layer can differ from the number of classes.
+
 Last layer weights $\{w_k^c\}$ encode how relevant each feature map is to yield the final prediction.
 CAM is defined as $$M_c(x, y) = \sum_k w_k^c f_k (x, y)$$and it directly indicates the importance of the activations at $(x, y)$ for predicting the class $c$.
 
@@ -752,9 +785,14 @@ DeepNN have million parameters: their inner function is obscure.
 Saliency maps are used to understand model mistakes or discover semantic errors.
 
 Heat maps should be class discriminative and they should capture fine-grained details (high-resolution). This is critical in many applications.
-<figure><img src="assets/Screenshot 2024-11-22 110235.png" alt=""><figcaption><p>Grad-CAM and CAM-based techniques are also used in understanding DeepNN.</p></figcaption></figure>
+
+![[CAM.png]]
+Grad-CAM and CAM-based techniques are also used in understanding DeepNN.
+
 Augmented Grad-CAM increase the heat maps resolutions through image augmentation. All Grad-CAM that the CNN generates, when fed with multiple augmented version of the same input image, are very informative for reconstructing the high resolution heat map $h$.
-<figure><img src="assets/Screenshot 2024-11-22 110431.png" alt=""><figcaption><p>Heat map Super Resolution (SR) is performed by taking advantage of the information shared in multiple low-resolution heat maps computed from the same input under different, but known, transformations <span class="math">\mathcal{A}_l</span>.</p></figcaption></figure>
+
+
+Heat map Super Resolution (SR) is performed by taking advantage of the information shared in multiple low-resolution heat maps computed from the same input under different, but known, transformations $\mathcal{A}_l$
 
 Perception visualization provides an explanation by exploiting a NN to invert latent representation: it shows "where" and "what", so "why".
 It gives better insights on the model's functioning than what was previously achievable using only saliency maps (that only shows "where").
@@ -1103,14 +1141,18 @@ NLP community believed LSTMs with attention could yield SOTA performance on any 
 - This becomes critical at longer sequence length.
 
 Google proposes to speed up training by replacing RNN (sequential in nature) with attention mechanism (parallel in nature).
-<figure><img src="assets/Screenshot 2024-12-17 170047.png" alt="" width="446"><figcaption></figcaption></figure>
+
+![[comparison-seq2se2-transformer.png]]
 ## Transformers
-<figure><img src="assets/image (184).png" alt=""><figcaption><p>Feed forward blocks with two linear layers and ReLU activation.<br>A normalization layer normalize each single vector representation in a batch independently, applies scale and bias globally (which are trainable layer level parameters).<br>Incorporates residual connections. </p></figcaption></figure>
+![[./assets/image (184).png]]Feed forward blocks with two linear layers and ReLU activation.<br>A normalization layer normalize each single vector representation in a batch independently, applies scale and bias globally (which are trainable layer level parameters).<br>Incorporates residual connections. 
 ### Self attention
 It was introduces in transformers to encode each input token according to the others input tokens. The same happens with the decoder, but with a masked approach: since during inference we do not know the word following the current processed word, it is not possible to compute the attention score, so we simply mask them (by adding -inf to their multiplication) so that they will not influence current word.
 
 It operates between representation of the same nature. It is implemented via query ("what to focus on"), key ("what each element represents") and value (actual information). The use of query, key and value allows parallel execution.
-<figure><img src="assets/Screenshot 2025-01-22 145450.png" alt="" width="362"><figcaption><p>For each query, the attention score is calculated via the dot product between the query and all keys.</p></figcaption></figure>
+
+![[attention.png]]
+For each query, the attention score is calculated via the dot product between the query and all keys.
+
 Self-attention mechanism is permutation invariant by nature as it does not depend on the position or the order of words in the sequence. **Positional encoding** is used to make self-attention depend also on the position of the input.
 A unique positional encoding vector is added to each token embedding, with the purpose  to represent the token's position in the sequence. It is often computed using sine and cosine functions of different frequencies.
 #### Multi-head attention
