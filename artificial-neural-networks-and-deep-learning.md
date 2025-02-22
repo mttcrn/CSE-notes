@@ -194,14 +194,14 @@ Overfitting networks show a monotone training error trend (on average with SDG) 
 - Train on the training set.
 - Perform cross-validation on the hold out set.
 - Stop train when validation error increases: it is an online estimate of the generalization error.
-- Choose the model with best validation error (save best model). ![[Screenshot 2024-10-02 101259.png]]
+- Choose the model with best validation error (save best model). ![[cross-validation.png]]
 
 Model selection and evaluation happens at different levels: at parameters level, when we learn the weights for a NN, and/or at hyperparameters level, when we choose the number of layers or hidden neurons for a given layer. At some point, adding layers or hidden neurons only adds overfitting.
 ### Weight decay: limiting overfitting by weights regularization
 Regularization is about constraining the model "freedom" by using a Bayesian approach: we make assumption on the parameters apriori distribution.
 In general, small weights improve generalization of NN: $P(w) \sim N(0, \sigma^2_w)$ it means assuming that on average the weights are close to zero.
 
-![[Screenshot 2024-10-02 104652.png]]
+![[regularization.png]]
 Regularization can be performed by adding to the loss function the L2 norm (Ridge) or L1 norm (Lasso) of the weights, times a gamma factor. It is a sort of "penalty factor".
 
 To select the proper $\gamma$ we can use hyperparameter tuning tools, or cross-validation:
@@ -217,7 +217,10 @@ It behaves as an ensemble method: it trains weaker classifiers on different mini
 ## Tips and tricks: best practices in NN
 ### Better activation functions
 Activation functions such as Sigmoid or Tanh saturate: the gradient is close to zero, or anyway less than 1. This is an issue in back-propagation, since it requires gradient multiplication and in this way learning in deep networks does not happen. It is the **varnishing gradient problem**.
-<figure><img src="assets/sigmoid_tanh.png" alt=""><figcaption><p>The derivatives are bounded between [0, 1] causing vanishing gradient problem.</p></figcaption></figure>
+
+![[sigmoid_tanh.png]]
+The derivatives are bounded between \[0, 1] causing vanishing gradient problem.
+
 To overcome this problem we can use the Rectified Linear Unit (**ReLU**) activation function: $$g(a) = ReLu(a) = max(0,a)$$$$g'(a) = 1_{a >0}$$
 It has several advantages:
 - Faster SDG convergence (6x more than sigmoid/tanh).
@@ -271,14 +274,18 @@ In a NN, we have to take into account:
 
 Batch normalization (BN) normalizes the pre-activation (input to the activation function) to have zero mean and unit variance for each mini-batch, then, it applies a learnable linear transformation to allow the model to scale and shift the normalized values.
 It is placed after FC or conv layers, and before non-linear activation functions.
-<figure><img src="assets/Screenshot 2025-01-19 171319.png" alt="" width="305"><figcaption><p>normalization is a linear operation, so it can be back-propagated.<br>scale and shift is a linear transformation used so that the network can learn how much normalization needs.</p></figcaption></figure>
+
+![[batch_normalization_alg.png]]
+Normalization is a linear operation, so it can be back-propagated.
+scale and shift is a linear transformation used so that the network can learn how much normalization needs.
+
 Batch normalization has shown to:
 - Improve gradient flow trough the network.
 - Allow using higher learning rates (faster learning).
 - Reduce the strong dependence on weights initialization (indirectly mitigates overfitting).
 - Acts as a form of regularization slightly reducing the need for dropout (indirectly mitigates overfitting).
-### More about gradient descent: Nesterov Accelerated gradient
-<figure><img src="assets/Screenshot 2024-10-09 144458.png" alt="" width="563"></figure>
+### More about gradient descent: Nesterov accelerated gradient
+![[Nesterov_accelerated_gradient.png]]
 Idea: make a jump as momentum, then adjust.
 ### Adaptive Learning Rates
 Neurons in each layer learn differently: gradient magnitudes very across layers, early layer get "vanishing gradients". Ideally, we should use separate adaptive learning rates.
@@ -294,16 +301,22 @@ Visual data are very redundant, thus compressible. However, this must be taken i
 These transformations mix all the pixel locally, "around" the neighborhood of a given pixel: $G(r, c) = T_U [I](r, c)$ where $I$ is the input image, $G$ is the output, $U$ is a neighborhood (region defining the output) and $T_U : \mathbb{R}^3 \rightarrow \mathbb{R}^3$ or $T_U : \mathbb{R}^3 \rightarrow \mathbb{R}$ is the spatial transform function. 
 The output at pixel $T_U [I](r, c)$ is defined by all the intensity values: $\{I(u, v), (u-r, v-c) \in U\}$.
 
-<figure><img src="assets/Screenshot 2024-10-15 093835.png" alt=""><figcaption><p>The dashed square represents all the intensity values, where (u, v) has to be interpreted as "displacement vector" w.r.t. the neighborhood center (r, c).<br>Space invariant transformations are repeated for each pixel (do not depend on r, c). <br>T can be either linear or nonlinear.</p></figcaption></figure>
+![[local_transformation.png]]
+The dashed square represents all the intensity values, where (u, v) has to be interpreted as "displacement vector" w.r.t. the neighborhood center (r, c).
+Space invariant transformations are repeated for each pixel (do not depend on r, c).
+T can be either linear or nonlinear.
 #### Local Linear filters
 Linearity implies that the output $T_U[I](r, c)$ is a linear combination of the pixels in $U$: $\sum _{(u, v) \in U} w_i(u, v) * I(r+u, c+v)$.
 We can consider weights as an image, or a filter h. The filter h entirely defines this operation. The filter weights can be associated to a matrix w. This operation is repeated for each pixel in the input.
-<figure><img src="assets/Screenshot 2024-10-15 094510.png" alt="" width="248"><figcaption></figcaption></figure>
+
+![[Screenshot 2024-10-15 094510.png]]
 ### Correlation
 The correlation among a filter $w = \{w_{ij}\}$ and an image is defined as:$$
 (I \otimes w)(r, c) = \sum_{u = -L}^L \sum_{v = -L}^L w(u, v) * I(r+u, c+v)
 $$where the filter h is of size $(2L +1) \times (2L + 1)$ contains the weights defined before as w. The filter w is also called kernel.
-<figure><img src="assets/Screenshot 2024-10-15 095243.png" alt="" width="563"><figcaption></figcaption></figure>
+
+![[correlation.png]]
+
 The correlation  formula holds even when inputs are grayscale images:
 $$
 T_U[I](r, c) = \sum_{(u,v) \in U} w_i(u, v) * I(r + u, c+v)
@@ -321,7 +334,9 @@ It is equivalent to correlation up to a "flip" in the filter w.
 ### The image classification problem
 Assign to an input image $I \in \mathbb{R}^{R \times C \times 3}$ a label y from a fixed set of categories $\Lambda$. The classifier is a function $f_0$ such that $I \rightarrow f_0 (I) \in \Lambda$.
 Column-wise unfolding can be implemented: colors recall the color plane where images are from.
-<figure><img src="assets/Screenshot 2024-10-15 100424.png" alt="" width="563"><figcaption></figcaption></figure>
+
+![[column-wise_unfolding.png]]
+
 An image classifier can be seen as a function that maps an image I to a confidence scores for each of the L class: $$\mathcal{K} : \mathbb{R}^d \rightarrow \mathbb{R}^L$$where $\mathcal{K}(I)$ is a L-dimensional vector and the $i_{th}$ component $s_i = [\mathcal{K}(I)]_i$ contains a score of how likely $I$ belongs to class $i$.
 A good classifier associates the largest score to the correct class.
 #### 1-layer NN classifier
