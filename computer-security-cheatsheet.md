@@ -36,7 +36,9 @@ PKI is a framework that manages the creation, distribution, management, and revo
 
 Each digital certificate must be verified before trusting.  This verification can be done both online (by fetching CRL) and offline (by using root CA) and the public key must be used. Both the validity period and the integrity must be checked.
 ### Digital signatures
-<figure><img src="assets/image (126).png" alt=""><figcaption></figcaption></figure>
+
+![[digital_signature.png]]
+
 Digital signatures provide strong evidence that data is bound to a specific user. No shared secret is needed to check. Proper signature cannot be repudiated by the user. 
 The message to be signed is first run through a hash function to produce a hash value (message digest). This hash value is a unique representation of the original message. Then it is encrypted using the signer's private key. This encrypted hash is the digital signature.
 
